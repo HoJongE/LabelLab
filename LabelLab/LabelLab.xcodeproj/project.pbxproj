@@ -14,6 +14,7 @@
 		002789982885986F00BDCDA4 /* LabelLabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789972885986F00BDCDA4 /* LabelLabTests.swift */; };
 		002789A22885986F00BDCDA4 /* LabelLabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789A12885986F00BDCDA4 /* LabelLabUITests.swift */; };
 		002789A42885986F00BDCDA4 /* LabelLabUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789A32885986F00BDCDA4 /* LabelLabUITestsLaunchTests.swift */; };
+		0037AD9C28AE3AE4000C36AC /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037AD9B28AE3AE4000C36AC /* AppState.swift */; };
 		00A79A2F2886DC48006D5DCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */; };
 		00A79A322886DD6C006D5DCD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A312886DD6C006D5DCD /* FirebaseAuth */; };
 		00A79A342886DD6C006D5DCD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A332886DD6C006D5DCD /* FirebaseFirestore */; };
@@ -49,6 +50,7 @@
 		0027899D2885986F00BDCDA4 /* LabelLabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LabelLabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		002789A12885986F00BDCDA4 /* LabelLabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLabUITests.swift; sourceTree = "<group>"; };
 		002789A32885986F00BDCDA4 /* LabelLabUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLabUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0037AD9B28AE3AE4000C36AC /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +153,7 @@
 		002789B2288598AF00BDCDA4 /* Injected */ = {
 			isa = PBXGroup;
 			children = (
+				0037AD9B28AE3AE4000C36AC /* AppState.swift */,
 			);
 			path = Injected;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0037AD9C28AE3AE4000C36AC /* AppState.swift in Sources */,
 				002789882885986D00BDCDA4 /* ContentView.swift in Sources */,
 				002789862885986D00BDCDA4 /* LabelLabApp.swift in Sources */,
 			);
