@@ -16,7 +16,7 @@ final class AppState: ObservableObject {
 extension AppState {
 
     struct UserData {
-
+        // for Template List
     }
 
 }
@@ -28,3 +28,12 @@ extension AppState {
     }
 
 }
+
+// MARK: - For Preview
+#if DEBUG
+extension AppState {
+    static var preview: AppState {
+        AppState()
+    }
+}
+#endif

@@ -11,13 +11,19 @@ import SwiftUI
 @main
 struct LabelLabApp: App {
 
+    @StateObject private var appState: AppState = AppState()
+    private let diContainer: DIContainer
+
     init() {
+        self.diContainer = DIContainer(interactors: .init())
         FirebaseApp.configure()
     }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .inject(diContainer)
+                .inject(appState)
         }
     }
 }
