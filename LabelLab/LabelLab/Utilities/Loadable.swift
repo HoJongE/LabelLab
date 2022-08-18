@@ -46,8 +46,8 @@ extension Loadable: Equatable where T: Equatable {
     static func == (lhs: Loadable<T>, rhs: Loadable<T>) -> Bool {
         switch (lhs, rhs) {
         case (.notRequested, .notRequested): return true
-        case (.isLoading, .isLoading): return true
-        case (.loaded, .loaded): return true
+        case (.isLoading(let first), .isLoading(let second)) where first == second: return true
+        case (.loaded(let first), .loaded(let second)) where first == second: return true
         case (.failed, .failed): return true
         default: return false
         }

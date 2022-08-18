@@ -45,12 +45,12 @@ extension AuthenticationRequiredLoadable: CustomStringConvertible where T: Custo
     }
 }
 
-extension AuthenticationRequiredLoadable: Equatable {
+extension AuthenticationRequiredLoadable: Equatable where T: Equatable {
     static func == (lhs: AuthenticationRequiredLoadable<T>, rhs: AuthenticationRequiredLoadable<T>) -> Bool {
         switch (lhs, rhs) {
         case (.notRequested, .notRequested): return true
-        case (.isLoading, .isLoading): return true
-        case (.loaded, .loaded): return true
+        case (.isLoading(let first), .isLoading(let second)) where first == second: return true
+        case (.loaded(let first), .loaded(let second)) where first == second: return true
         case (.failed, .failed): return true
         case (.needAuthentication, .needAuthentication): return true
         default: return false
