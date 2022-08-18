@@ -18,6 +18,8 @@
 		0037AD9E28AE3CCB000C36AC /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037AD9D28AE3CCB000C36AC /* DIContainer.swift */; };
 		0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037AD9F28AE41EE000C36AC /* Helpers.swift */; };
 		0037ADA228AE42E0000C36AC /* Interactors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037ADA128AE42E0000C36AC /* Interactors.swift */; };
+		0037ADA428AE4555000C36AC /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037ADA328AE4555000C36AC /* Loadable.swift */; };
+		0037ADA628AE47CB000C36AC /* AuthenticationRequiredLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037ADA528AE47CB000C36AC /* AuthenticationRequiredLoadable.swift */; };
 		00A79A2F2886DC48006D5DCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */; };
 		00A79A322886DD6C006D5DCD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A312886DD6C006D5DCD /* FirebaseAuth */; };
 		00A79A342886DD6C006D5DCD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A332886DD6C006D5DCD /* FirebaseFirestore */; };
@@ -57,6 +59,8 @@
 		0037AD9D28AE3CCB000C36AC /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		0037AD9F28AE41EE000C36AC /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		0037ADA128AE42E0000C36AC /* Interactors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactors.swift; sourceTree = "<group>"; };
+		0037ADA328AE4555000C36AC /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
+		0037ADA528AE47CB000C36AC /* AuthenticationRequiredLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequiredLoadable.swift; sourceTree = "<group>"; };
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				0037AD9F28AE41EE000C36AC /* Helpers.swift */,
+				0037ADA328AE4555000C36AC /* Loadable.swift */,
+				0037ADA528AE47CB000C36AC /* AuthenticationRequiredLoadable.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -354,8 +360,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0037ADA228AE42E0000C36AC /* Interactors.swift in Sources */,
+				0037ADA428AE4555000C36AC /* Loadable.swift in Sources */,
 				0037AD9E28AE3CCB000C36AC /* DIContainer.swift in Sources */,
 				0037AD9C28AE3AE4000C36AC /* AppState.swift in Sources */,
+				0037ADA628AE47CB000C36AC /* AuthenticationRequiredLoadable.swift in Sources */,
 				002789882885986D00BDCDA4 /* ContentView.swift in Sources */,
 				0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */,
 				002789862885986D00BDCDA4 /* LabelLabApp.swift in Sources */,
