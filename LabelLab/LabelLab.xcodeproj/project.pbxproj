@@ -23,6 +23,8 @@
 		0037ADA828AE5789000C36AC /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037ADA728AE5789000C36AC /* Template.swift */; };
 		0037ADAA28AE579E000C36AC /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037ADA928AE579E000C36AC /* UserInfo.swift */; };
 		0037ADAC28AE57A4000C36AC /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037ADAB28AE57A4000C36AC /* Label.swift */; };
+		00674CA028AF793C00E850B7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00674C9F28AF793C00E850B7 /* Color.swift */; };
+		00674CA228AF7D4700E850B7 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00674CA128AF7D4700E850B7 /* MockData.swift */; };
 		00A79A2F2886DC48006D5DCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */; };
 		00A79A322886DD6C006D5DCD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A312886DD6C006D5DCD /* FirebaseAuth */; };
 		00A79A342886DD6C006D5DCD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A332886DD6C006D5DCD /* FirebaseFirestore */; };
@@ -67,6 +69,8 @@
 		0037ADA728AE5789000C36AC /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		0037ADA928AE579E000C36AC /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		0037ADAB28AE57A4000C36AC /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		00674C9F28AF793C00E850B7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		00674CA128AF7D4700E850B7 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +166,7 @@
 		002789B1288598A900BDCDA4 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				00674C9F28AF793C00E850B7 /* Color.swift */,
 				0037AD9F28AE41EE000C36AC /* Helpers.swift */,
 				0037ADA328AE4555000C36AC /* Loadable.swift */,
 				0037ADA528AE47CB000C36AC /* AuthenticationRequiredLoadable.swift */,
@@ -199,6 +204,7 @@
 				0037ADA728AE5789000C36AC /* Template.swift */,
 				0037ADA928AE579E000C36AC /* UserInfo.swift */,
 				0037ADAB28AE57A4000C36AC /* Label.swift */,
+				00674CA128AF7D4700E850B7 /* MockData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -371,8 +377,10 @@
 				0037ADA228AE42E0000C36AC /* Interactors.swift in Sources */,
 				0037ADA428AE4555000C36AC /* Loadable.swift in Sources */,
 				0037AD9E28AE3CCB000C36AC /* DIContainer.swift in Sources */,
+				00674CA228AF7D4700E850B7 /* MockData.swift in Sources */,
 				0037ADA828AE5789000C36AC /* Template.swift in Sources */,
 				0037ADAC28AE57A4000C36AC /* Label.swift in Sources */,
+				00674CA028AF793C00E850B7 /* Color.swift in Sources */,
 				0037AD9C28AE3AE4000C36AC /* AppState.swift in Sources */,
 				0037ADA628AE47CB000C36AC /* AuthenticationRequiredLoadable.swift in Sources */,
 				002789882885986D00BDCDA4 /* ContentView.swift in Sources */,
@@ -538,8 +546,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LabelLab/Resources";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -566,6 +576,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"LabelLab/Resources";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
