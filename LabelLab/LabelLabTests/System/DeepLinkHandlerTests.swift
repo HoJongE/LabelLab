@@ -26,11 +26,11 @@ final class DeepLinkHandlerTests: XCTestCase {
     func testDeepLinkIsAuthorizeLinkWithCorrectCode() throws {
         // given
         var deepLink: DeepLink?
-        let testURL: URL? = URL(string: "")
+        let testURL: URL? = URL(string: "labellab://login?code=1q2w3e4r")
         // when
-        guard let testURL = testURL else { XCTFail("Test URL should not be nil")}
+        guard let testURL = testURL else { XCTFail("Test URL should not be nil"); return }
         deepLink = DeepLink(testURL)
         // then
-        XCTAssertEqual(deepLink, DeepLink.authorizeCode)
+        XCTAssertEqual(deepLink, DeepLink.authorize(authorizeCode: "1q2w3e4r"))
     }
 }
