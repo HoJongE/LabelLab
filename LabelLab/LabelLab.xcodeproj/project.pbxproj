@@ -30,6 +30,7 @@
 		00A79A342886DD6C006D5DCD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A332886DD6C006D5DCD /* FirebaseFirestore */; };
 		00A79A362886DD6C006D5DCD /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A352886DD6C006D5DCD /* FirebaseFirestoreSwift */; };
 		00F8F10728B4785A00D688AC /* KeyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10628B4785A00D688AC /* KeyStorage.swift */; };
+		00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00F8F10528B475CD00D688AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		00F8F10628B4785A00D688AC /* KeyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStorage.swift; sourceTree = "<group>"; };
+		00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticatorTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		002789962885986F00BDCDA4 /* LabelLabTests */ = {
 			isa = PBXGroup;
 			children = (
+				00F8F10828B4796500D688AC /* Authentication */,
 				002789972885986F00BDCDA4 /* LabelLabTests.swift */,
 			);
 			path = LabelLabTests;
@@ -238,6 +241,14 @@
 				002789872885986D00BDCDA4 /* ContentView.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		00F8F10828B4796500D688AC /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				002789982885986F00BDCDA4 /* LabelLabTests.swift in Sources */,
+				00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
