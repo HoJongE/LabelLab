@@ -31,6 +31,7 @@
 		00A79A362886DD6C006D5DCD /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A352886DD6C006D5DCD /* FirebaseFirestoreSwift */; };
 		00F8F10728B4785A00D688AC /* KeyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10628B4785A00D688AC /* KeyStorage.swift */; };
 		00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */; };
+		00F8F10D28B47AC200D688AC /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10C28B47AC200D688AC /* OAuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		00F8F10528B475CD00D688AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		00F8F10628B4785A00D688AC /* KeyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStorage.swift; sourceTree = "<group>"; };
 		00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticatorTest.swift; sourceTree = "<group>"; };
+		00F8F10C28B47AC200D688AC /* OAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		002789842885986D00BDCDA4 /* LabelLab */ = {
 			isa = PBXGroup;
 			children = (
+				00F8F10B28B47AB700D688AC /* Service */,
 				00F8F10528B475CD00D688AC /* Info.plist */,
 				002789B2288598AF00BDCDA4 /* Injected */,
 				002789B4288598C400BDCDA4 /* Interactors */,
@@ -249,6 +252,14 @@
 				00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		00F8F10B28B47AB700D688AC /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				00F8F10C28B47AC200D688AC /* OAuthService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,6 +413,7 @@
 				0037ADA628AE47CB000C36AC /* AuthenticationRequiredLoadable.swift in Sources */,
 				002789882885986D00BDCDA4 /* ContentView.swift in Sources */,
 				0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */,
+				00F8F10D28B47AC200D688AC /* OAuthService.swift in Sources */,
 				0037ADAA28AE579E000C36AC /* UserInfo.swift in Sources */,
 				002789862885986D00BDCDA4 /* LabelLabApp.swift in Sources */,
 			);
@@ -619,7 +631,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = team.leejongwoo.LabelLabTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -637,7 +649,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = team.leejongwoo.LabelLabTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
