@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AppKit
 
 protocol OAuthService {
     func openOAuthSite()
@@ -15,19 +14,17 @@ protocol OAuthService {
 final class GithubOAuthService {
     static let shared: GithubOAuthService = .init()
 
-    private var oAuthSiteURL: String {
-        "https://github.com/login/oauth/authorize?client_id=\(KeyStorage.GithubClientId)&scope=user,repo"
-    }
-
     private init() {}
 }
 
+#if canImport(AppKit)
+
+import AppKit
+
 extension GithubOAuthService: OAuthService {
     func openOAuthSite() {
-        guard let url = URL(string: oAuthSiteURL) else { return }
-        #if os(macOS)
+        guard let url = GithubAPI.authorize.url else { return }
         NSWorkspace.shared.open(url)
-        #endif
     }
 }
-
+#endif
