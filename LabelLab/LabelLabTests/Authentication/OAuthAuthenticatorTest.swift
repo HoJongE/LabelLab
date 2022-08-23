@@ -12,7 +12,7 @@ final class OAuthAuthenticatorTest: XCTestCase {
 
     private var oAuthService: OAuthService!
     override func setUpWithError() throws {
-        oAuthService = LabelLab.GithubOAuthService()
+        oAuthService = GithubOAuthService.shared
     }
 
     override func tearDownWithError() throws {
@@ -22,6 +22,7 @@ final class OAuthAuthenticatorTest: XCTestCase {
 
     func testOpenOAuthSite() throws {
         oAuthService.openOAuthSite()
+        XCTAssert(true)
     }
 
 }
