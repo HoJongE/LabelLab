@@ -26,10 +26,28 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
+            Button {
+                appState.routing.rootRouting.isShowingLoginPopup = true
+            } label: {
+                Text("팝업 띄우기")
+            }
+        }
+        .sheet(isPresented: $appState.routing.rootRouting.isShowingLoginPopup) {
+            AuthorizePopup()
         }
     }
 }
 
+// MARK: - Routing
+extension ContentView {
+
+    struct Routing: Equatable {
+        var isShowingLoginPopup: Bool = false
+    }
+
+}
+
+// MARK: - Preview
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
