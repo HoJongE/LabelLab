@@ -53,9 +53,9 @@ extension DIContainer {
 extension View {
 
     @ViewBuilder
-    func injectPreview() -> some View {
-        self.environmentObject(AppState.preview)
-            .environment(\.injected, DIContainer.preview)
+    func injectPreview(_ appState: AppState? = nil, _ diConainter: DIContainer? = nil) -> some View {
+        self.environmentObject(appState ?? AppState.preview)
+            .environment(\.injected, diConainter ?? DIContainer.preview)
     }
 
 }

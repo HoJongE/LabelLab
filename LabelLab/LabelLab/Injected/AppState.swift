@@ -8,15 +8,25 @@
 import Foundation
 
 final class AppState: ObservableObject {
-    @Published var userData: UserData = UserData()
-    @Published var routing: ViewRouting = ViewRouting()
+    @Published var userData: UserData
+    @Published var routing: ViewRouting
+
+    init(_ userData: UserData = UserData(), _ routing: ViewRouting = ViewRouting()) {
+        self.userData = userData
+        self.routing = routing
+    }
 }
 
 // MARK: - User data
 extension AppState {
 
     struct UserData {
+        var userInfo: Loadable<UserInfo>
         // for Template List
+
+        init(userInfo: Loadable<UserInfo> = .notRequested) {
+            self.userInfo = userInfo
+        }
     }
 
 }
@@ -25,6 +35,7 @@ extension AppState {
 extension AppState {
 
     struct ViewRouting: Equatable {
+        var rootRouting = ContentView.Routing()
     }
 
 }

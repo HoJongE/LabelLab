@@ -69,3 +69,5 @@ xcuserdata/
 
 
 LabelLab/LabelLab/Utilities/KeyStorage.swift
+
+*.xcscheme

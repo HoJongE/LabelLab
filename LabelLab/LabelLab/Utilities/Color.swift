@@ -9,7 +9,9 @@ import SwiftUI
 
 // MARK: - Color Assests
 extension Color {
-
+    // TODO: Hex 값 초기화 대신 Assests 에 추가해야함
+    static let statusBackground: Color = Color("1E1E1E")
+    static let statusTitle: Color = Color("EBEBF5").opacity(0.6)
 }
 
 // MARK: - Hex Color initializer
