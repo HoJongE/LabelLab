@@ -35,6 +35,7 @@ struct ContentView: View {
         .sheet(isPresented: $appState.routing.rootRouting.isShowingLoginPopup) {
             AuthorizePopup()
         }
+        // TODO: Frame minimum size 지정필요
     }
 }
 
