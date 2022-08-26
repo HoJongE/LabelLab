@@ -21,7 +21,7 @@ struct DismissButton: View {
         } label: {
             Circle()
                 .fill(Color.red)
-                .frame(width: 12)
+                .frame(width: 12, height: 12)
                 .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 .overlay(alignment: .center) {
                     if isHover {

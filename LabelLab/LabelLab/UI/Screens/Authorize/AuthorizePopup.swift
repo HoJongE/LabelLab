@@ -9,9 +9,8 @@ import SwiftUI
 
 struct AuthorizePopup: View {
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject private var appState: AppState
     @Environment(\.injected) private var diContainer: DIContainer
-    @State private var isCloseButtonHover: Bool = false
+    @EnvironmentObject private var appState: AppState
 
     var body: some View {
         content()
