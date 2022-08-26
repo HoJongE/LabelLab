@@ -168,18 +168,18 @@ private extension AuthorizePopup {
     func errorIndicator(_ error: Error) -> some View {
         VStack {
             HStack {
-                statusTitle
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(EdgeInsets(top: 6, leading: 0, bottom: 6, trailing: 0))
+                dismissButton.frame(maxWidth: .infinity, alignment: .leading)
+                statusTitle.frame(maxWidth: .infinity, alignment: .leading)
+                Spacer().frame(maxWidth: .infinity)
             }
             .background(Color.statusBackground)
             Spacer()
             HStack(spacing: 0) {
                 failIcon.padding(.trailing, 22)
-                Text("Error occur when signing in, Please try again").fontWeight(.bold)
+                Text("An Error occur when signing in, Please try again").fontWeight(.bold)
                 Spacer()
             }
-            .padding(.leading, 39)
+            .padding(.leading, 22)
             HStack {
                 Spacer()
                 authorizeButton.padding(.trailing, 33)
