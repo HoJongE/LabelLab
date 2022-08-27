@@ -84,7 +84,7 @@
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00DF161128B4F4AF008A8A30 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
 		00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandler.swift; sourceTree = "<group>"; };
-		00F8F10528B475CD00D688AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		00F8F10528B475CD00D688AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F8F10628B4785A00D688AC /* KeyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStorage.swift; sourceTree = "<group>"; };
 		00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticatorTest.swift; sourceTree = "<group>"; };
 		00F8F10C28B47AC200D688AC /* OAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
@@ -146,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				00F8F10B28B47AB700D688AC /* Service */,
-				00F8F10528B475CD00D688AC /* Info.plist */,
 				002789B2288598AF00BDCDA4 /* Injected */,
 				002789B4288598C400BDCDA4 /* Interactors */,
 				002789B5288598CC00BDCDA4 /* Models */,
@@ -246,6 +245,7 @@
 		002789B7288598D600BDCDA4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00F8F10528B475CD00D688AC /* Info.plist */,
 				002789892885986F00BDCDA4 /* Assets.xcassets */,
 				0027898E2885986F00BDCDA4 /* LabelLab.entitlements */,
 				0027898C2885986F00BDCDA4 /* Preview Assets.xcassets */,
@@ -276,6 +276,8 @@
 				0038C29E28B50976009C98E2 /* AuthorizePopup.swift */,
 			);
 			path = Authorize;
+			sourceTree = "<group>";
+		};
 		00DF161028B4F49A008A8A30 /* System */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,7 +635,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LabelLab/Info.plist;
+				INFOPLIST_FILE = LabelLab/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -661,7 +663,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"LabelLab/Resources";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = LabelLab/Info.plist;
+				INFOPLIST_FILE = LabelLab/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (

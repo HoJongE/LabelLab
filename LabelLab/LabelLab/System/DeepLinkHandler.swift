@@ -38,10 +38,20 @@ protocol DeepLinkHandler {
 
 final class RealDeepLinkHandler: DeepLinkHandler {
 
+    private let diContainer: DIContainer
+    private let appState: AppState
+
+    init(_ diContainer: DIContainer, _ appState: AppState) {
+        self.diContainer = diContainer
+        self.appState = appState
+    }
+
     func open(_ deepLink: DeepLink) {
         switch deepLink {
         case .authorize(let authorizeCode):
+            // TODO: request access token
             print(authorizeCode)
         }
     }
+
 }
