@@ -5,8 +5,6 @@
 //  Created by JongHo Park on 2022/08/23.
 //
 
-import Foundation
-
 enum GithubAPI {
     case authorize
 }

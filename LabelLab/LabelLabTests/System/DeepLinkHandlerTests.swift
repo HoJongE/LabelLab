@@ -33,4 +33,16 @@ final class DeepLinkHandlerTests: XCTestCase {
         // then
         XCTAssertEqual(deepLink, DeepLink.authorize(authorizeCode: "1q2w3e4r"))
     }
+
+    /// 변환 불가능한 Deep Link URL 이 들어왔을 때 성공적으로 실패하는지 확인하는 테스트
+    func testDeepLinkIsNil() throws {
+        // given
+        var deepLink: DeepLink?
+        let testURL: URL? = URL(string: "labellab://logew?coekwpofkow")
+        // when
+        guard let testURL = testURL else { XCTFail("Test URL should not be nil"); return }
+        deepLink = DeepLink(testURL)
+        // then
+        XCTAssertNil(deepLink)
+    }
 }
