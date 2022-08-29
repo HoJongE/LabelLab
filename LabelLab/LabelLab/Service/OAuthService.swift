@@ -35,15 +35,20 @@ extension OAuthServiceError: LocalizedError {
 }
 
 protocol OAuthService {
+    var session: URLSessionProtocol { get }
     func openOAuthSite()
     func requestAccessToken(with code: String) async throws -> AccessToken
     func requestUserInfo() async throws -> UserInfo
+
 }
 
 final class GithubOAuthService {
     static let shared: GithubOAuthService = .init()
+    let session: URLSessionProtocol
 
-    private init() {}
+    init(_ session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
 }
 
 #if canImport(AppKit)
@@ -61,7 +66,7 @@ extension GithubOAuthService: OAuthService {
 extension GithubOAuthService {
 
     func requestAccessToken(with code: String) async throws -> AccessToken {
-        let (data, _) = try await GithubAPI.accessToken(authorizeCode: code).request()
+        let (data, _) = try await GithubAPI.accessToken(authorizeCode: code).request(with: session)
         let token = try parseDataToAccessToken(data)
         return token
     }
@@ -75,8 +80,8 @@ extension GithubOAuthService {
 private extension GithubOAuthService {
 
     func parseDataToAccessToken(_ data: Data) throws -> String {
-        guard let data2String = String(data: data, encoding: .utf8) else { throw OAuthServiceError.dataNotExist }
-        guard let token = data2String.split(separator: "&").first?.split(separator: "=").last else { throw OAuthServiceError.tokenNotExist }
+        guard let json = try? JSONDecoder().decode([String: String].self, from: data) else { throw OAuthServiceError.dataNotExist }
+        guard let token = json["access_token"] else { throw OAuthServiceError.tokenNotExist }
         return String(token)
     }
 

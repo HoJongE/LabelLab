@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00110E3A28BCEB6300BA327F /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00110E3928BCEB6300BA327F /* URLSessionProtocol.swift */; };
+		00110E3D28BCEC9100BA327F /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00110E3C28BCEC9100BA327F /* MockURLSession.swift */; };
+		00110E4028BCED9700BA327F /* MockURLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00110E3F28BCED9700BA327F /* MockURLData.swift */; };
 		00239D4828BC511C00CC1DC1 /* OAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00239D4728BC511C00CC1DC1 /* OAuthInteractor.swift */; };
 		002789862885986D00BDCDA4 /* LabelLabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789852885986D00BDCDA4 /* LabelLabApp.swift */; };
 		002789882885986D00BDCDA4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789872885986D00BDCDA4 /* ContentView.swift */; };
@@ -59,6 +62,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00110E3928BCEB6300BA327F /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		00110E3C28BCEC9100BA327F /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		00110E3F28BCED9700BA327F /* MockURLData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLData.swift; sourceTree = "<group>"; };
 		00239D4728BC511C00CC1DC1 /* OAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthInteractor.swift; sourceTree = "<group>"; };
 		002789822885986D00BDCDA4 /* LabelLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabelLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		002789852885986D00BDCDA4 /* LabelLabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLabApp.swift; sourceTree = "<group>"; };
@@ -123,6 +129,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00110E3B28BCEC8700BA327F /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				00110E3C28BCEC9100BA327F /* MockURLSession.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		00110E3E28BCED5200BA327F /* TestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				00110E3F28BCED9700BA327F /* MockURLData.swift */,
+			);
+			path = TestHelpers;
+			sourceTree = "<group>";
+		};
 		002789792885986C00BDCDA4 = {
 			isa = PBXGroup;
 			children = (
@@ -163,8 +185,10 @@
 		002789962885986F00BDCDA4 /* LabelLabTests */ = {
 			isa = PBXGroup;
 			children = (
+				00110E3E28BCED5200BA327F /* TestHelpers */,
+				00110E3B28BCEC8700BA327F /* Mock */,
+				00F8F10828B4796500D688AC /* Service */,
 				00DF161028B4F49A008A8A30 /* System */,
-				00F8F10828B4796500D688AC /* Authentication */,
 			);
 			path = LabelLabTests;
 			sourceTree = "<group>";
@@ -196,6 +220,7 @@
 				0037ADA528AE47CB000C36AC /* AuthenticationRequiredLoadable.swift */,
 				00F8F10628B4785A00D688AC /* KeyStorage.swift */,
 				00F8F11328B4A1A200D688AC /* URLCollection.swift */,
+				00110E3928BCEB6300BA327F /* URLSessionProtocol.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -289,12 +314,12 @@
 			path = System;
 			sourceTree = "<group>";
 		};
-		00F8F10828B4796500D688AC /* Authentication */ = {
+		00F8F10828B4796500D688AC /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */,
 			);
-			path = Authentication;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		00F8F10B28B47AB700D688AC /* Service */ = {
@@ -472,6 +497,7 @@
 				0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */,
 				00F8F10D28B47AC200D688AC /* OAuthService.swift in Sources */,
 				0037ADAA28AE579E000C36AC /* UserInfo.swift in Sources */,
+				00110E3A28BCEB6300BA327F /* URLSessionProtocol.swift in Sources */,
 				00F8F10F28B49E6300D688AC /* APICall.swift in Sources */,
 				002789862885986D00BDCDA4 /* LabelLabApp.swift in Sources */,
 				0036D21F28B5BDF200A08479 /* DismissButton.swift in Sources */,
@@ -483,8 +509,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00110E3D28BCEC9100BA327F /* MockURLSession.swift in Sources */,
 				00DF161228B4F4AF008A8A30 /* DeepLinkHandlerTests.swift in Sources */,
 				00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */,
+				00110E4028BCED9700BA327F /* MockURLData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
