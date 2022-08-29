@@ -8,16 +8,19 @@
 extension DIContainer {
 
     struct Interactors {
-        
-    }
+        let oAuthInteractor: OAuthInteractor
 
+        init(oAuthInteractor: OAuthInteractor) {
+            self.oAuthInteractor = oAuthInteractor
+        }
+    }
 }
 
 // MARK: - For previews
 #if DEBUG
 extension DIContainer.Interactors {
     static var preview: DIContainer.Interactors {
-        DIContainer.Interactors()
+        .init(oAuthInteractor: RealOAuthInteractor(appState: AppState.preview))
     }
 }
 #endif

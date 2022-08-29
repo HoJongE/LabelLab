@@ -14,7 +14,7 @@ final class DeepLinkHandlerTests: XCTestCase {
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        deepLinkHandler = RealDeepLinkHandler()
+        deepLinkHandler = RealDeepLinkHandler(DIContainer.preview, AppState.preview)
     }
 
     override func tearDownWithError() throws {
