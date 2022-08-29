@@ -31,11 +31,16 @@ extension APICall {
         return urlComponents.url
     }
 
-    func request() async throws -> (data: Data, response: URLResponse) {
+    func request(with session: URLSessionProtocol = URLSession.shared) async throws -> (data: Data, response: URLResponse) {
         guard let url = url else {
             throw URLError(.badURL)
         }
-        return try await URLSession.shared.data(from: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = method
+        _ = headers.map { (key, value) in
+            request.addValue(key, forHTTPHeaderField: value)
+        }
+        return try await session.data(for: request)
     }
 
 }
