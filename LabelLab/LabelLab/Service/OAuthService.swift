@@ -37,6 +37,7 @@ extension OAuthServiceError: LocalizedError {
 protocol OAuthService {
     func openOAuthSite()
     func requestAccessToken(with code: String) async throws -> AccessToken
+    func requestUserInfo() async throws -> UserInfo
 }
 
 final class GithubOAuthService {
@@ -63,6 +64,10 @@ extension GithubOAuthService {
         let (data, _) = try await GithubAPI.accessToken(authorizeCode: code).request()
         let token = try parseDataToAccessToken(data)
         return token
+    }
+
+    func requestUserInfo() async throws -> UserInfo {
+        return UserInfo.hojonge
     }
 
 }
