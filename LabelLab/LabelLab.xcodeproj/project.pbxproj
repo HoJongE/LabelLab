@@ -36,6 +36,8 @@
 		00A79A362886DD6C006D5DCD /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A352886DD6C006D5DCD /* FirebaseFirestoreSwift */; };
 		00DF161228B4F4AF008A8A30 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF161128B4F4AF008A8A30 /* DeepLinkHandlerTests.swift */; };
 		00DF161428B4F7C5008A8A30 /* DeepLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */; };
+		00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */; };
+		00E677C128BD017700918BF0 /* MockedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E677C028BD017700918BF0 /* MockedService.swift */; };
 		00F8F10728B4785A00D688AC /* KeyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10628B4785A00D688AC /* KeyStorage.swift */; };
 		00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */; };
 		00F8F10D28B47AC200D688AC /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10C28B47AC200D688AC /* OAuthService.swift */; };
@@ -92,6 +94,8 @@
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00DF161128B4F4AF008A8A30 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
 		00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandler.swift; sourceTree = "<group>"; };
+		00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthInteractorTests.swift; sourceTree = "<group>"; };
+		00E677C028BD017700918BF0 /* MockedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedService.swift; sourceTree = "<group>"; };
 		00F8F10528B475CD00D688AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F8F10628B4785A00D688AC /* KeyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStorage.swift; sourceTree = "<group>"; };
 		00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticatorTest.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				00110E3C28BCEC9100BA327F /* MockURLSession.swift */,
+				00E677C028BD017700918BF0 /* MockedService.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -185,10 +190,11 @@
 		002789962885986F00BDCDA4 /* LabelLabTests */ = {
 			isa = PBXGroup;
 			children = (
-				00110E3E28BCED5200BA327F /* TestHelpers */,
+				00E677BD28BCF84500918BF0 /* Interactors */,
 				00110E3B28BCEC8700BA327F /* Mock */,
 				00F8F10828B4796500D688AC /* Service */,
 				00DF161028B4F49A008A8A30 /* System */,
+				00110E3E28BCED5200BA327F /* TestHelpers */,
 			);
 			path = LabelLabTests;
 			sourceTree = "<group>";
@@ -312,6 +318,14 @@
 				00DF161128B4F4AF008A8A30 /* DeepLinkHandlerTests.swift */,
 			);
 			path = System;
+			sourceTree = "<group>";
+		};
+		00E677BD28BCF84500918BF0 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */,
+			);
+			path = Interactors;
 			sourceTree = "<group>";
 		};
 		00F8F10828B4796500D688AC /* Service */ = {
@@ -512,6 +526,8 @@
 				00110E3D28BCEC9100BA327F /* MockURLSession.swift in Sources */,
 				00DF161228B4F4AF008A8A30 /* DeepLinkHandlerTests.swift in Sources */,
 				00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */,
+				00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */,
+				00E677C128BD017700918BF0 /* MockedService.swift in Sources */,
 				00110E4028BCED9700BA327F /* MockURLData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

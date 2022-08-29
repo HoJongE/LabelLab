@@ -30,12 +30,14 @@ extension RealOAuthInteractor: OAuthInteractor {
 
     func requestAccessToken() async {
         do {
+            // TODO: Keychain 에 Access Token 저장해야 함
             let accessToken: AccessToken = try await oAuthService.requestAccessToken(with: "")
         } catch {
             appState.userData.userInfo = .failed(error)
         }
     }
 
+    // TODO: Firebase 인증 후 UserInfo 요청해야함!
     func requestUserInfo() async {
         do {
             let userInfo: UserInfo = try await oAuthService.requestUserInfo()
