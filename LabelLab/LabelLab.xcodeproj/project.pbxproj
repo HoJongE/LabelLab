@@ -31,6 +31,7 @@
 		0044B17128BEE8CD00613190 /* KeyChainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 0044B17028BEE8CD00613190 /* KeyChainWrapper */; };
 		0044B17428BEE97600613190 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0044B17328BEE97600613190 /* .swiftlint.yml */; };
 		0044B17628BEF57100613190 /* KeychainConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044B17528BEF57100613190 /* KeychainConst.swift */; };
+		00617F5328BF4887008B5952 /* ConstantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00617F5228BF4887008B5952 /* ConstantData.swift */; };
 		00674CA028AF793C00E850B7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00674C9F28AF793C00E850B7 /* Color.swift */; };
 		00674CA228AF7D4700E850B7 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00674CA128AF7D4700E850B7 /* MockData.swift */; };
 		00A79A2F2886DC48006D5DCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */; };
@@ -94,6 +95,7 @@
 		0038C29E28B50976009C98E2 /* AuthorizePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizePopup.swift; sourceTree = "<group>"; };
 		0044B17328BEE97600613190 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0044B17528BEF57100613190 /* KeychainConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConst.swift; sourceTree = "<group>"; };
+		00617F5228BF4887008B5952 /* ConstantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantData.swift; sourceTree = "<group>"; };
 		00674C9F28AF793C00E850B7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		00674CA128AF7D4700E850B7 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				00110E3F28BCED9700BA327F /* MockURLData.swift */,
+				00617F5228BF4887008B5952 /* ConstantData.swift */,
 			);
 			path = TestHelpers;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */,
 				00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */,
 				00E677C128BD017700918BF0 /* MockedService.swift in Sources */,
+				00617F5328BF4887008B5952 /* ConstantData.swift in Sources */,
 				00110E4028BCED9700BA327F /* MockURLData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

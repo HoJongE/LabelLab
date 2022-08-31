@@ -10,7 +10,7 @@ import KeyChainWrapper
 
 protocol OAuthInteractor {
     func openOAuthSite()
-    func requestAccessToken() async
+    func requestAccessToken(with authorizeCode: String) async
     func requestUserInfo() async
     func logout() async
 }
@@ -32,10 +32,10 @@ extension RealOAuthInteractor: OAuthInteractor {
         oAuthService.openOAuthSite()
     }
 
-    func requestAccessToken() async {
+    func requestAccessToken(with authorizeCode: String) async {
         do {
             let serviceName = try getServiceName()
-            let accessToken: AccessToken = try await oAuthService.requestAccessToken(with: "")
+            let accessToken: AccessToken = try await oAuthService.requestAccessToken(with: authorizeCode)
 
             try await PasswordKeychainManager(service: serviceName)
                 .savePassword(accessToken, for: KeychainConst.accessToken)

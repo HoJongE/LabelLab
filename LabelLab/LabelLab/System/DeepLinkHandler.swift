@@ -49,8 +49,10 @@ final class RealDeepLinkHandler: DeepLinkHandler {
     func open(_ deepLink: DeepLink) {
         switch deepLink {
         case .authorize(let authorizeCode):
-            // TODO: request access token
-            print(authorizeCode)
+            Task(priority: .userInitiated) {
+                await diContainer.interactors.oAuthInteractor.requestAccessToken(with: authorizeCode)
+                await diContainer.interactors.oAuthInteractor.requestUserInfo()
+            }
         }
     }
 

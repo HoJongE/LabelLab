@@ -33,7 +33,7 @@ final class OAuthAuthenticatorTest: XCTestCase {
         // when
         accessToken = try await oAuthService.requestAccessToken(with: "")
         // then
-        XCTAssertEqual(accessToken, "gho_16C7e42F292c6912E7710c838347Ae178B4a")
+        XCTAssertEqual(accessToken, ConstantData.accessToken)
     }
 
     func testRequestAccessTokenFailWhenDataIsEmpty() async {
