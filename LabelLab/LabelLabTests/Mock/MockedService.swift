@@ -19,7 +19,7 @@ final class MockOAuthService: OAuthService {
     }
 
     func requestAccessToken(with code: String) async throws -> LabelLab.AccessToken {
-        "gho_16C7e42F292c6912E7710c838347Ae178B4a"
+        ConstantData.accessToken
     }
 
     func requestUserInfo() async throws -> LabelLab.UserInfo {
