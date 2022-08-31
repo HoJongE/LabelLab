@@ -33,7 +33,7 @@ extension GithubAPI: APICall {
         case .authorize:
             return [:]
         case .accessToken:
-            return ["Accept" : "application/json"]
+            return ["Accept": "application/json"]
         }
     }
 

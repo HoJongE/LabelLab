@@ -35,8 +35,8 @@ extension AuthenticationRequiredLoadable: CustomStringConvertible where T: Custo
             return "\(T.self) is not requested yet"
         case .isLoading(let last):
             return "\(T.self) is Loading... last value is \(last?.description ?? "nil")"
-        case .loaded(let t):
-            return "Data is loaded, \(t.description)"
+        case .loaded(let value):
+            return "Data is loaded, \(value.description)"
         case .failed(let error):
             return "Error occur when loading, error is \(error.localizedDescription)"
         case .needAuthentication:
