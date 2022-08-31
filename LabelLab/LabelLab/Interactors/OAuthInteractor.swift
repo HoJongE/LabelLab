@@ -5,10 +5,14 @@
 //  Created by JongHo Park on 2022/08/29.
 //
 
+import Foundation
+import KeyChainWrapper
+
 protocol OAuthInteractor {
     func openOAuthSite()
     func requestAccessToken() async
     func requestUserInfo() async
+    func logout() async
 }
 
 struct RealOAuthInteractor {
@@ -30,8 +34,11 @@ extension RealOAuthInteractor: OAuthInteractor {
 
     func requestAccessToken() async {
         do {
-            // TODO: Keychain 에 Access Token 저장해야 함
-            let _: AccessToken = try await oAuthService.requestAccessToken(with: "")
+            let serviceName = try getServiceName()
+            let accessToken: AccessToken = try await oAuthService.requestAccessToken(with: "")
+
+            try await PasswordKeychainManager(service: serviceName)
+                .savePassword(accessToken, for: KeychainConst.accessToken)
         } catch {
             appState.userData.userInfo = .failed(error)
         }
@@ -47,4 +54,26 @@ extension RealOAuthInteractor: OAuthInteractor {
         }
     }
 
+    func logout() async {
+        do {
+            let serviceName = try getServiceName()
+            try await PasswordKeychainManager(service: serviceName)
+                .removePassword(for: KeychainConst.accessToken)
+            try await oAuthService.logout()
+            appState.userData.userInfo = .notRequested
+        } catch {
+            appState.userData.userInfo = .failed(error)
+        }
+    }
+
+}
+
+// MARK: - Implementation
+private extension RealOAuthInteractor {
+    func getServiceName() throws -> String {
+        guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
+            throw KeyChainError.unknownError(message: "키체인 저장 실패!")
+        }
+        return bundleIdentifier
+    }
 }
