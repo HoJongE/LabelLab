@@ -39,6 +39,7 @@ protocol OAuthService {
     func openOAuthSite()
     func requestAccessToken(with code: String) async throws -> AccessToken
     func requestUserInfo() async throws -> UserInfo
+    func logout() async throws
 
 }
 
@@ -73,6 +74,10 @@ extension GithubOAuthService {
 
     func requestUserInfo() async throws -> UserInfo {
         return UserInfo.hojonge
+    }
+
+    func logout() async throws {
+        try Auth.auth().signOut()
     }
 
 }
