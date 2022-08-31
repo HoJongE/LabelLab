@@ -1,0 +1,11 @@
+excluded:
+- LabelLab/Utilities/URLCollection.swift
+- LabelLab/Utilities/Color.swift
+- LabelLab/Models/MockData.swift
+
+line_length:
+  warning: 150
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_interpolated_strings: true
+  ignores_urls: true

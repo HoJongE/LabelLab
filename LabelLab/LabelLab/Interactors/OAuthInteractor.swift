@@ -31,7 +31,7 @@ extension RealOAuthInteractor: OAuthInteractor {
     func requestAccessToken() async {
         do {
             // TODO: Keychain 에 Access Token 저장해야 함
-            let accessToken: AccessToken = try await oAuthService.requestAccessToken(with: "")
+            let _: AccessToken = try await oAuthService.requestAccessToken(with: "")
         } catch {
             appState.userData.userInfo = .failed(error)
         }

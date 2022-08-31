@@ -14,7 +14,7 @@ enum Loadable<T> {
     var value: T? {
         switch self {
         case .isLoading(let last): return last
-        case .loaded(let t):  return t
+        case .loaded(let value):  return value
         default:  return nil
         }
     }
@@ -34,8 +34,8 @@ extension Loadable: CustomStringConvertible where T: CustomStringConvertible {
             return "\(T.self) is not requested yet"
         case .isLoading(let last):
             return "\(T.self) is Loading... last value is \(last?.description ?? "nil")"
-        case .loaded(let t):
-            return "Data is loaded, \(t.description)"
+        case .loaded(let value):
+            return "Data is loaded, \(value.description)"
         case .failed(let error):
             return "Error occur when loading, error is \(error.localizedDescription)"
         }

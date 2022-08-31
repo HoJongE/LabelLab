@@ -29,7 +29,7 @@ final class OAuthAuthenticatorTest: XCTestCase {
 
     func testRequestAccessToken() async throws {
         // given
-        var accessToken: AccessToken? = nil
+        var accessToken: AccessToken?
         // when
         accessToken = try await oAuthService.requestAccessToken(with: "")
         // then
@@ -78,7 +78,7 @@ final class OAuthAuthenticatorTest: XCTestCase {
 
     func testRequestUserInfo() async throws {
         // given
-        var userInfo: UserInfo? = nil
+        var userInfo: UserInfo?
         // when
         userInfo = try await oAuthService.requestUserInfo()
         // then

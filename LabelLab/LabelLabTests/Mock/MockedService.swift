@@ -25,6 +25,4 @@ final class MockOAuthService: OAuthService {
     func requestUserInfo() async throws -> LabelLab.UserInfo {
         UserInfo.hojonge
     }
-
-
 }

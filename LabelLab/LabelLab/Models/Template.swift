@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// 라벨 목록을 가지고 있는 템플릿
 struct Template: Codable, Identifiable {
     let id: String // 템플릿 id
