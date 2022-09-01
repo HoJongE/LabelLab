@@ -33,7 +33,7 @@ extension DeepLink: Equatable {
 }
 
 protocol DeepLinkHandler {
-    func open(_ deepLink: DeepLink)
+    func open(_ deepLink: DeepLink) async
 }
 
 final class RealDeepLinkHandler: DeepLinkHandler {
@@ -46,13 +46,11 @@ final class RealDeepLinkHandler: DeepLinkHandler {
         self.appState = appState
     }
 
-    func open(_ deepLink: DeepLink) {
+    func open(_ deepLink: DeepLink) async {
         switch deepLink {
         case .authorize(let authorizeCode):
-            Task(priority: .userInitiated) {
-                await diContainer.interactors.oAuthInteractor.requestAccessToken(with: authorizeCode)
-                await diContainer.interactors.oAuthInteractor.requestUserInfo()
-            }
+            await diContainer.interactors.oAuthInteractor.requestAccessToken(with: authorizeCode)
+            await diContainer.interactors.oAuthInteractor.requestUserInfo()
         }
     }
 

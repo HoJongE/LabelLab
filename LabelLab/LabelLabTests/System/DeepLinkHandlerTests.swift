@@ -11,14 +11,20 @@ import XCTest
 final class DeepLinkHandlerTests: XCTestCase {
 
     private var deepLinkHandler: DeepLinkHandler!
+    private var appState: AppState!
+    private var diContainer: DIContainer!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        deepLinkHandler = RealDeepLinkHandler(DIContainer.preview, AppState.preview)
+        appState = AppState()
+        diContainer = MockDIContainerProvider.mockDIContainer(appState: appState)
+        deepLinkHandler = RealDeepLinkHandler(diContainer, appState)
     }
 
     override func tearDownWithError() throws {
         deepLinkHandler = nil
+        appState = nil
+        diContainer = nil
         try super.tearDownWithError()
     }
 
@@ -44,5 +50,19 @@ final class DeepLinkHandlerTests: XCTestCase {
         deepLink = DeepLink(testURL)
         // then
         XCTAssertNil(deepLink)
+    }
+
+    func testDeepLinkAccessTokenSuccess() async throws {
+        // given
+        let testURL: URL? = URL(string: "labellab://login?code=1q2w3e4r")
+
+        guard let testURL = testURL, let deepLink = DeepLink(testURL) else {
+            XCTFail("Test URL and deepLink should not be nil")
+            return
+        }
+
+        // when
+        await deepLinkHandler.open(deepLink)
+        XCTAssertEqual(appState.userData.userInfo, Loadable.loaded(UserInfo.hojonge))
     }
 }

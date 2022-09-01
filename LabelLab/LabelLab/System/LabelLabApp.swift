@@ -42,7 +42,9 @@ private extension View {
         self.onOpenURL { url in
             let deepLink: DeepLink? = DeepLink(url)
             guard let deepLink = deepLink else { return }
-            deepLinkHandler.open(deepLink)
+            Task(priority: .userInitiated) {
+                await deepLinkHandler.open(deepLink)
+            }
         }
     }
 
