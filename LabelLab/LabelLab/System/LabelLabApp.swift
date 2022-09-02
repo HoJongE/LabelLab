@@ -76,5 +76,6 @@ private extension WindowGroup {
         commands {
             CommandGroup(replacing: .newItem, addition: { })
         }
+        .windowStyle(HiddenTitleBarWindowStyle())
     }
 }
