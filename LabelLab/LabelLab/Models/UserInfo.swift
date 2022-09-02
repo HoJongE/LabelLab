@@ -9,7 +9,7 @@ import Foundation
 
 /// 유저 닉네임, 유저 프로필, 유저 이메일 등 추가 정보
 struct UserInfo: Codable, Identifiable {
-    var id: String // 유저 id
+    var id: Int // 유저 id
     var nickname: String // 닉네임
     var profileImage: String? // 프로필 이미지 url
     var email: String // 이메일
@@ -17,7 +17,7 @@ struct UserInfo: Codable, Identifiable {
 
 extension UserInfo: Equatable {
     static func == (lhs: UserInfo, rhs: UserInfo) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.nickname == rhs.nickname && lhs.profileImage == rhs.profileImage && lhs.email == rhs.email
     }
 }
 

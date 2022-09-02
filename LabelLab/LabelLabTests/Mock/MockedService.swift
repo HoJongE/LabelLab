@@ -22,7 +22,7 @@ final class MockOAuthService: OAuthService {
         ConstantData.accessToken
     }
 
-    func requestUserInfo() async throws -> LabelLab.UserInfo {
+    func requestUserInfo(with token: String) async throws -> LabelLab.UserInfo {
         UserInfo.hojonge
     }
 

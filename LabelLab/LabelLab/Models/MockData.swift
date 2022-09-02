@@ -25,10 +25,10 @@ extension Template {
 }
 
 extension UserInfo {
-    static let woody: UserInfo = UserInfo(id: "Woody", nickname: "우디", profileImage: "https://avatars.githubusercontent.com/u/56102421?v=4", email: "woody@gmail.com")
+    static let woody: UserInfo = UserInfo(id: 1, nickname: "우디", profileImage: "https://avatars.githubusercontent.com/u/56102421?v=4", email: "woody@gmail.com")
 
-    static let hojonge: UserInfo = UserInfo(id: "HoJongPARK", nickname: "호종이", profileImage: "https://avatars.githubusercontent.com/u/57793298?s=400&u=c605ccc99eb0f6c7a2e4ac4f59c22b316532f2b8&v=4", email: "pjh00098@gmail.com")
-    static let avery: UserInfo = UserInfo(id: "Avery", nickname: "에이버리", profileImage: nil, email: "avery@pos.idserve.com")
+    static let hojonge: UserInfo = UserInfo(id: 2, nickname: "호종이", profileImage: "https://avatars.githubusercontent.com/u/57793298?s=400&u=c605ccc99eb0f6c7a2e4ac4f59c22b316532f2b8&v=4", email: "pjh00098@gmail.com")
+    static let avery: UserInfo = UserInfo(id: 3, nickname: "에이버리", profileImage: nil, email: "avery@pos.idserve.com")
 }
 
 extension Label {

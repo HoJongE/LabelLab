@@ -16,13 +16,13 @@ struct LabelLabApp: App {
     private let deepLinkHandler: DeepLinkHandler
 
     init() {
+        FirebaseApp.configure()
         let appState = AppState()
         self.diContainer = DIContainer(interactors: .init(
             oAuthInteractor: RealOAuthInteractor(appState: appState)
         ))
         self.deepLinkHandler = RealDeepLinkHandler(diContainer, appState)
         self._appState = StateObject(wrappedValue: appState)
-        FirebaseApp.configure()
     }
 
     var body: some Scene {
