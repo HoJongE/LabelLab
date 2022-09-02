@@ -4,7 +4,8 @@ excluded:
 - LabelLab/Models/MockData.swift
 
 line_length:
-  warning: 200
+  warning: 240
+  error: 300
   ignores_function_declarations: true
   ignores_comments: true
   ignores_interpolated_strings: true

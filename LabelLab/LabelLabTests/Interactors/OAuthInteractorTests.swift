@@ -44,8 +44,9 @@ final class OAuthInteractorTests: XCTestCase {
         XCTAssertEqual(accessToken, ConstantData.accessToken)
     }
 
-    func testRequestUserInfo() async {
+    func testRequestUserInfo() async throws {
         XCTAssertEqual(appState.userData.userInfo, Loadable<UserInfo>.notRequested)
+        try await keychainManager.savePassword("", for: KeychainConst.accessToken)
         await oAuthInteractor.requestUserInfo()
         XCTAssertEqual(appState.userData.userInfo, Loadable<UserInfo>.loaded(UserInfo.hojonge))
     }

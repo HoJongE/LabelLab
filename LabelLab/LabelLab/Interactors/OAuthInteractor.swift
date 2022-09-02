@@ -47,7 +47,12 @@ extension RealOAuthInteractor: OAuthInteractor {
     // TODO: Firebase 인증 후 UserInfo 요청해야함!
     func requestUserInfo() async {
         do {
-            let userInfo: UserInfo = try await oAuthService.requestUserInfo()
+            let serviceName = try getServiceName()
+            guard let token = try await PasswordKeychainManager(service: serviceName).getPassword(for: KeychainConst.accessToken) else {
+                appState.userData.userInfo = .failed(OAuthError.tokenNotExist)
+                return
+            }
+            let userInfo: UserInfo = try await oAuthService.requestUserInfo(with: token)
             appState.userData.userInfo = .loaded(userInfo)
         } catch {
             appState.userData.userInfo = .failed(error)

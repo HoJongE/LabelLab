@@ -47,9 +47,9 @@ final class OAuthAuthenticatorTest: XCTestCase {
             XCTFail("Should not pass test because data is empty")
         } catch {
             // then
-            XCTAssertEqual(OAuthServiceError.dataNotExist.recoverySuggestion, (error as? OAuthServiceError)?.recoverySuggestion)
-            XCTAssertEqual(OAuthServiceError.dataNotExist.errorDescription, (error as? OAuthServiceError)?.errorDescription)
-            XCTAssertEqual(OAuthServiceError.dataNotExist, error as? OAuthServiceError)
+            XCTAssertEqual(OAuthError.dataNotExist.recoverySuggestion, (error as? OAuthError)?.recoverySuggestion)
+            XCTAssertEqual(OAuthError.dataNotExist.errorDescription, (error as? OAuthError)?.errorDescription)
+            XCTAssertEqual(OAuthError.dataNotExist, error as? OAuthError)
         }
     }
 
@@ -70,19 +70,21 @@ final class OAuthAuthenticatorTest: XCTestCase {
             XCTFail("Should not pass test because data is malformed")
         } catch {
             // then
-            XCTAssertEqual(OAuthServiceError.tokenNotExist.recoverySuggestion, (error as? OAuthServiceError)?.recoverySuggestion)
-            XCTAssertEqual(OAuthServiceError.tokenNotExist.errorDescription, (error as? OAuthServiceError)?.errorDescription)
-            XCTAssertEqual(OAuthServiceError.tokenNotExist, error as? OAuthServiceError)
+            XCTAssertEqual(OAuthError.tokenNotExist.recoverySuggestion, (error as? OAuthError)?.recoverySuggestion)
+            XCTAssertEqual(OAuthError.tokenNotExist.errorDescription, (error as? OAuthError)?.errorDescription)
+            XCTAssertEqual(OAuthError.tokenNotExist, error as? OAuthError)
         }
     }
 
     func testRequestUserInfo() async throws {
         // given
         var userInfo: UserInfo?
+        let mockURLSession = MockURLSession(data: GithubAPI.githubUserInfo, response: URLResponse())
+        oAuthService = GithubOAuthService(mockURLSession)
         // when
-        userInfo = try await oAuthService.requestUserInfo()
+        userInfo = try await oAuthService.requestUserInfo(with: "")
         // then
-        XCTAssertNotNil(userInfo)
+        XCTAssertEqual(UserInfo(id: 1, nickname: "octocat", profileImage: "https://github.com/images/error/octocat_happy.gif", email: "octocat@github.com"), userInfo)
     }
 
 }
