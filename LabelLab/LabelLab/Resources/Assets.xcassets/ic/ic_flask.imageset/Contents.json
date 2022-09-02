@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "flask_ic.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

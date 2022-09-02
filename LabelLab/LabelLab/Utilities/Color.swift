@@ -16,6 +16,9 @@ extension Color {
     static let detailBackground: Color = Color("282828")
     static let cellHoverBackground: Color = Color("017AFF").opacity(0.3)
     static let defaultButtonBackground: Color = Color("6E6D70")
+    static let white80: Color = Color("FFFFFF").opacity(0.8)
+    static let darkGray: Color = Color("3D3C3D")
+    static let primaryBlue: Color = Color("017AFF")
 }
 
 // MARK: - Hex Color initializer

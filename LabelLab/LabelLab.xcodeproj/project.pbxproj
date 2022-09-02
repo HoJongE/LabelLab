@@ -76,6 +76,10 @@
 		00F8F10F28B49E6300D688AC /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10E28B49E6300D688AC /* APICall.swift */; };
 		00F8F11228B4A0A500D688AC /* GithubAuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F11128B4A0A500D688AC /* GithubAuthAPI.swift */; };
 		00F8F11428B4A1A200D688AC /* URLCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F11328B4A1A200D688AC /* URLCollection.swift */; };
+		A7AFD1D028BBC098000D8167 /* LabelCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFD1CF28BBC098000D8167 /* LabelCollectionView.swift */; };
+		A7AFD1D328BBCCDC000D8167 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFD1D228BBCCDC000D8167 /* BasicButton.swift */; };
+		A7AFD1D928BC3F44000D8167 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFD1D828BC3F44000D8167 /* DismissButton.swift */; };
+		A7AFD1DE28BC44BE000D8167 /* TemplateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFD1DD28BC44BE000D8167 /* TemplateCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +169,10 @@
 		00F8F10E28B49E6300D688AC /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
 		00F8F11128B4A0A500D688AC /* GithubAuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAuthAPI.swift; sourceTree = "<group>"; };
 		00F8F11328B4A1A200D688AC /* URLCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCollection.swift; sourceTree = "<group>"; };
+		A7AFD1CF28BBC098000D8167 /* LabelCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionView.swift; sourceTree = "<group>"; };
+		A7AFD1D228BBCCDC000D8167 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
+		A7AFD1D828BC3F44000D8167 /* DismissButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
+		A7AFD1DD28BC44BE000D8167 /* TemplateCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +387,7 @@
 				00C7760A28CF5F7E008D1686 /* MyTemplate */,
 				001A757328CF5386001CE274 /* Sidebar */,
 				004D7ABB28C38748007D17D5 /* UploadToGithub */,
+				A7AFD1CC28BBC016000D8167 /* LabelMaker */,
 				0038C29D28B5092D009C98E2 /* Authorize */,
 				002789872885986D00BDCDA4 /* ContentView.swift */,
 			);
@@ -393,6 +402,8 @@
 				0085688028D69EDE00A88CB8 /* LabelCell.swift */,
 				0085688228D6A7F000A88CB8 /* DefaultButton.swift */,
 				0085688928D6D02000A88CB8 /* CircleButton.swift */,
+				A7AFD1DA28BC4485000D8167 /* View */,
+				A7AFD1D128BBC6D9000D8167 /* Button */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -486,6 +497,31 @@
 				00DDBA9728C3786900FB1240 /* GithubRepAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		A7AFD1CC28BBC016000D8167 /* LabelMaker */ = {
+			isa = PBXGroup;
+			children = (
+				A7AFD1CF28BBC098000D8167 /* LabelCollectionView.swift */,
+			);
+			path = LabelMaker;
+			sourceTree = "<group>";
+		};
+		A7AFD1D128BBC6D9000D8167 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				A7AFD1D828BC3F44000D8167 /* DismissButton.swift */,
+				A7AFD1D228BBCCDC000D8167 /* BasicButton.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		A7AFD1DA28BC4485000D8167 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A7AFD1DD28BC44BE000D8167 /* TemplateCardView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -654,6 +690,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7AFD1D328BBCCDC000D8167 /* BasicButton.swift in Sources */,
 				0037ADA228AE42E0000C36AC /* Interactors.swift in Sources */,
 				0037ADA428AE4555000C36AC /* Loadable.swift in Sources */,
 				0004A16B28CC7C6400D491C4 /* AccessTokenManager.swift in Sources */,
@@ -678,6 +715,9 @@
 				00E9334E28CD8229008ECC8B /* LogoutPopup.swift in Sources */,
 				0085688A28D6D02000A88CB8 /* CircleButton.swift in Sources */,
 				00DDBA9A28C37A1A00FB1240 /* GithubService.swift in Sources */,
+				A7AFD1DE28BC44BE000D8167 /* TemplateCardView.swift in Sources */,
+				A7AFD1D928BC3F44000D8167 /* DismissButton.swift in Sources */,
+				00F8F11228B4A0A500D688AC /* GithubAPI.swift in Sources */,
 				002789882885986D00BDCDA4 /* ContentView.swift in Sources */,
 				0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */,
 				0085688128D69EDE00A88CB8 /* LabelCell.swift in Sources */,
@@ -690,8 +730,8 @@
 				0085688828D6CE6700A88CB8 /* TemplateCell.swift in Sources */,
 				00110E3A28BCEB6300BA327F /* URLSessionProtocol.swift in Sources */,
 				00F8F10F28B49E6300D688AC /* APICall.swift in Sources */,
+				A7AFD1D028BBC098000D8167 /* LabelCollectionView.swift in Sources */,
 				002789862885986D00BDCDA4 /* LabelLabApp.swift in Sources */,
-				0036D21F28B5BDF200A08479 /* DismissButton.swift in Sources */,
 				00F8F11428B4A1A200D688AC /* URLCollection.swift in Sources */,
 				000AF31C28C9FE4200B658A0 /* LabelDAO.swift in Sources */,
 				00C7760C28CF5FAE008D1686 /* MyTemplateDetail.swift in Sources */,
