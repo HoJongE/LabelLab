@@ -8,6 +8,7 @@
 enum GithubAPI {
     case authorize
     case accessToken(authorizeCode: String)
+    case getUser(accessToken: String)
 }
 
 extension GithubAPI: APICall {
@@ -18,6 +19,8 @@ extension GithubAPI: APICall {
             return URLCollection.Github.GITHUB_AUTHORIZE
         case .accessToken:
             return URLCollection.Github.GITHUB_ACCESS_TOKEN
+        case .getUser:
+            return URLCollection.Github.GITHUB_GET_AUTHETICATED_USER
         }
     }
 
@@ -25,6 +28,7 @@ extension GithubAPI: APICall {
         switch self {
         case .authorize: return "get"
         case .accessToken: return "post"
+        case .getUser: return "get"
         }
     }
 
@@ -34,6 +38,11 @@ extension GithubAPI: APICall {
             return [:]
         case .accessToken:
             return ["Accept": "application/json"]
+        case .getUser(accessToken: let token):
+            return [
+                "Accept": "application/vnd.github+json",
+                "Authorization": "Bearer \(token)"
+            ]
         }
     }
 
@@ -46,6 +55,8 @@ extension GithubAPI: APICall {
             return ["code": code,
                     "client_id": KeyStorage.GithubClientId,
                     "client_secret": KeyStorage.GithubClientSecret]
+        case .getUser:
+            return [:]
         }
     }
 
@@ -55,6 +66,8 @@ extension GithubAPI: APICall {
             return URLCollection.Github.GITHUB_AUTHENTICATE_BASE_URL
         case .accessToken:
             return URLCollection.Github.GITHUB_AUTHENTICATE_BASE_URL
+        case .getUser:
+            return URLCollection.Github.GITHUB_API_BASE_URL
         }
     }
 
