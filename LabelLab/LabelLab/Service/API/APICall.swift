@@ -38,7 +38,7 @@ extension APICall {
         var request = URLRequest(url: url)
         request.httpMethod = method
         _ = headers.map { (key, value) in
-            request.addValue(key, forHTTPHeaderField: value)
+            request.addValue(value, forHTTPHeaderField: key)
         }
         return try await session.data(for: request)
     }

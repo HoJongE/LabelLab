@@ -32,7 +32,7 @@ extension RealOAuthInteractor: OAuthInteractor {
         oAuthService.openOAuthSite()
     }
 
-    func requestAccessToken(with authorizeCode: String) async {
+    @MainActor func requestAccessToken(with authorizeCode: String) async {
         do {
             let serviceName = try getServiceName()
             let accessToken: AccessToken = try await oAuthService.requestAccessToken(with: authorizeCode)
@@ -44,8 +44,7 @@ extension RealOAuthInteractor: OAuthInteractor {
         }
     }
 
-    // TODO: Firebase 인증 후 UserInfo 요청해야함!
-    func requestUserInfo() async {
+    @MainActor func requestUserInfo() async {
         do {
             let serviceName = try getServiceName()
             guard let token = try await PasswordKeychainManager(service: serviceName).getPassword(for: KeychainConst.accessToken) else {
@@ -59,7 +58,7 @@ extension RealOAuthInteractor: OAuthInteractor {
         }
     }
 
-    func logout() async {
+    @MainActor func logout() async {
         do {
             let serviceName = try getServiceName()
             try await PasswordKeychainManager(service: serviceName)

@@ -28,10 +28,12 @@ struct LabelLabApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .handleAuthEvent()
+                .handleDeepLink(with: deepLinkHandler)
                 .inject(diContainer)
                 .inject(appState)
-                .handleDeepLink(with: deepLinkHandler)
         }
+        .disableNewWindow()
     }
 }
 
@@ -48,4 +50,16 @@ private extension View {
         }
     }
 
+    func handleAuthEvent() -> some View {
+        handlesExternalEvents(preferring: ["*"], allowing: ["*"])
+    }
+}
+
+// MARK: - WindowGroup Extension
+private extension WindowGroup {
+    func disableNewWindow() -> some Scene {
+        commands {
+            CommandGroup(replacing: .newItem, addition: { })
+        }
+    }
 }
