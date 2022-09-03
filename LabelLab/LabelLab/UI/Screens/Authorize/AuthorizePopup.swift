@@ -65,7 +65,7 @@ private extension AuthorizePopup {
 // MARK: - Side Effects
 private extension AuthorizePopup {
     func authorizeGithub() {
-        // TODO: Interacts with Interactor
+        diContainer.interactors.oAuthInteractor.openOAuthSite()
     }
 }
 
