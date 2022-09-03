@@ -8,7 +8,7 @@
 import Foundation
 @testable import LabelLab
 
-extension GithubAPI {
+extension GithubAuthAPI {
     static var accessTokenResult: Data {
         Data(
             """

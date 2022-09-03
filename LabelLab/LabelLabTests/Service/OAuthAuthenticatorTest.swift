@@ -13,7 +13,7 @@ final class OAuthAuthenticatorTest: XCTestCase {
     private var oAuthService: OAuthService!
 
     override func setUpWithError() throws {
-        let mockURLSession: URLSessionProtocol = MockURLSession(data: GithubAPI.accessTokenResult, response: URLResponse())
+        let mockURLSession: URLSessionProtocol = MockURLSession(data: GithubAuthAPI.accessTokenResult, response: URLResponse())
         oAuthService = GithubOAuthService(mockURLSession)
     }
 
@@ -79,7 +79,7 @@ final class OAuthAuthenticatorTest: XCTestCase {
     func testRequestUserInfo() async throws {
         // given
         var userInfo: UserInfo?
-        let mockURLSession = MockURLSession(data: GithubAPI.githubUserInfo, response: URLResponse())
+        let mockURLSession = MockURLSession(data: GithubAuthAPI.githubUserInfo, response: URLResponse())
         oAuthService = GithubOAuthService(mockURLSession)
         // when
         userInfo = try await oAuthService.requestUserInfo(with: "")

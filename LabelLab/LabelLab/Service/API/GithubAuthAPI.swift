@@ -5,13 +5,13 @@
 //  Created by JongHo Park on 2022/08/23.
 //
 
-enum GithubAPI {
+enum GithubAuthAPI {
     case authorize
     case accessToken(authorizeCode: String)
     case getUser(accessToken: String)
 }
 
-extension GithubAPI: APICall {
+extension GithubAuthAPI: APICall {
 
     var path: String {
         switch self {

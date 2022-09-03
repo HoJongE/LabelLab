@@ -64,7 +64,7 @@ import AppKit
 
 extension GithubOAuthService: OAuthService {
     func openOAuthSite() {
-        guard let url = GithubAPI.authorize.url else { return }
+        guard let url = GithubAuthAPI.authorize.url else { return }
         NSWorkspace.shared.open(url)
     }
 }
@@ -73,7 +73,7 @@ extension GithubOAuthService: OAuthService {
 extension GithubOAuthService {
 
     func requestAccessToken(with code: String) async throws -> AccessToken {
-        let (data, _) = try await GithubAPI.accessToken(authorizeCode: code).request(with: session)
+        let (data, _) = try await GithubAuthAPI.accessToken(authorizeCode: code).request(with: session)
         let token = try parseDataToAccessToken(data)
         return token
     }
@@ -87,7 +87,7 @@ extension GithubOAuthService {
             }
         }
         // 인증을 완료했으면, Access Token 으로 Github User Info 를 불러온다.
-        let (data, _) = try await GithubAPI.getUser(accessToken: token).request(with: session)
+        let (data, _) = try await GithubAuthAPI.getUser(accessToken: token).request(with: session)
         return try parseDataToUserInfo(data)
     }
 
