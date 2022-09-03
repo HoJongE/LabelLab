@@ -34,13 +34,13 @@
 		00617F5328BF4887008B5952 /* ConstantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00617F5228BF4887008B5952 /* ConstantData.swift */; };
 		00674CA028AF793C00E850B7 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00674C9F28AF793C00E850B7 /* Color.swift */; };
 		00674CA228AF7D4700E850B7 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00674CA128AF7D4700E850B7 /* MockData.swift */; };
-		008D49A828C36C9C0054E7A4 /* GithubOrgAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D49A728C36C9C0054E7A4 /* GithubOrgAPI.swift */; };
 		00A79A2F2886DC48006D5DCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */; };
 		00A79A322886DD6C006D5DCD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A312886DD6C006D5DCD /* FirebaseAuth */; };
 		00A79A342886DD6C006D5DCD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A332886DD6C006D5DCD /* FirebaseFirestore */; };
 		00A79A362886DD6C006D5DCD /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A352886DD6C006D5DCD /* FirebaseFirestoreSwift */; };
 		00CB3F0C28C047BD006B1536 /* MockOAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CB3F0B28C047BD006B1536 /* MockOAuthInteractor.swift */; };
 		00CB3F0F28C04940006B1536 /* MockDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CB3F0E28C04940006B1536 /* MockDIContainer.swift */; };
+		00DDBA9828C3786900FB1240 /* GithubRepAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDBA9728C3786900FB1240 /* GithubRepAPI.swift */; };
 		00DF161228B4F4AF008A8A30 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF161128B4F4AF008A8A30 /* DeepLinkHandlerTests.swift */; };
 		00DF161428B4F7C5008A8A30 /* DeepLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */; };
 		00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */; };
@@ -101,10 +101,10 @@
 		00617F5228BF4887008B5952 /* ConstantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantData.swift; sourceTree = "<group>"; };
 		00674C9F28AF793C00E850B7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		00674CA128AF7D4700E850B7 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
-		008D49A728C36C9C0054E7A4 /* GithubOrgAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubOrgAPI.swift; sourceTree = "<group>"; };
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00CB3F0B28C047BD006B1536 /* MockOAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOAuthInteractor.swift; sourceTree = "<group>"; };
 		00CB3F0E28C04940006B1536 /* MockDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDIContainer.swift; sourceTree = "<group>"; };
+		00DDBA9728C3786900FB1240 /* GithubRepAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepAPI.swift; sourceTree = "<group>"; };
 		00DF161128B4F4AF008A8A30 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
 		00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandler.swift; sourceTree = "<group>"; };
 		00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthInteractorTests.swift; sourceTree = "<group>"; };
@@ -369,7 +369,7 @@
 			children = (
 				00F8F10E28B49E6300D688AC /* APICall.swift */,
 				00F8F11128B4A0A500D688AC /* GithubAuthAPI.swift */,
-				008D49A728C36C9C0054E7A4 /* GithubOrgAPI.swift */,
+				00DDBA9728C3786900FB1240 /* GithubRepAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -554,10 +554,10 @@
 				00F8F11228B4A0A500D688AC /* GithubAuthAPI.swift in Sources */,
 				002789882885986D00BDCDA4 /* ContentView.swift in Sources */,
 				0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */,
+				00DDBA9828C3786900FB1240 /* GithubRepAPI.swift in Sources */,
 				00F8F10D28B47AC200D688AC /* OAuthService.swift in Sources */,
 				0044B17628BEF57100613190 /* KeychainConst.swift in Sources */,
 				0037ADAA28AE579E000C36AC /* UserInfo.swift in Sources */,
-				008D49A828C36C9C0054E7A4 /* GithubOrgAPI.swift in Sources */,
 				00110E3A28BCEB6300BA327F /* URLSessionProtocol.swift in Sources */,
 				00F8F10F28B49E6300D688AC /* APICall.swift in Sources */,
 				002789862885986D00BDCDA4 /* LabelLabApp.swift in Sources */,
