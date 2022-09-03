@@ -106,13 +106,10 @@ private extension GithubOAuthService {
     }
 
     func parseDataToUserInfo(_ data: Data) throws -> UserInfo {
-        guard let jsonDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-            throw OAuthError.dataNotExist
-        }
-        guard let id = jsonDictionary["id"] as? Int, let profileImage = jsonDictionary["avatar_url"] as? String, let nickname = jsonDictionary["login"] as? String, let email = jsonDictionary["email"] as? String else {
+        guard let userInfo = try? JSONDecoder().decode(UserInfo.self, from: data) else {
             throw OAuthError.userInfoNotExist
         }
-        return UserInfo(id: id, nickname: nickname, profileImage: profileImage, email: email)
+        return userInfo
     }
 
 }

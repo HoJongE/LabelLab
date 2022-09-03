@@ -17,6 +17,7 @@
 		0027898D2885986F00BDCDA4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0027898C2885986F00BDCDA4 /* Preview Assets.xcassets */; };
 		002789A22885986F00BDCDA4 /* LabelLabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789A12885986F00BDCDA4 /* LabelLabUITests.swift */; };
 		002789A42885986F00BDCDA4 /* LabelLabUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789A32885986F00BDCDA4 /* LabelLabUITestsLaunchTests.swift */; };
+		002D300428C37ECE00E8FC55 /* GithubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D300328C37ECE00E8FC55 /* GithubRepository.swift */; };
 		0036D21F28B5BDF200A08479 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036D21E28B5BDF200A08479 /* DismissButton.swift */; };
 		0037AD9C28AE3AE4000C36AC /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037AD9B28AE3AE4000C36AC /* AppState.swift */; };
 		0037AD9E28AE3CCB000C36AC /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037AD9D28AE3CCB000C36AC /* DIContainer.swift */; };
@@ -41,6 +42,8 @@
 		00CB3F0C28C047BD006B1536 /* MockOAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CB3F0B28C047BD006B1536 /* MockOAuthInteractor.swift */; };
 		00CB3F0F28C04940006B1536 /* MockDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CB3F0E28C04940006B1536 /* MockDIContainer.swift */; };
 		00DDBA9828C3786900FB1240 /* GithubRepAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDBA9728C3786900FB1240 /* GithubRepAPI.swift */; };
+		00DDBA9A28C37A1A00FB1240 /* GithubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDBA9928C37A1A00FB1240 /* GithubService.swift */; };
+		00DDBA9C28C37B2300FB1240 /* GithubServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDBA9B28C37B2300FB1240 /* GithubServiceTests.swift */; };
 		00DF161228B4F4AF008A8A30 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF161128B4F4AF008A8A30 /* DeepLinkHandlerTests.swift */; };
 		00DF161428B4F7C5008A8A30 /* DeepLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */; };
 		00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */; };
@@ -85,6 +88,7 @@
 		0027899D2885986F00BDCDA4 /* LabelLabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LabelLabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		002789A12885986F00BDCDA4 /* LabelLabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLabUITests.swift; sourceTree = "<group>"; };
 		002789A32885986F00BDCDA4 /* LabelLabUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLabUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		002D300328C37ECE00E8FC55 /* GithubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepository.swift; sourceTree = "<group>"; };
 		0036D21E28B5BDF200A08479 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		0037AD9B28AE3AE4000C36AC /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		0037AD9D28AE3CCB000C36AC /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 		00CB3F0B28C047BD006B1536 /* MockOAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOAuthInteractor.swift; sourceTree = "<group>"; };
 		00CB3F0E28C04940006B1536 /* MockDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDIContainer.swift; sourceTree = "<group>"; };
 		00DDBA9728C3786900FB1240 /* GithubRepAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepAPI.swift; sourceTree = "<group>"; };
+		00DDBA9928C37A1A00FB1240 /* GithubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubService.swift; sourceTree = "<group>"; };
+		00DDBA9B28C37B2300FB1240 /* GithubServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubServiceTests.swift; sourceTree = "<group>"; };
 		00DF161128B4F4AF008A8A30 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
 		00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandler.swift; sourceTree = "<group>"; };
 		00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthInteractorTests.swift; sourceTree = "<group>"; };
@@ -282,6 +288,7 @@
 				0037ADA928AE579E000C36AC /* UserInfo.swift */,
 				0037ADAB28AE57A4000C36AC /* Label.swift */,
 				00674CA128AF7D4700E850B7 /* MockData.swift */,
+				002D300328C37ECE00E8FC55 /* GithubRepository.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -351,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */,
+				00DDBA9B28C37B2300FB1240 /* GithubServiceTests.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -360,6 +368,7 @@
 			children = (
 				00F8F11028B4A09300D688AC /* API */,
 				00F8F10C28B47AC200D688AC /* OAuthService.swift */,
+				00DDBA9928C37A1A00FB1240 /* GithubService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -552,6 +561,7 @@
 				0037AD9C28AE3AE4000C36AC /* AppState.swift in Sources */,
 				0037ADA628AE47CB000C36AC /* AuthenticationRequiredLoadable.swift in Sources */,
 				00F8F11228B4A0A500D688AC /* GithubAuthAPI.swift in Sources */,
+				00DDBA9A28C37A1A00FB1240 /* GithubService.swift in Sources */,
 				002789882885986D00BDCDA4 /* ContentView.swift in Sources */,
 				0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */,
 				00DDBA9828C3786900FB1240 /* GithubRepAPI.swift in Sources */,
@@ -563,6 +573,7 @@
 				002789862885986D00BDCDA4 /* LabelLabApp.swift in Sources */,
 				0036D21F28B5BDF200A08479 /* DismissButton.swift in Sources */,
 				00F8F11428B4A1A200D688AC /* URLCollection.swift in Sources */,
+				002D300428C37ECE00E8FC55 /* GithubRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +583,7 @@
 			files = (
 				00110E3D28BCEC9100BA327F /* MockURLSession.swift in Sources */,
 				00DF161228B4F4AF008A8A30 /* DeepLinkHandlerTests.swift in Sources */,
+				00DDBA9C28C37B2300FB1240 /* GithubServiceTests.swift in Sources */,
 				00CB3F0C28C047BD006B1536 /* MockOAuthInteractor.swift in Sources */,
 				00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */,
 				00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */,
