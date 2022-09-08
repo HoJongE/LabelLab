@@ -9,12 +9,15 @@ import SwiftUI
 
 struct RepositoryList: View {
     @State private var repositories: AuthenticationRequiredLoadable<[GithubRepository]>
+    @EnvironmentObject private var appState: AppState
     @Environment(\.injected) private var diContainer: DIContainer
     @Environment(\.dismiss) private var dismiss
     @State private var selectedRepository: GithubRepository?
+    private let labels: [Label]
 
-    init(repositories: AuthenticationRequiredLoadable<[GithubRepository]> = .notRequested) {
+    init(repositories: AuthenticationRequiredLoadable<[GithubRepository]> = .notRequested, labels: [Label]) {
         self._repositories = State(initialValue: repositories)
+        self.labels = labels
     }
 
     var body: some View {
@@ -25,6 +28,11 @@ struct RepositoryList: View {
         .frame(width: 454, height: 580)
         .background(Color("282828"))
         .onAppear(perform: requestRepositories)
+        .sheet(isPresented: $appState.routing.repositoryListRouting.isShowingUploadPopup) {
+            if let selectedRepository = selectedRepository {
+                UploadPopup(to: selectedRepository, labels: labels)
+            }
+        }
     }
 }
 
@@ -36,7 +44,7 @@ private extension RepositoryList {
     }
 
     func uploadLabels() {
-
+        appState.routing.repositoryListRouting.isShowingUploadPopup = true
     }
 }
 
@@ -71,6 +79,13 @@ private extension RepositoryList {
     }
 }
 
+// MARK: - Routing
+extension RepositoryList {
+    struct Routing: Equatable {
+        var isShowingUploadPopup: Bool = false
+    }
+}
+
 // MARK: - Empty UI
 private extension RepositoryList {
     func empty() -> some View {
@@ -101,7 +116,7 @@ private extension RepositoryList {
 
         // TODO: Template 과 labels 받아서 표시해야함
         VStack {
-            Text("Please select a repository to upload\nN labels from \"WWDC Study\"")
+            Text("Please select a repository to upload\n\(labels.count) labels from \"WWDC Study\"")
                 .bold()
                 .multilineTextAlignment(.center)
                 .padding(.top, 35)
@@ -134,7 +149,7 @@ private extension RepositoryList {
             }
             Spacer()
             Button {
-
+                uploadLabels()
             } label: {
                 Text("Upload")
                     .fontWeight(.medium)
@@ -190,17 +205,20 @@ private extension RepositoryList {
 }
 
 struct RepositoryList_Previews: PreviewProvider {
+    static func makePreview(_ repositories: AuthenticationRequiredLoadable<[GithubRepository]> = .notRequested) -> some View {
+        RepositoryList(repositories: repositories, labels: Label.mockedData)
+    }
     static var previews: some View {
         Group {
-            RepositoryList()
+            makePreview()
                 .previewDisplayName("not Requested")
-            RepositoryList(repositories: .isLoading(last: nil))
+            makePreview(.isLoading(last: nil))
                 .previewDisplayName("loading UI")
-            RepositoryList(repositories: .loaded(GithubRepository.mockData))
+            makePreview(.loaded(GithubRepository.mockData))
                 .previewDisplayName("loaded UI")
-            RepositoryList(repositories: .failed(NSError()))
+            makePreview(.failed(NSError()))
                 .previewDisplayName("error Indicator")
         }
-        .inject(DIContainer.preview)
+        .injectPreview()
     }
 }

@@ -40,7 +40,7 @@ extension APICall {
         _ = headers.map { (key, value) in
             request.addValue(value, forHTTPHeaderField: key)
         }
-        return try await session.data(for: request)
+        return try await session.data(for: request, delegate: nil)
     }
 
 }

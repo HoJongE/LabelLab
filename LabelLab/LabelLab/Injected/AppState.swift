@@ -36,6 +36,7 @@ extension AppState {
 
     struct ViewRouting: Equatable {
         var rootRouting = ContentView.Routing()
+        var repositoryListRouting = RepositoryList.Routing()
     }
 
 }
