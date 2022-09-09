@@ -24,13 +24,13 @@ struct Label: Codable, Identifiable {
 
 extension Label: Equatable {
     static func == (lhs: Label, rhs: Label) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.labelDescription == rhs.labelDescription && lhs.hex == rhs.hex && lhs.labelDescription == rhs.labelDescription
     }
 }
 
 extension Label: CustomStringConvertible {
     var description: String {
-        "라벨 이름: \(name) 설명: \(labelDescription) 라벨 색상: \(color)"
+        "라벨 이름: \(name) 설명: \(labelDescription) 라벨 색상: \(hex)"
     }
 }
 

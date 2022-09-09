@@ -6,15 +6,19 @@
 //
 
 @testable import LabelLab
+import KeyChainWrapper
 import XCTest
 
 final class GithubServiceTests: XCTestCase {
 
     private var githubService: GithubService!
+    private let testRepository: GithubRepository = .testRepository
+    private var accessToken: String!
 
     override func setUp() async throws {
         try await super.setUp()
         let mockURLSession: URLSessionProtocol = MockURLSession(data: GithubRepAPI.repositoriesData, response: .init())
+        accessToken = try await PasswordKeychainManager(service: Bundle.main.bundleIdentifier!).getPassword(for: KeychainConst.accessToken)!
         githubService = RealGithubService(session: mockURLSession)
     }
 
@@ -23,11 +27,32 @@ final class GithubServiceTests: XCTestCase {
         try await super.tearDown()
     }
 
-    func testRequestRepositories() async throws {
-        let repositories = try await githubService.requestRepositories(with: "")
-        let fromData = try JSONDecoder().decode([GithubRepository].self, from: GithubRepAPI.repositoriesData)
+    func testRequestRepositories() async {
+        do {
+            let repositories = try await githubService.requestRepositories(with: "")
+            let fromData = try JSONDecoder().decode([GithubRepository].self, from: GithubRepAPI.repositoriesData)
 
-        print(repositories)
-        XCTAssertEqual(repositories, fromData)
+            print(repositories)
+            XCTAssertEqual(repositories, fromData)
+        } catch {
+            XCTFail("Request repositories failed with \(error)")
+        }
     }
+
+//    func testCreateAndRequestAndDeleteLabel() async {
+//        do {
+//            githubService = RealGithubService()
+//            let labelToCreate: Label = .mockedData.first!
+//            try await githubService.createLabel(with: accessToken, to: testRepository, label: labelToCreate)
+//            try await Task.sleep(nanoseconds: 5_000_000_000)
+//            var labels: [Label] = try await githubService.requestLabels(with: accessToken, of: testRepository)
+//            XCTAssertEqual([labelToCreate].description, labels.description)
+//            try await githubService.deleteLabel(with: accessToken, of: testRepository, label: labelToCreate)
+//            try await Task.sleep(nanoseconds: 5_000_000_000)
+//            labels = try await githubService.requestLabels(with: accessToken, of: testRepository)
+//            XCTAssert(labels.isEmpty)
+//        } catch {
+//            XCTFail("Create label failed with \(error)")
+//        }
+//    }
 }

@@ -27,7 +27,9 @@ extension APICall {
         for (key, value) in parameters {
             queryItems.append(URLQueryItem(name: key, value: value))
         }
-        urlComponents.queryItems = queryItems
+        if !queryItems.isEmpty {
+            urlComponents.queryItems = queryItems
+        }
         return urlComponents.url
     }
 
@@ -41,6 +43,19 @@ extension APICall {
             request.addValue(value, forHTTPHeaderField: key)
         }
         return try await session.data(for: request, delegate: nil)
+    }
+
+    func post(with session: URLSessionProtocol = URLSession.shared, data: Data, delegate: URLSessionTaskDelegate? = nil) async throws -> (data: Data, response: URLResponse) {
+        guard let url = url else {
+            throw URLError(.badURL)
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = method
+        request.httpBody = data
+        _ = headers.map { (key, value) in
+            request.addValue(value, forHTTPHeaderField: key)
+        } 
+        return try await session.data(for: request, delegate: delegate)
     }
 
 }
