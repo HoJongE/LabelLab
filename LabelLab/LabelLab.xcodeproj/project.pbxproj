@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0004A16B28CC7C6400D491C4 /* AccessTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0004A16A28CC7C6400D491C4 /* AccessTokenManager.swift */; };
+		0004A16D28CC7F9C00D491C4 /* MockAccessTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0004A16C28CC7F9C00D491C4 /* MockAccessTokenManager.swift */; };
 		000AF31C28C9FE4200B658A0 /* LabelDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000AF31B28C9FE4200B658A0 /* LabelDAO.swift */; };
 		00110E3A28BCEB6300BA327F /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00110E3928BCEB6300BA327F /* URLSessionProtocol.swift */; };
 		00110E3D28BCEC9100BA327F /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00110E3C28BCEC9100BA327F /* MockURLSession.swift */; };
@@ -19,6 +21,7 @@
 		002789A22885986F00BDCDA4 /* LabelLabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789A12885986F00BDCDA4 /* LabelLabUITests.swift */; };
 		002789A42885986F00BDCDA4 /* LabelLabUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789A32885986F00BDCDA4 /* LabelLabUITestsLaunchTests.swift */; };
 		002D300428C37ECE00E8FC55 /* GithubRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D300328C37ECE00E8FC55 /* GithubRepository.swift */; };
+		0036B29D28CB19BF00496966 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036B29C28CB19BF00496966 /* Binding.swift */; };
 		0036D21F28B5BDF200A08479 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0036D21E28B5BDF200A08479 /* DismissButton.swift */; };
 		0037AD9C28AE3AE4000C36AC /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037AD9B28AE3AE4000C36AC /* AppState.swift */; };
 		0037AD9E28AE3CCB000C36AC /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037AD9D28AE3CCB000C36AC /* DIContainer.swift */; };
@@ -32,6 +35,9 @@
 		0038C29F28B50976009C98E2 /* AuthorizePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0038C29E28B50976009C98E2 /* AuthorizePopup.swift */; };
 		0044B17428BEE97600613190 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0044B17328BEE97600613190 /* .swiftlint.yml */; };
 		0044B17628BEF57100613190 /* KeychainConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044B17528BEF57100613190 /* KeychainConst.swift */; };
+		0045FF7E28CB088900F2B0D3 /* MockGithubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045FF7D28CB088900F2B0D3 /* MockGithubService.swift */; };
+		0045FF8328CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045FF8228CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift */; };
+		0045FF8528CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045FF8428CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift */; };
 		004D7ABD28C3875B007D17D5 /* RepositoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004D7ABC28C3875B007D17D5 /* RepositoryList.swift */; };
 		005F466428C4E5100072ED1E /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 005F466328C4E5100072ED1E /* SDWebImageSwiftUI */; };
 		00617F5328BF4887008B5952 /* ConstantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00617F5228BF4887008B5952 /* ConstantData.swift */; };
@@ -53,7 +59,7 @@
 		00DF161228B4F4AF008A8A30 /* DeepLinkHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF161128B4F4AF008A8A30 /* DeepLinkHandlerTests.swift */; };
 		00DF161428B4F7C5008A8A30 /* DeepLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */; };
 		00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */; };
-		00E677C128BD017700918BF0 /* MockedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E677C028BD017700918BF0 /* MockedService.swift */; };
+		00E677C128BD017700918BF0 /* MockOAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E677C028BD017700918BF0 /* MockOAuthService.swift */; };
 		00F8F10728B4785A00D688AC /* KeyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10628B4785A00D688AC /* KeyStorage.swift */; };
 		00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */; };
 		00F8F10D28B47AC200D688AC /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10C28B47AC200D688AC /* OAuthService.swift */; };
@@ -80,6 +86,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0004A16A28CC7C6400D491C4 /* AccessTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenManager.swift; sourceTree = "<group>"; };
+		0004A16C28CC7F9C00D491C4 /* MockAccessTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAccessTokenManager.swift; sourceTree = "<group>"; };
 		000AF31B28C9FE4200B658A0 /* LabelDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDAO.swift; sourceTree = "<group>"; };
 		00110E3928BCEB6300BA327F /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		00110E3C28BCEC9100BA327F /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
@@ -96,6 +104,7 @@
 		002789A12885986F00BDCDA4 /* LabelLabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLabUITests.swift; sourceTree = "<group>"; };
 		002789A32885986F00BDCDA4 /* LabelLabUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLabUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		002D300328C37ECE00E8FC55 /* GithubRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepository.swift; sourceTree = "<group>"; };
+		0036B29C28CB19BF00496966 /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		0036D21E28B5BDF200A08479 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		0037AD9B28AE3AE4000C36AC /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		0037AD9D28AE3CCB000C36AC /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
@@ -109,6 +118,9 @@
 		0038C29E28B50976009C98E2 /* AuthorizePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizePopup.swift; sourceTree = "<group>"; };
 		0044B17328BEE97600613190 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0044B17528BEF57100613190 /* KeychainConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConst.swift; sourceTree = "<group>"; };
+		0045FF7D28CB088900F2B0D3 /* MockGithubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGithubService.swift; sourceTree = "<group>"; };
+		0045FF8228CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadToGithubInteractorTests.swift; sourceTree = "<group>"; };
+		0045FF8428CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadToGithubInteractor.swift; sourceTree = "<group>"; };
 		004D7ABC28C3875B007D17D5 /* RepositoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryList.swift; sourceTree = "<group>"; };
 		00617F5228BF4887008B5952 /* ConstantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantData.swift; sourceTree = "<group>"; };
 		00674C9F28AF793C00E850B7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -125,7 +137,7 @@
 		00DF161128B4F4AF008A8A30 /* DeepLinkHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandlerTests.swift; sourceTree = "<group>"; };
 		00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandler.swift; sourceTree = "<group>"; };
 		00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthInteractorTests.swift; sourceTree = "<group>"; };
-		00E677C028BD017700918BF0 /* MockedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedService.swift; sourceTree = "<group>"; };
+		00E677C028BD017700918BF0 /* MockOAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOAuthService.swift; sourceTree = "<group>"; };
 		00F8F10528B475CD00D688AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F8F10628B4785A00D688AC /* KeyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStorage.swift; sourceTree = "<group>"; };
 		00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticatorTest.swift; sourceTree = "<group>"; };
@@ -168,11 +180,12 @@
 		00110E3B28BCEC8700BA327F /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				0045FF7F28CB089300F2B0D3 /* Service */,
 				00110E3C28BCEC9100BA327F /* MockURLSession.swift */,
-				00E677C028BD017700918BF0 /* MockedService.swift */,
 				00CB3F0B28C047BD006B1536 /* MockOAuthInteractor.swift */,
 				00CB3F0E28C04940006B1536 /* MockDIContainer.swift */,
 				007151B428C9FC6D009438EE /* MockData.swift */,
+				0004A16C28CC7F9C00D491C4 /* MockAccessTokenManager.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -182,6 +195,7 @@
 			children = (
 				00110E3F28BCED9700BA327F /* MockURLData.swift */,
 				00617F5228BF4887008B5952 /* ConstantData.swift */,
+				0036B29C28CB19BF00496966 /* Binding.swift */,
 			);
 			path = TestHelpers;
 			sourceTree = "<group>";
@@ -265,6 +279,7 @@
 				00F8F11328B4A1A200D688AC /* URLCollection.swift */,
 				00110E3928BCEB6300BA327F /* URLSessionProtocol.swift */,
 				0044B17528BEF57100613190 /* KeychainConst.swift */,
+				0004A16A28CC7C6400D491C4 /* AccessTokenManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -290,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				00239D4728BC511C00CC1DC1 /* OAuthInteractor.swift */,
+				0045FF8428CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -354,6 +370,15 @@
 			path = Authorize;
 			sourceTree = "<group>";
 		};
+		0045FF7F28CB089300F2B0D3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				00E677C028BD017700918BF0 /* MockOAuthService.swift */,
+				0045FF7D28CB088900F2B0D3 /* MockGithubService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		004D7ABB28C38748007D17D5 /* UploadToGithub */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */,
+				0045FF8228CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -576,6 +602,7 @@
 			files = (
 				0037ADA228AE42E0000C36AC /* Interactors.swift in Sources */,
 				0037ADA428AE4555000C36AC /* Loadable.swift in Sources */,
+				0004A16B28CC7C6400D491C4 /* AccessTokenManager.swift in Sources */,
 				00239D4828BC511C00CC1DC1 /* OAuthInteractor.swift in Sources */,
 				004D7ABD28C3875B007D17D5 /* RepositoryList.swift in Sources */,
 				0038C29F28B50976009C98E2 /* AuthorizePopup.swift in Sources */,
@@ -605,6 +632,7 @@
 				00F8F11428B4A1A200D688AC /* URLCollection.swift in Sources */,
 				000AF31C28C9FE4200B658A0 /* LabelDAO.swift in Sources */,
 				002D300428C37ECE00E8FC55 /* GithubRepository.swift in Sources */,
+				0045FF8528CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,14 +643,18 @@
 				00110E3D28BCEC9100BA327F /* MockURLSession.swift in Sources */,
 				00DF161228B4F4AF008A8A30 /* DeepLinkHandlerTests.swift in Sources */,
 				00DDBA9C28C37B2300FB1240 /* GithubServiceTests.swift in Sources */,
+				0036B29D28CB19BF00496966 /* Binding.swift in Sources */,
 				00CB3F0C28C047BD006B1536 /* MockOAuthInteractor.swift in Sources */,
 				00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */,
 				00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */,
+				0004A16D28CC7F9C00D491C4 /* MockAccessTokenManager.swift in Sources */,
 				00CB3F0F28C04940006B1536 /* MockDIContainer.swift in Sources */,
-				00E677C128BD017700918BF0 /* MockedService.swift in Sources */,
+				00E677C128BD017700918BF0 /* MockOAuthService.swift in Sources */,
+				0045FF7E28CB088900F2B0D3 /* MockGithubService.swift in Sources */,
 				00617F5328BF4887008B5952 /* ConstantData.swift in Sources */,
 				007151B528C9FC6D009438EE /* MockData.swift in Sources */,
 				00110E4028BCED9700BA327F /* MockURLData.swift in Sources */,
+				0045FF8328CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

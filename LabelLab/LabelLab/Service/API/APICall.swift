@@ -54,7 +54,7 @@ extension APICall {
         request.httpBody = data
         _ = headers.map { (key, value) in
             request.addValue(value, forHTTPHeaderField: key)
-        } 
+        }
         return try await session.data(for: request, delegate: delegate)
     }
 

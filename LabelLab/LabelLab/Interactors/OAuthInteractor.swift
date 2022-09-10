@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import KeyChainWrapper
 
 protocol OAuthInteractor {
     func openOAuthSite()
@@ -18,10 +17,12 @@ protocol OAuthInteractor {
 struct RealOAuthInteractor {
     private let oAuthService: OAuthService
     private let appState: AppState
+    private let accessTokenManager: AccessTokenManager
 
-    init(oAuthService: OAuthService = GithubOAuthService.shared, appState: AppState) {
+    init(oAuthService: OAuthService = GithubOAuthService.shared, appState: AppState, accessTokenManager: AccessTokenManager = RealAccessTokenManager()) {
         self.oAuthService = oAuthService
         self.appState = appState
+        self.accessTokenManager = accessTokenManager
     }
 
 }
@@ -34,11 +35,8 @@ extension RealOAuthInteractor: OAuthInteractor {
 
     @MainActor func requestAccessToken(with authorizeCode: String) async {
         do {
-            let serviceName = try getServiceName()
-            let accessToken: AccessToken = try await oAuthService.requestAccessToken(with: authorizeCode)
-
-            try await PasswordKeychainManager(service: serviceName)
-                .savePassword(accessToken, for: KeychainConst.accessToken)
+            appState.userData.userInfo = .isLoading(last: nil)
+            _ = try await oAuthService.requestAccessToken(with: authorizeCode)
         } catch {
             appState.userData.userInfo = .failed(error)
         }
@@ -46,12 +44,7 @@ extension RealOAuthInteractor: OAuthInteractor {
 
     @MainActor func requestUserInfo() async {
         do {
-            let serviceName = try getServiceName()
-            guard let token = try await PasswordKeychainManager(service: serviceName).getPassword(for: KeychainConst.accessToken) else {
-                appState.userData.userInfo = .failed(OAuthError.tokenNotExist)
-                return
-            }
-            let userInfo: UserInfo = try await oAuthService.requestUserInfo(with: token)
+            let userInfo: UserInfo = try await oAuthService.requestUserInfo()
             appState.userData.userInfo = .loaded(userInfo)
         } catch {
             appState.userData.userInfo = .failed(error)
@@ -60,9 +53,6 @@ extension RealOAuthInteractor: OAuthInteractor {
 
     @MainActor func logout() async {
         do {
-            let serviceName = try getServiceName()
-            try await PasswordKeychainManager(service: serviceName)
-                .removePassword(for: KeychainConst.accessToken)
             try await oAuthService.logout()
             appState.userData.userInfo = .notRequested
         } catch {
@@ -70,14 +60,4 @@ extension RealOAuthInteractor: OAuthInteractor {
         }
     }
 
-}
-
-// MARK: - Implementation
-private extension RealOAuthInteractor {
-    func getServiceName() throws -> String {
-        guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
-            throw KeyChainError.unknownError(message: "키체인 저장 실패!")
-        }
-        return bundleIdentifier
-    }
 }

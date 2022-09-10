@@ -5,6 +5,10 @@
 //  Created by JongHo Park on 2022/08/18.
 //
 
+import SwiftUI
+
+typealias AuthLoadableSubject<T> = Binding<AuthenticationRequiredLoadable<T>>
+
 enum AuthenticationRequiredLoadable<T> {
     case notRequested
     case isLoading(last: T?)

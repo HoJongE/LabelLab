@@ -39,9 +39,7 @@ final class OAuthInteractorTests: XCTestCase {
 
     func testRequestAccessToken() async throws {
         await oAuthInteractor.requestAccessToken(with: "")
-        let accessToken = try await keychainManager.getPassword(for: KeychainConst.accessToken)
         XCTAssert(true, "request Access Token test success")
-        XCTAssertEqual(accessToken, ConstantData.accessToken)
     }
 
     func testRequestUserInfo() async throws {
@@ -53,11 +51,9 @@ final class OAuthInteractorTests: XCTestCase {
 
     func testLogout() async throws {
         await oAuthInteractor.requestAccessToken(with: "")
-        var accessToken = try await keychainManager.getPassword(for: KeychainConst.accessToken)
-        XCTAssertEqual(accessToken, ConstantData.accessToken)
+        await oAuthInteractor.requestUserInfo()
+        XCTAssertEqual(appState.userData.userInfo, Loadable<UserInfo>.loaded(UserInfo.hojonge))
         await oAuthInteractor.logout()
-        accessToken = try await keychainManager.getPassword(for: KeychainConst.accessToken)
-        XCTAssertNil(accessToken)
         XCTAssertEqual(appState.userData.userInfo, .notRequested)
     }
 

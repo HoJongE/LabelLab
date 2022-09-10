@@ -13,13 +13,11 @@ final class GithubServiceTests: XCTestCase {
 
     private var githubService: GithubService!
     private let testRepository: GithubRepository = .testRepository
-    private var accessToken: String!
 
     override func setUp() async throws {
         try await super.setUp()
         let mockURLSession: URLSessionProtocol = MockURLSession(data: GithubRepAPI.repositoriesData, response: .init())
-        accessToken = try await PasswordKeychainManager(service: Bundle.main.bundleIdentifier!).getPassword(for: KeychainConst.accessToken)!
-        githubService = RealGithubService(session: mockURLSession)
+        githubService = RealGithubService(session: mockURLSession, accessTokenManager: MockAccessTokenManager())
     }
 
     override func tearDown() async throws {
@@ -29,7 +27,7 @@ final class GithubServiceTests: XCTestCase {
 
     func testRequestRepositories() async {
         do {
-            let repositories = try await githubService.requestRepositories(with: "")
+            let repositories = try await githubService.requestRepositories()
             let fromData = try JSONDecoder().decode([GithubRepository].self, from: GithubRepAPI.repositoriesData)
 
             print(repositories)

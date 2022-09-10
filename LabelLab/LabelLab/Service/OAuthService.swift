@@ -41,20 +41,30 @@ extension OAuthError: LocalizedError {
 
 protocol OAuthService {
     var session: URLSessionProtocol { get }
+    var accessTokenManager: AccessTokenManager { get }
     func openOAuthSite()
     func requestAccessToken(with code: String) async throws -> AccessToken
-    func requestUserInfo(with token: String) async throws -> UserInfo
+    func requestUserInfo() async throws -> UserInfo
     func logout() async throws
+}
 
+extension OAuthService {
+    var token: String? {
+        get async throws {
+            try await accessTokenManager.requestAccessToken()
+        }
+    }
 }
 
 final class GithubOAuthService {
     static let shared: GithubOAuthService = .init()
     let session: URLSessionProtocol
     private let auth: Auth = Auth.auth()
+    let accessTokenManager: AccessTokenManager
 
-    init(_ session: URLSessionProtocol = URLSession.shared) {
+    init(_ session: URLSessionProtocol = URLSession.shared, accessTokenManager: AccessTokenManager = RealAccessTokenManager()) {
         self.session = session
+        self.accessTokenManager = accessTokenManager
     }
 }
 
@@ -75,11 +85,15 @@ extension GithubOAuthService {
     func requestAccessToken(with code: String) async throws -> AccessToken {
         let (data, _) = try await GithubAuthAPI.accessToken(authorizeCode: code).request(with: session)
         let token = try parseDataToAccessToken(data)
+        try await accessTokenManager.saveAccessToken(token)
         return token
     }
 
-    func requestUserInfo(with token: String) async throws -> UserInfo {
+    func requestUserInfo() async throws -> UserInfo {
         // 먼저 Firebase Auth 에 인증되있지 않다면, Github accessToken 으로 인증을 시도함
+        guard let token = try await token else {
+            throw OAuthError.tokenNotExist
+        }
         if !ProcessInfo().isRunningTests {
             if auth.currentUser == nil {
                 let githubAuthProvider = GitHubAuthProvider.credential(withToken: token)
@@ -92,6 +106,7 @@ extension GithubOAuthService {
     }
 
     func logout() async throws {
+        try await accessTokenManager.removeAccessToken()
         try auth.signOut()
     }
 

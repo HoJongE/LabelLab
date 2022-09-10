@@ -5,6 +5,10 @@
 //  Created by JongHo Park on 2022/08/18.
 //
 
+import SwiftUI
+
+typealias LoadableSubject<T> = Binding<Loadable<T>>
+
 enum Loadable<T> {
     case notRequested
     case isLoading(last: T?)

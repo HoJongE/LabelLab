@@ -9,9 +9,12 @@ extension DIContainer {
 
     struct Interactors {
         let oAuthInteractor: OAuthInteractor
+        let uploadToGithubInteractor: UploadToGithubInteractor
 
-        init(oAuthInteractor: OAuthInteractor) {
+        init(oAuthInteractor: OAuthInteractor,
+             uploadToGithubInteractor: UploadToGithubInteractor) {
             self.oAuthInteractor = oAuthInteractor
+            self.uploadToGithubInteractor = uploadToGithubInteractor
         }
     }
 }
@@ -20,7 +23,8 @@ extension DIContainer {
 #if DEBUG
 extension DIContainer.Interactors {
     static var preview: DIContainer.Interactors {
-        .init(oAuthInteractor: RealOAuthInteractor(appState: AppState.preview))
+        .init(oAuthInteractor: RealOAuthInteractor(appState: AppState.preview),
+              uploadToGithubInteractor: RealUploadToGithubInteractor(appState: AppState.preview))
     }
 }
 #endif

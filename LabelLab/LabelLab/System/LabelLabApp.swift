@@ -19,7 +19,7 @@ struct LabelLabApp: App {
         FirebaseApp.configure()
         let appState = AppState()
         self.diContainer = DIContainer(interactors: .init(
-            oAuthInteractor: RealOAuthInteractor(appState: appState)
+            oAuthInteractor: RealOAuthInteractor(appState: appState), uploadToGithubInteractor: RealUploadToGithubInteractor(appState: appState)
         ))
         self.deepLinkHandler = RealDeepLinkHandler(diContainer, appState)
         self._appState = StateObject(wrappedValue: appState)

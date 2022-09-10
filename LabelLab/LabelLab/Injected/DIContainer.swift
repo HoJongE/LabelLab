@@ -18,7 +18,8 @@ struct DIContainer: EnvironmentKey {
     static var defaultValue: Self { Self.default }
 
     private static let `default` = Self(interactors: Interactors(
-        oAuthInteractor: RealOAuthInteractor(appState: AppState())
+        oAuthInteractor: RealOAuthInteractor(appState: AppState()),
+        uploadToGithubInteractor: RealUploadToGithubInteractor(appState: AppState())
     ))
 }
 

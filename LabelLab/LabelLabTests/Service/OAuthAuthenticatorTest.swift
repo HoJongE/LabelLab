@@ -82,7 +82,7 @@ final class OAuthAuthenticatorTest: XCTestCase {
         let mockURLSession = MockURLSession(data: GithubAuthAPI.githubUserInfo, response: URLResponse())
         oAuthService = GithubOAuthService(mockURLSession)
         // when
-        userInfo = try await oAuthService.requestUserInfo(with: "")
+        userInfo = try await oAuthService.requestUserInfo()
         // then
         XCTAssertEqual(UserInfo(id: 1, nickname: "octocat", profileImage: "https://github.com/images/error/octocat_happy.gif", email: "octocat@github.com"), userInfo)
     }
