@@ -11,7 +11,6 @@ struct ContentView: View {
 
     @Environment(\.injected) private var injected: DIContainer
     @EnvironmentObject private var appState: AppState
-    @State private var isShowingRepositories: Bool = false
 
     private let isRunningTests: Bool
 
@@ -22,28 +21,25 @@ struct ContentView: View {
     var body: some View {
         if isRunningTests {
             Text("Running unit tests")
+        } else {
+            content()
         }
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Button {
-                appState.routing.rootRouting.isShowingLoginPopup = true
-            } label: {
-                Text("팝업 띄우기")
-            }
-            Button {
-                isShowingRepositories = true
-            } label: {
-                Text("저장소 목록")
-            }
+    }
+}
+
+// MARK: - Content
+private extension ContentView {
+
+    func content() -> some View {
+        NavigationView {
+            Sidebar()
         }
         .sheet(isPresented: $appState.routing.rootRouting.isShowingLoginPopup) {
             AuthorizePopup()
         }
-        .sheet(isPresented: $isShowingRepositories) {
-            RepositoryList(labels: Label.mockedData)
-        }
+        .sheet(isPresented: $appState.routing.rootRouting.isShowingLogoutPopup, content: {
+            LogoutPopup()
+        })
         .frame(minWidth: 500, minHeight: 400)
     }
 }
@@ -53,6 +49,7 @@ extension ContentView {
 
     struct Routing: Equatable {
         var isShowingLoginPopup: Bool = false
+        var isShowingLogoutPopup: Bool = false
     }
 
 }

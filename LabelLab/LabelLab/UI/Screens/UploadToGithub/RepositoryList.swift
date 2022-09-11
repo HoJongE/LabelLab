@@ -175,7 +175,7 @@ private extension RepositoryList {
 
         var body: some View {
             HStack(alignment: .center) {
-                CircleWebImage(url: repository.owner.profileImage)
+                CircleWebImage(urlString: repository.owner.profileImage)
                     .padding(EdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 8))
                 Text(repository.fullName)
                     .font(.callout)

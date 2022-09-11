@@ -60,6 +60,8 @@
 		00DF161428B4F7C5008A8A30 /* DeepLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */; };
 		00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */; };
 		00E677C128BD017700918BF0 /* MockOAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E677C028BD017700918BF0 /* MockOAuthService.swift */; };
+		00E9334C28CD76DB008ECC8B /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9334B28CD76DB008ECC8B /* Sidebar.swift */; };
+		00E9334E28CD8229008ECC8B /* LogoutPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9334D28CD8229008ECC8B /* LogoutPopup.swift */; };
 		00F8F10728B4785A00D688AC /* KeyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10628B4785A00D688AC /* KeyStorage.swift */; };
 		00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */; };
 		00F8F10D28B47AC200D688AC /* OAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10C28B47AC200D688AC /* OAuthService.swift */; };
@@ -138,6 +140,8 @@
 		00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkHandler.swift; sourceTree = "<group>"; };
 		00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthInteractorTests.swift; sourceTree = "<group>"; };
 		00E677C028BD017700918BF0 /* MockOAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOAuthService.swift; sourceTree = "<group>"; };
+		00E9334B28CD76DB008ECC8B /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		00E9334D28CD8229008ECC8B /* LogoutPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutPopup.swift; sourceTree = "<group>"; };
 		00F8F10528B475CD00D688AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00F8F10628B4785A00D688AC /* KeyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyStorage.swift; sourceTree = "<group>"; };
 		00F8F10928B4798D00D688AC /* OAuthAuthenticatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticatorTest.swift; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 				004D7ABB28C38748007D17D5 /* UploadToGithub */,
 				0038C29D28B5092D009C98E2 /* Authorize */,
 				002789872885986D00BDCDA4 /* ContentView.swift */,
+				00E9334B28CD76DB008ECC8B /* Sidebar.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -366,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				0038C29E28B50976009C98E2 /* AuthorizePopup.swift */,
+				00E9334D28CD8229008ECC8B /* LogoutPopup.swift */,
 			);
 			path = Authorize;
 			sourceTree = "<group>";
@@ -617,6 +623,7 @@
 				0095889228C9C999000FD6D5 /* UploadPopup.swift in Sources */,
 				0037ADA628AE47CB000C36AC /* AuthenticationRequiredLoadable.swift in Sources */,
 				00F8F11228B4A0A500D688AC /* GithubAuthAPI.swift in Sources */,
+				00E9334E28CD8229008ECC8B /* LogoutPopup.swift in Sources */,
 				00DDBA9A28C37A1A00FB1240 /* GithubService.swift in Sources */,
 				002789882885986D00BDCDA4 /* ContentView.swift in Sources */,
 				0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */,
@@ -624,6 +631,7 @@
 				00DDBA9828C3786900FB1240 /* GithubRepAPI.swift in Sources */,
 				00F8F10D28B47AC200D688AC /* OAuthService.swift in Sources */,
 				0044B17628BEF57100613190 /* KeychainConst.swift in Sources */,
+				00E9334C28CD76DB008ECC8B /* Sidebar.swift in Sources */,
 				0037ADAA28AE579E000C36AC /* UserInfo.swift in Sources */,
 				00110E3A28BCEB6300BA327F /* URLSessionProtocol.swift in Sources */,
 				00F8F10F28B49E6300D688AC /* APICall.swift in Sources */,

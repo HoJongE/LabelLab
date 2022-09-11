@@ -35,8 +35,9 @@ extension AppState {
 extension AppState {
 
     struct ViewRouting: Equatable {
-        var rootRouting = ContentView.Routing()
-        var repositoryListRouting = RepositoryList.Routing()
+        var rootRouting: ContentView.Routing = .init()
+        var repositoryListRouting: RepositoryList.Routing = .init()
+        var sidebarRouting: Sidebar.Routing = .init()
     }
 
 }
