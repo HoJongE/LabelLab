@@ -9,7 +9,9 @@ import SwiftUI
 
 struct UploadPopup: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.injected) private var diContainer: DIContainer
     @State private var isUploading: Loadable<Void> = .notRequested
+
     private let repository: GithubRepository
     private let labels: [Label]
 
@@ -27,7 +29,6 @@ struct UploadPopup: View {
         // MARK: - replace to Color assests
         .background(Color("282828"))
         .frame(width: 440, height: 185)
-        .onAppear(perform: uploadLabels)
     }
 }
 
@@ -35,11 +36,13 @@ struct UploadPopup: View {
 private extension UploadPopup {
 
     func uploadLabels() {
-
+        Task(priority: .userInitiated) {
+            await diContainer.interactors.uploadToGithubInteractor.uploadLabels(to: repository, labels: labels, isUploading: $isUploading)
+        }
     }
 
     func openGithubRepository() {
-        guard let url = URL(string: repository.labelsURL) else { return }
+        guard let url = repository.labelPageURL else { return }
         NSWorkspace.shared.open(url)
     }
 }
@@ -69,7 +72,9 @@ private extension UploadPopup {
     @ViewBuilder
     func content() -> some View {
         switch isUploading {
-        case .isLoading, .notRequested:
+        case .notRequested:
+            empty()
+        case .isLoading:
             isLoading()
         case .loaded:
             completed()
@@ -79,6 +84,15 @@ private extension UploadPopup {
     }
 }
 
+// MARK: - Empty UI
+private extension UploadPopup {
+    func empty() -> some View {
+        VStack {
+        }
+        .onAppear(perform: uploadLabels)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
 // MARK: - Loading UI
 private extension UploadPopup {
     func isLoading() -> some View {

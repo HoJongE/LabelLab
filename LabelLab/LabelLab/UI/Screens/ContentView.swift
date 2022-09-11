@@ -11,6 +11,7 @@ struct ContentView: View {
 
     @Environment(\.injected) private var injected: DIContainer
     @EnvironmentObject private var appState: AppState
+    @State private var isShowingRepositories: Bool = false
 
     private let isRunningTests: Bool
 
@@ -31,11 +32,19 @@ struct ContentView: View {
             } label: {
                 Text("팝업 띄우기")
             }
+            Button {
+                isShowingRepositories = true
+            } label: {
+                Text("저장소 목록")
+            }
         }
         .sheet(isPresented: $appState.routing.rootRouting.isShowingLoginPopup) {
             AuthorizePopup()
         }
-        // TODO: Frame minimum size 지정필요
+        .sheet(isPresented: $isShowingRepositories) {
+            RepositoryList(labels: Label.mockedData)
+        }
+        .frame(minWidth: 500, minHeight: 400)
     }
 }
 

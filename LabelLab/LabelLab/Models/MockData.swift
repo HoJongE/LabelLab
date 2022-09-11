@@ -47,9 +47,9 @@ extension Label {
 
 extension GithubRepository {
     static let mockData: [GithubRepository] = [
-        GithubRepository(id: 1, name: "LabelLab", fullName: "HoJongE/LabelLab", labelsURL: "", owner: UserInfo.hojonge, isPrivate: false, repositoryDescription: ""),
-        GithubRepository(id: 2, name: "Marryting", fullName: "Woody/Marryting", labelsURL: "", owner: UserInfo.woody, isPrivate: false, repositoryDescription: ""),
-        GithubRepository(id: 3, name: "Inception", fullName: "Avery/Inception", labelsURL: "", owner: UserInfo.avery, isPrivate: false, repositoryDescription: "")
+        GithubRepository(id: 1, name: "LabelLab", fullName: "HoJongE/LabelLab", owner: UserInfo.hojonge, isPrivate: false, repositoryDescription: ""),
+        GithubRepository(id: 2, name: "Marryting", fullName: "Woody/Marryting", owner: UserInfo.woody, isPrivate: false, repositoryDescription: ""),
+        GithubRepository(id: 3, name: "Inception", fullName: "Avery/Inception", owner: UserInfo.avery, isPrivate: false, repositoryDescription: "")
     ]
 }
 #endif

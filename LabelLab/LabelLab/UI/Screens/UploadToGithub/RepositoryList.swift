@@ -27,7 +27,6 @@ struct RepositoryList: View {
         }
         .frame(width: 454, height: 580)
         .background(Color("282828"))
-        .onAppear(perform: requestRepositories)
         .sheet(isPresented: $appState.routing.repositoryListRouting.isShowingUploadPopup) {
             if let selectedRepository = selectedRepository {
                 UploadPopup(to: selectedRepository, labels: labels)
@@ -38,9 +37,11 @@ struct RepositoryList: View {
 
 // MARK: - Side Effects
 private extension RepositoryList {
-    // TODO: Interactor 와 상호작용
-    func requestRepositories() {
 
+    func requestRepositories() {
+        Task(priority: .userInitiated) {
+            await diContainer.interactors.uploadToGithubInteractor.requestRepositories(repositories: $repositories)
+        }
     }
 
     func uploadLabels() {
@@ -91,6 +92,7 @@ private extension RepositoryList {
     func empty() -> some View {
         VStack {
         }
+        .onAppear(perform: requestRepositories)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
@@ -139,7 +141,7 @@ private extension RepositoryList {
     }
 
     func buttons() -> some View {
-        // TODO: Avery 가 만든 버튼으로 교체, Interactor 와 상호작용 해야 함!
+        // TODO: Avery 가 만든 버튼으로 교체
         HStack {
             Button {
                 dismiss()
@@ -195,10 +197,13 @@ private extension RepositoryList {
             Text("An error occur when loading github repositories")
                 .bold()
 
+            Text(error.localizedDescription)
+
             Button(action: requestRepositories) {
                 Text("Please try again")
             }
             .padding()
+            buttons()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
