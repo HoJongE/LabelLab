@@ -13,6 +13,7 @@
 		00110E3A28BCEB6300BA327F /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00110E3928BCEB6300BA327F /* URLSessionProtocol.swift */; };
 		00110E3D28BCEC9100BA327F /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00110E3C28BCEC9100BA327F /* MockURLSession.swift */; };
 		00110E4028BCED9700BA327F /* MockURLData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00110E3F28BCED9700BA327F /* MockURLData.swift */; };
+		001A757528CF538F001CE274 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A757428CF538F001CE274 /* Tab.swift */; };
 		00239D4828BC511C00CC1DC1 /* OAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00239D4728BC511C00CC1DC1 /* OAuthInteractor.swift */; };
 		002789862885986D00BDCDA4 /* LabelLabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789852885986D00BDCDA4 /* LabelLabApp.swift */; };
 		002789882885986D00BDCDA4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002789872885986D00BDCDA4 /* ContentView.swift */; };
@@ -94,6 +95,7 @@
 		00110E3928BCEB6300BA327F /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		00110E3C28BCEC9100BA327F /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		00110E3F28BCED9700BA327F /* MockURLData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLData.swift; sourceTree = "<group>"; };
+		001A757428CF538F001CE274 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		00239D4728BC511C00CC1DC1 /* OAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthInteractor.swift; sourceTree = "<group>"; };
 		002789822885986D00BDCDA4 /* LabelLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabelLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		002789852885986D00BDCDA4 /* LabelLabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLabApp.swift; sourceTree = "<group>"; };
@@ -202,6 +204,15 @@
 				0036B29C28CB19BF00496966 /* Binding.swift */,
 			);
 			path = TestHelpers;
+			sourceTree = "<group>";
+		};
+		001A757328CF5386001CE274 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				00E9334B28CD76DB008ECC8B /* Sidebar.swift */,
+				001A757428CF538F001CE274 /* Tab.swift */,
+			);
+			path = Sidebar;
 			sourceTree = "<group>";
 		};
 		002789792885986C00BDCDA4 = {
@@ -350,10 +361,10 @@
 		002789B8288598E800BDCDA4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				001A757328CF5386001CE274 /* Sidebar */,
 				004D7ABB28C38748007D17D5 /* UploadToGithub */,
 				0038C29D28B5092D009C98E2 /* Authorize */,
 				002789872885986D00BDCDA4 /* ContentView.swift */,
-				00E9334B28CD76DB008ECC8B /* Sidebar.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -621,6 +632,7 @@
 				00674CA028AF793C00E850B7 /* Color.swift in Sources */,
 				0037AD9C28AE3AE4000C36AC /* AppState.swift in Sources */,
 				0095889228C9C999000FD6D5 /* UploadPopup.swift in Sources */,
+				001A757528CF538F001CE274 /* Tab.swift in Sources */,
 				0037ADA628AE47CB000C36AC /* AuthenticationRequiredLoadable.swift in Sources */,
 				00F8F11228B4A0A500D688AC /* GithubAuthAPI.swift in Sources */,
 				00E9334E28CD8229008ECC8B /* LogoutPopup.swift in Sources */,

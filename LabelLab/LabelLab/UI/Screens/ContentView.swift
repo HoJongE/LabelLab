@@ -33,6 +33,7 @@ private extension ContentView {
     func content() -> some View {
         NavigationView {
             Sidebar()
+            appState.routing.sidebarRouting.currentTab.correspondedView
         }
         .sheet(isPresented: $appState.routing.rootRouting.isShowingLoginPopup) {
             AuthorizePopup()
@@ -40,7 +41,7 @@ private extension ContentView {
         .sheet(isPresented: $appState.routing.rootRouting.isShowingLogoutPopup, content: {
             LogoutPopup()
         })
-        .frame(minWidth: 500, minHeight: 400)
+        .frame(minWidth: 900, minHeight: 550)
     }
 }
 

@@ -14,9 +14,13 @@ struct Sidebar: View {
     var body: some View {
         VStack(alignment: .leading) {
             List {
-                yourLabels()
-                community()
-                support()
+                ForEach(TabSection.allCases, id: \.self) { section in
+                    Section(section.rawValue) {
+                        ForEach(section.tabs, id: \.self) { tab in
+                            tabButton(of: tab)
+                        }
+                    }
+                }
             }
             Spacer()
             accountInfo()
@@ -39,11 +43,11 @@ private extension Sidebar {
 }
 // MARK: - UI Component
 private extension Sidebar {
-    func sideBarButton(title: String, to tab: Tab) -> some View {
+    func tabButton(of tab: Tab) -> some View {
         Button {
             appState.routing.sidebarRouting.currentTab = tab
         } label: {
-            Text(title)
+            Text(tab.rawValue)
                 .fontWeight(.regular)
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -83,48 +87,9 @@ private extension Sidebar {
         }
     }
 }
-// MARK: - Your Labels section
-private extension Sidebar {
-    func yourLabels() -> some View {
-        Section("Your Labels") {
-            sideBarButton(title: "🎨️ Issue Label Maker", to: .myTemplate)
-        }
-    }
-}
-
-// MARK: - Community secion
-private extension Sidebar {
-    func community() -> some View {
-        Section("Community") {
-            sideBarButton(title: "💡 Inspirations", to: .inspiration)
-        }
-    }
-}
-
-// MARK: - Support section
-private extension Sidebar {
-    func support() -> some View {
-        Section("Support") {
-            sideBarButton(title: "❓ FAQ", to: .faq)
-            sideBarButton(title: "📨 Feedback", to: .feedback)
-            sideBarButton(title: "⭐ Review", to: .review)
-            sideBarButton(title: "☕ Buy me a coffee", to: .buyCoffee)
-        }
-    }
-}
 
 // MARK: - Routing
 extension Sidebar {
-
-    enum Tab {
-        case myTemplate
-        case inspiration
-        case faq
-        case feedback
-        case review
-        case buyCoffee
-    }
-
     struct Routing: Equatable {
         var currentTab: Tab = .myTemplate
     }
