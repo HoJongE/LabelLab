@@ -25,7 +25,7 @@ struct MyTemplateDetail: View {
             divider()
             content()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .maxSize(.topLeading)
         .background(Color.detailBackground)
         .padding()
     }
@@ -104,7 +104,7 @@ private extension MyTemplateDetail {
                 .bold()
             ProgressView()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .maxSize(.center)
     }
 }
 
@@ -120,7 +120,7 @@ private extension MyTemplateDetail {
             }
             .padding(.trailing)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .maxSize(.topLeading)
     }
 }
 
@@ -137,7 +137,7 @@ private extension MyTemplateDetail {
                 Text("retry")
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .maxSize(.center)
     }
 }
 

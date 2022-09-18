@@ -41,7 +41,7 @@ extension Tab {
     var correspondedView: some View {
         switch self {
         case .myTemplate:
-            Text("My template")
+            MyTemplateList()
         case .inspiration:
             Text("Inspirations")
         case .faq:

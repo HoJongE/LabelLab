@@ -97,7 +97,7 @@ private extension UploadPopup {
             Text("Uploading labels to \(repository.name)...")
             ProgressView()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .maxSize(.center)
     }
 }
 
@@ -116,7 +116,7 @@ private extension UploadPopup {
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 29, trailing: 18))
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .maxSize(.topLeading)
     }
 
     func checkRepositoryButton() -> some View {
@@ -141,7 +141,7 @@ private extension UploadPopup {
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 29, trailing: 18))
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .maxSize(.topLeading)
     }
 
     func uploadLabelsButton() -> some View {

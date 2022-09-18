@@ -95,7 +95,7 @@ private extension RepositoryList {
         VStack {
         }
         .onAppear(perform: requestRepositories)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .maxSize(.topLeading)
     }
 }
 
@@ -110,7 +110,7 @@ private extension RepositoryList {
                 .padding()
             Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .maxSize(.center)
     }
 }
 
@@ -126,7 +126,7 @@ private extension RepositoryList {
             list(repositories)
             buttons()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .maxSize(.center)
     }
 
     func list(_ repositories: [GithubRepository]) -> some View {
@@ -198,7 +198,7 @@ private extension RepositoryList {
             .padding()
             buttons()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .maxSize(.center)
     }
 }
 

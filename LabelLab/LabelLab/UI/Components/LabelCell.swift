@@ -31,11 +31,11 @@ struct LabelCell: View {
             description(of: label)
             Spacer()
 
-            if onModifiy != nil {
+            if onModifiy != nil && isHover {
                 modifyButton()
             }
 
-            if onDelete != nil {
+            if onDelete != nil && isHover {
                 deleteButton()
             }
         }
@@ -66,29 +66,15 @@ private extension LabelCell {
     }
 
     func modifyButton() -> some View {
-        Button {
+        CircleButton(systemName: "pencil") {
             onModifiy?(label)
-        } label: {
-            Text(Image(systemName: "pencil"))
-                .foregroundColor(Color.cellBackground)
-                .fontWeight(.black)
-                .padding(4)
-                .background(Circle().fill(Color.white).opacity(0.8))
         }
-        .buttonStyle(.plain)
     }
 
     func deleteButton() -> some View {
-        Button {
+        CircleButton(systemName: "trash") {
             onDelete?(label)
-        } label: {
-            Text(Image(systemName: "trash"))
-                .foregroundColor(Color.cellBackground)
-                .fontWeight(.semibold)
-                .padding(4)
-                .background(Circle().fill(Color.white.opacity(0.8)))
         }
-        .buttonStyle(.plain)
     }
 }
 
