@@ -10,11 +10,10 @@ import SwiftUI
 enum BasicButtonType {
     case primary // blue
     case secondary // gray
-    
     var color: LinearGradient {
         switch self {
         case .primary:
-            return LinearGradient(colors: [Color("4B91F7"),Color("367AF6")],
+            return LinearGradient(colors: [Color("4B91F7"), Color("367AF6")],
                                   startPoint: .top,
                                   endPoint: .bottom)
         case .secondary:
@@ -26,12 +25,18 @@ enum BasicButtonType {
 }
 
 struct BasicButton: View {
-    var text: String
-    var type: BasicButtonType
-    var clicked: (() -> Void) /// use closure for callback
-    
+    private let text: String
+    private let type: BasicButtonType
+    private let clicked: (() -> Void) /// use closure for callback
+
+    init(text: String,
+         type: BasicButtonType,
+         clicked: @escaping () -> Void) {
+        self.text = text
+        self.type = type
+        self.clicked = clicked
+    }
     var body: some View {
-        
         Button(action: clicked) {
             HStack {
                 Text(text)
@@ -45,12 +50,8 @@ struct BasicButton: View {
             )
         }
         .buttonStyle(.plain)
-        
     }
 }
-
-
-/*
  struct BasicButton_Previews: PreviewProvider {
      static var previews: some View {
          BasicButton(text: "버튼테스트", type: .primary) {
@@ -58,4 +59,3 @@ struct BasicButton: View {
          }
      }
  }
-*/
