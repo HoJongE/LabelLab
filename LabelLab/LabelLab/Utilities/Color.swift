@@ -12,6 +12,10 @@ extension Color {
     // TODO: Hex 값 초기화 대신 Assests 에 추가해야함
     static let statusBackground: Color = Color("1E1E1E")
     static let statusTitle: Color = Color("EBEBF5").opacity(0.6)
+    static let cellBackground: Color = Color("3D3C3D")
+    static let detailBackground: Color = Color("282828")
+    static let cellHoverBackground: Color = Color("017AFF").opacity(0.3)
+    static let defaultButtonBackground: Color = Color("6E6D70")
 }
 
 // MARK: - Hex Color initializer

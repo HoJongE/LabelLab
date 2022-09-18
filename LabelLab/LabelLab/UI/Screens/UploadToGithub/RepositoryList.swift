@@ -14,10 +14,12 @@ struct RepositoryList: View {
     @Environment(\.dismiss) private var dismiss
     @State private var selectedRepository: GithubRepository?
     private let labels: [Label]
+    private let templateName: String
 
-    init(repositories: AuthenticationRequiredLoadable<[GithubRepository]> = .notRequested, labels: [Label]) {
+    init(repositories: AuthenticationRequiredLoadable<[GithubRepository]> = .notRequested, labels: [Label], templateName: String) {
         self._repositories = State(initialValue: repositories)
         self.labels = labels
+        self.templateName = templateName
     }
 
     var body: some View {
@@ -26,7 +28,7 @@ struct RepositoryList: View {
             content(repositories)
         }
         .frame(width: 454, height: 580)
-        .background(Color("282828"))
+        .background(Color.detailBackground)
         .sheet(isPresented: $appState.routing.repositoryListRouting.isShowingUploadPopup) {
             if let selectedRepository = selectedRepository {
                 UploadPopup(to: selectedRepository, labels: labels)
@@ -116,9 +118,8 @@ private extension RepositoryList {
 private extension RepositoryList {
     func loaded(_ repositories: [GithubRepository]) -> some View {
 
-        // TODO: Template 과 labels 받아서 표시해야함
         VStack {
-            Text("Please select a repository to upload\n\(labels.count) labels from \"WWDC Study\"")
+            Text("Please select a repository to upload\n\(labels.count) labels from \"\(templateName)\"")
                 .bold()
                 .multilineTextAlignment(.center)
                 .padding(.top, 35)
@@ -141,20 +142,13 @@ private extension RepositoryList {
     }
 
     func buttons() -> some View {
-        // TODO: Avery 가 만든 버튼으로 교체
         HStack {
-            Button {
+            DefaultButton(text: "Cancel") {
                 dismiss()
-            } label: {
-                Text("Cancel")
-                    .fontWeight(.medium)
             }
             Spacer()
-            Button {
+            DefaultButton(text: "Upload", style: .primary) {
                 uploadLabels()
-            } label: {
-                Text("Upload")
-                    .fontWeight(.medium)
             }
             .disabled(selectedRepository == nil)
         }
@@ -181,8 +175,7 @@ private extension RepositoryList {
                     .font(.callout)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            // TODO: Color assest 으로 교체 필요!
-            .background(RoundedRectangle(cornerRadius: 10).fill((isHover || isSelected) ? Color.blue: Color("3D3C3D") ))
+            .background(RoundedRectangle(cornerRadius: 10).fill((isHover || isSelected) ? .blue: .cellBackground ))
             .onHover(perform: { isHover = $0 })
             .contentShape(Rectangle())
             .onTapGesture(perform: onClick)
@@ -211,18 +204,15 @@ private extension RepositoryList {
 
 struct RepositoryList_Previews: PreviewProvider {
     static func makePreview(_ repositories: AuthenticationRequiredLoadable<[GithubRepository]> = .notRequested) -> some View {
-        RepositoryList(repositories: repositories, labels: Label.mockedData)
+        RepositoryList(repositories: repositories, labels: Label.mockedData, templateName: "WWDC study")
+            .previewDisplayName(repositories.previewDisplayName)
     }
     static var previews: some View {
         Group {
             makePreview()
-                .previewDisplayName("not Requested")
             makePreview(.isLoading(last: nil))
-                .previewDisplayName("loading UI")
             makePreview(.loaded(GithubRepository.mockData))
-                .previewDisplayName("loaded UI")
-            makePreview(.failed(NSError()))
-                .previewDisplayName("error Indicator")
+            makePreview(.failed(OAuthError.dataNotExist))
         }
         .injectPreview()
     }

@@ -57,3 +57,20 @@ extension Loadable: Equatable where T: Equatable {
         }
     }
 }
+
+#if DEBUG
+extension Loadable {
+    var previewDisplayName: String {
+        switch self {
+        case .notRequested:
+            return "\(T.self) not Requested"
+        case .isLoading:
+            return "\(T.self) is Loading"
+        case .loaded:
+            return "\(T.self) loaded"
+        case .failed:
+            return "\(T.self) error"
+        }
+    }
+}
+#endif

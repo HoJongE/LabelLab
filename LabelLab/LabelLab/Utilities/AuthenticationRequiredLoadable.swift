@@ -61,3 +61,22 @@ extension AuthenticationRequiredLoadable: Equatable where T: Equatable {
         }
     }
 }
+
+#if DEBUG
+extension AuthenticationRequiredLoadable {
+    var previewDisplayName: String {
+        switch self {
+        case .notRequested:
+            return "\(T.self) not Requested"
+        case .isLoading:
+            return "\(T.self) is Loading"
+        case .loaded:
+            return "\(T.self) loaded"
+        case .failed:
+            return "\(T.self) error"
+        case .needAuthentication:
+            return "\(T.self) need auth"
+        }
+    }
+}
+#endif

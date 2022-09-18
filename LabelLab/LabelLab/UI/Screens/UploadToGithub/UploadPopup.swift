@@ -27,7 +27,7 @@ struct UploadPopup: View {
             content()
         }
         // MARK: - replace to Color assests
-        .background(Color("282828"))
+        .background(Color.detailBackground)
         .frame(width: 440, height: 185)
     }
 }
@@ -58,11 +58,8 @@ private extension UploadPopup {
     }
 
     func cancelButton() -> some View {
-        // TODO: 공통 button 으로 변경해야함!
-        Button {
+        DefaultButton(text: "Cancel") {
             dismiss()
-        } label: {
-            Text("Cancel")
         }
     }
 }
@@ -123,11 +120,8 @@ private extension UploadPopup {
     }
 
     func checkRepositoryButton() -> some View {
-        // TODO: 공통 BUtton 으로 변경해야 함!
-        Button {
+        DefaultButton(text: "Check Remote Repository", style: .primary) {
             openGithubRepository()
-        } label: {
-            Text("Check Remote Repository")
         }
     }
 }
@@ -151,10 +145,8 @@ private extension UploadPopup {
     }
 
     func uploadLabelsButton() -> some View {
-        Button {
+        DefaultButton(text: "Uplpoad labels again") {
             uploadLabels()
-        } label: {
-            Text("Upload labels again")
         }
     }
 }

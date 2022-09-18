@@ -35,29 +35,15 @@ private extension AuthorizePopup {
     }
 
     var finishButton: some View {
-        Button {
+        DefaultButton(text: "Finish", style: .primary) {
             dismiss()
-        } label: {
-            Text("Finish")
-                .fontWeight(.medium)
-                .contentShape(Rectangle())
-                .padding(EdgeInsets(top: 4, leading: 14, bottom: 4, trailing: 14))
-                .background(RoundedRectangle(cornerRadius: 6)
-                    .fill(finishButtonGraident))
         }
-        .buttonStyle(.plain)
-    }
-
-    var finishButtonGraident: LinearGradient {
-        LinearGradient(colors: [Color("4B91F7"), Color("367AF6")], startPoint: .top, endPoint: .bottom)
     }
 
     var authorizeButton: some View {
         HStack {
             Spacer()
-            Button(action: authorizeGithub) {
-                Text("Authorize Github")
-            }
+            DefaultButton(text: "Authorize Github", onClick: authorizeGithub)
         }
     }
 }
