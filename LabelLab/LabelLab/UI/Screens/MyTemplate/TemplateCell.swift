@@ -88,7 +88,7 @@ private extension TemplateCell {
     }
 
     func changeOpenButton() -> some View {
-        CustomImageButton(imageName: template.isOpen ? "ic_lock" : "ic_unlock", width: 24, height: 24) {
+        CustomImageButton(imageName: template.isOpen ? "ic_unlock" : "ic_lock", width: 24, height: 24) {
             onChangeOpen(!template.isOpen)
         }
     }
