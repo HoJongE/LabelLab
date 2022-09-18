@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MyTemplateDetail: View {
 
+    @EnvironmentObject private var appState: AppState
     private let template: Template
     @State private var labels: Loadable<[Label]>
 
@@ -19,6 +20,7 @@ struct MyTemplateDetail: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
+            backButton()
             templateTitle(of: template)
             templateDescription(of: template)
             templateTags(of: template)
@@ -48,6 +50,18 @@ private extension MyTemplateDetail {
 
 // MARK: - UI Components
 private extension MyTemplateDetail {
+
+    func backButton() -> some View {
+        Button {
+            appState.routing.myTemplateListRouting.template = nil
+        } label: {
+            Image(systemName: "chevron.left")
+                .padding([.bottom, .trailing], 12)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+
     func templateTitle(of template: Template) -> some View {
         Text(template.name)
             .font(.largeTitle)
@@ -157,6 +171,7 @@ struct MyTemplateDetail_Previews: PreviewProvider {
         MyTemplateDetail(labels: labels, template: Template.mockedData.first!)
             .frame(minWidth: 600, minHeight: 500)
             .previewDisplayName(labels.previewDisplayName)
+            .injectPreview()
     }
     static var previews: some View {
         Group {

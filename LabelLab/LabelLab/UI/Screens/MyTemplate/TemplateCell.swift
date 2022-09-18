@@ -9,14 +9,17 @@ import SwiftUI
 
 struct TemplateCell: View {
     private let template: Template
+    private let onClick: (Template) -> Void
     private let onChangeOpen: (Bool) -> Void
     private let onDelete: (Template) -> Void
 
     @State private var isHover: Bool = false
 
     init(template: Template,
+         onClick: @escaping (Template) -> Void = { _ in },
          onChangeOpen: @escaping (Bool) -> Void = { _ in },
          onDelete: @escaping (Template) -> Void = { _ in }) {
+        self.onClick = onClick
         self.template = template
         self.onChangeOpen = onChangeOpen
         self.onDelete = onDelete
@@ -34,6 +37,9 @@ struct TemplateCell: View {
         .background(cellBackground)
         .onHover { isHover = $0 }
         .padding(.bottom, 8)
+        .onTapGesture {
+            onClick(template)
+        }
         .overlay(alignment: .topTrailing, content: buttonOverlay)
     }
 

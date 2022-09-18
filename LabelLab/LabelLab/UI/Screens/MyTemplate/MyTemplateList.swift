@@ -21,6 +21,12 @@ struct MyTemplateList: View {
         }
         .padding()
         .maxSize(.topLeading)
+        .overlay {
+            if let template = appState.routing.myTemplateListRouting.template {
+                MyTemplateDetail(template: template)
+                    .transition(.opacity.animation(.easeInOut(duration: 0.25)))
+            }
+        }
     }
 }
 
@@ -79,6 +85,7 @@ private extension MyTemplateList {
 
 // MARK: - Side Effects
 private extension MyTemplateList {
+
     func loadTemplates() {
 
     }
@@ -126,10 +133,14 @@ private extension MyTemplateList {
         ScrollView {
             LazyVGrid(columns: gridColumn) {
                 ForEach(templates) { template in
-                    TemplateCell(template: template)
+                    TemplateCell(template: template, onClick: onCellClick(_:))
                 }
             }
         }
+    }
+
+    func onCellClick(_ template: Template) {
+        appState.routing.myTemplateListRouting.template = template
     }
 }
 
@@ -164,6 +175,14 @@ private extension MyTemplateList {
     }
 }
 
+// MARK: - routing
+extension MyTemplateList {
+    struct Routing: Equatable {
+        var template: Template?
+    }
+}
+
+// MARK: - Preview
 #if DEBUG
 struct MyTemplateList_Previews: PreviewProvider {
 

@@ -41,6 +41,7 @@ extension AppState {
         var rootRouting: ContentView.Routing = .init()
         var repositoryListRouting: RepositoryList.Routing = .init()
         var sidebarRouting: Sidebar.Routing = .init()
+        var myTemplateListRouting: MyTemplateList.Routing = .init()
     }
 
 }
