@@ -17,7 +17,7 @@ struct LabelLabApp: App {
 
     init() {
         FirebaseApp.configure()
-        let appState = AppState()
+        let appState = AppState(.init(myTemplateList: .loaded(Template.mockedData)))
         self.diContainer = DIContainer(interactors: .init(
             oAuthInteractor: RealOAuthInteractor(appState: appState), uploadToGithubInteractor: RealUploadToGithubInteractor(appState: appState)
         ))

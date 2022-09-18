@@ -117,8 +117,8 @@ private extension MyTemplateList {
 
     var gridColumn: [GridItem] {
         [
-            GridItem(.fixed(330), spacing: 16),
-            GridItem(.fixed(330))
+            GridItem(.adaptive(minimum: 260, maximum: 380), spacing: 16, alignment: .center),
+            GridItem(.adaptive(minimum: 280, maximum: 350), spacing: 16, alignment: .center)
         ]
     }
 
@@ -129,7 +129,6 @@ private extension MyTemplateList {
                     TemplateCell(template: template)
                 }
             }
-            .padding(.trailing)
         }
     }
 }
