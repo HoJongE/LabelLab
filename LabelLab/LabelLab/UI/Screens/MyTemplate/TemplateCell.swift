@@ -32,11 +32,10 @@ struct TemplateCell: View {
             tagList
         }
         .frame(maxWidth: .infinity, alignment: .topLeading)
-        .frame(height: 110, alignment: .topLeading)
-        .padding()
+        .frame(height: 100, alignment: .topLeading)
+        .padding(EdgeInsets(top: 20, leading: 20, bottom: 17, trailing: 15))
         .background(cellBackground)
         .onHover { isHover = $0 }
-        .padding(.bottom, 8)
         .onTapGesture {
             onClick(template)
         }
@@ -45,12 +44,15 @@ struct TemplateCell: View {
 
     @ViewBuilder
     private func title(of template: Template) -> some View {
-        if template.isOpen {
+        HStack(alignment: .top) {
             Text(template.name)
-                .font(.headline)
-        } else {
-            Text("\(template.name)  \(Image(systemName: "lock.fill"))")
-                .font(.headline)
+                .font(.headline).bold()
+            if template.isOpen {
+                Image("ic_lock_plain")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 16, height: 16)
+            }
         }
     }
 
@@ -64,6 +66,7 @@ struct TemplateCell: View {
         HStack {
             ForEach(template.tag, id: \.self) { tag in
                 Text("#\(tag)")
+                    .font(.footnote).bold()
             }
         }
         .padding(.top, 20)
@@ -79,13 +82,13 @@ struct TemplateCell: View {
 private extension TemplateCell {
 
     func deleteButton() -> some View {
-        CircleButton(systemName: "trash") {
+        CustomImageButton(imageName: "ic_trashcan", width: 24, height: 24) {
             onDelete(template)
         }
     }
 
     func changeOpenButton() -> some View {
-        CircleButton(systemName: template.isOpen ? "lock.open.fill": "lock.fill") {
+        CustomImageButton(imageName: template.isOpen ? "ic_lock" : "ic_unlock", width: 24, height: 24) {
             onChangeOpen(!template.isOpen)
         }
     }

@@ -64,6 +64,32 @@ private extension MyTemplateList {
     }
 }
 
+// MARK: - emptyView
+private extension MyTemplateList {
+    func emptyView() -> some View {
+        VStack {
+            Spacer()
+            HStack(alignment: .center) {
+                VStack {
+                    Image("ic_flask")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 45, height: 45)
+                    Text("Ouhh.. it’s empty in here")
+                        .font(.system(.title3)).bold()
+                    Group {
+                        Text("Once you make a label collection,")
+                        Text("you’ll see them here")
+                    }
+                    .font(.system(size: 12))
+                    .foregroundColor(Color.white80)
+                }
+            }
+            Spacer()
+        }
+    }
+}
+
 // MARK: - Content
 private extension MyTemplateList {
     @ViewBuilder
@@ -121,20 +147,22 @@ private extension MyTemplateList {
 
 // MARK: - Loaded
 private extension MyTemplateList {
-
-    var gridColumn: [GridItem] {
-        [
-            GridItem(.adaptive(minimum: 260, maximum: 380), spacing: 16, alignment: .center),
-            GridItem(.adaptive(minimum: 280, maximum: 350), spacing: 16, alignment: .center)
-        ]
-    }
-
     func loaded(templates: [Template]) -> some View {
-        ScrollView {
-            LazyVGrid(columns: gridColumn) {
-                ForEach(templates) { template in
-                    TemplateCell(template: template, onClick: onCellClick(_:))
+        HStack {
+            if templates.isEmpty {
+                Spacer()
+                emptyView()
+                Spacer()
+            } else {
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 340))]) {
+                        ForEach(templates) { template in
+                            TemplateCell(template: template, onClick: onCellClick(_:))
+                        }
+                    }
+                    .frame(minHeight: 0, maxHeight: .infinity, alignment: .top)
                 }
+                .frame(maxWidth: .infinity)
             }
         }
     }
