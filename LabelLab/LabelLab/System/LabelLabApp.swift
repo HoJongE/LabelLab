@@ -32,8 +32,21 @@ struct LabelLabApp: App {
                 .handleDeepLink(with: deepLinkHandler)
                 .inject(diContainer)
                 .inject(appState)
+                .task {
+                    await autoLogin()
+                }
         }
         .disableNewWindow()
+    }
+}
+
+// MARK: - Side Effects
+private extension LabelLabApp {
+    func autoLogin() async {
+        await diContainer.interactors.oAuthInteractor.requestUserInfo()
+        if case Loadable.failed = appState.userData.userInfo {
+            appState.userData.userInfo = .notRequested
+        }
     }
 }
 
