@@ -9,6 +9,7 @@
 import Foundation
 
 extension Template {
+    static let emptyData: [Template] = []
     static let mockedData: [Template] = [
         Template(id: UUID().uuidString, name: "IOS Procject Labels", templateDescription: "ios 프로젝트에 사용하는 템플릿입니다.", makerId: UUID().uuidString, copyCount: 10, tag: ["iOS", "project", "study"], isOpen: true),
         Template(id: UUID().uuidString, name: "Android Procject Labels", templateDescription: "Android 프로젝트에 사용하는 템플릿입니다.", makerId: UUID().uuidString, copyCount: 10, tag: [], isOpen: true),
