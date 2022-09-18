@@ -47,7 +47,7 @@ struct TemplateCell: View {
         HStack(alignment: .top) {
             Text(template.name)
                 .font(.headline).bold()
-            if template.isOpen {
+            if !template.isOpen {
                 Image("ic_lock_plain")
                     .resizable()
                     .scaledToFit()
