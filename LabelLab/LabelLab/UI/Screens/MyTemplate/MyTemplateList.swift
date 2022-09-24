@@ -230,6 +230,7 @@ struct MyTemplateList_Previews: PreviewProvider {
             makePreview(.notRequested)
             makePreview(.isLoading(last: nil))
             makePreview(.loaded(Template.mockedData))
+            makePreview(.loaded([]))
             makePreview(.failed(OAuthError.dataNotExist))
             makePreview(.needAuthentication)
         }
