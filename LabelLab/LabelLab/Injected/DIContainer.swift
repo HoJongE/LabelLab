@@ -19,7 +19,8 @@ struct DIContainer: EnvironmentKey {
 
     private static let `default` = Self(interactors: Interactors(
         oAuthInteractor: RealOAuthInteractor(appState: AppState()),
-        uploadToGithubInteractor: RealUploadToGithubInteractor(appState: AppState())
+        uploadToGithubInteractor: RealUploadToGithubInteractor(appState: AppState()),
+        myTemplateListInteractor: RealMyTemplateListInteractor(appState: AppState())
     ))
 }
 

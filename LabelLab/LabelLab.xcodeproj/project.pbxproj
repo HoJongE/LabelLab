@@ -64,6 +64,7 @@
 		00A79A362886DD6C006D5DCD /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A352886DD6C006D5DCD /* FirebaseFirestoreSwift */; };
 		00B013F428C5826D001CE4A6 /* CircleWebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B013F328C5826D001CE4A6 /* CircleWebImage.swift */; };
 		00C7760C28CF5FAE008D1686 /* MyTemplateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C7760B28CF5FAE008D1686 /* MyTemplateDetail.swift */; };
+		00C7ECDC28E0368A004713B6 /* DIGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C7ECDB28E0368A004713B6 /* DIGenerator.swift */; };
 		00CB3F0C28C047BD006B1536 /* MockOAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CB3F0B28C047BD006B1536 /* MockOAuthInteractor.swift */; };
 		00CB3F0F28C04940006B1536 /* MockDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CB3F0E28C04940006B1536 /* MockDIContainer.swift */; };
 		00D1D22628DF4F2B00968EBF /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1D22528DF4F2B00968EBF /* EncodableExtension.swift */; };
@@ -162,6 +163,7 @@
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00B013F328C5826D001CE4A6 /* CircleWebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWebImage.swift; sourceTree = "<group>"; };
 		00C7760B28CF5FAE008D1686 /* MyTemplateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTemplateDetail.swift; sourceTree = "<group>"; };
+		00C7ECDB28E0368A004713B6 /* DIGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIGenerator.swift; sourceTree = "<group>"; };
 		00CB3F0B28C047BD006B1536 /* MockOAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOAuthInteractor.swift; sourceTree = "<group>"; };
 		00CB3F0E28C04940006B1536 /* MockDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDIContainer.swift; sourceTree = "<group>"; };
 		00D1D22528DF4F2B00968EBF /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtension.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 			children = (
 				002789852885986D00BDCDA4 /* LabelLabApp.swift */,
 				00DF161328B4F7C5008A8A30 /* DeepLinkHandler.swift */,
+				00C7ECDB28E0368A004713B6 /* DIGenerator.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				0044B17628BEF57100613190 /* KeychainConst.swift in Sources */,
 				00E9334C28CD76DB008ECC8B /* Sidebar.swift in Sources */,
 				0037ADAA28AE579E000C36AC /* UserInfo.swift in Sources */,
+				00C7ECDC28E0368A004713B6 /* DIGenerator.swift in Sources */,
 				0085688828D6CE6700A88CB8 /* TemplateCell.swift in Sources */,
 				00110E3A28BCEB6300BA327F /* URLSessionProtocol.swift in Sources */,
 				00F8F10F28B49E6300D688AC /* APICall.swift in Sources */,

@@ -9,7 +9,10 @@
 
 enum MockDIContainerProvider {
     static func mockDIContainer(appState: AppState) -> DIContainer {
-        let interactors = DIContainer.Interactors(oAuthInteractor: MockOAuthInteractor(appState: appState), uploadToGithubInteractor: RealUploadToGithubInteractor(appState: appState))
+        let oAuthInteractor = MockOAuthInteractor(appState: appState)
+        let uploadToGithubInteractor = RealUploadToGithubInteractor(appState: appState)
+        let myTemplateListInteractor = RealMyTemplateListInteractor(appState: appState)
+        let interactors = DIContainer.Interactors(oAuthInteractor: oAuthInteractor, uploadToGithubInteractor: uploadToGithubInteractor, myTemplateListInteractor: myTemplateListInteractor)
         return DIContainer(interactors: interactors)
     }
 }

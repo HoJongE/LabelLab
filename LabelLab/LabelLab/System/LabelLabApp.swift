@@ -17,12 +17,10 @@ struct LabelLabApp: App {
 
     init() {
         FirebaseApp.configure()
-        let appState = AppState(.init(myTemplateList: .loaded(Template.mockedData)))
-        self.diContainer = DIContainer(interactors: .init(
-            oAuthInteractor: RealOAuthInteractor(appState: appState), uploadToGithubInteractor: RealUploadToGithubInteractor(appState: appState)
-        ))
-        self.deepLinkHandler = RealDeepLinkHandler(diContainer, appState)
-        self._appState = StateObject(wrappedValue: appState)
+        var diGenerator: DIGenerator = .init()
+        diContainer = diGenerator.diContainer
+        deepLinkHandler = diGenerator.deepLinkHandler
+        self._appState = StateObject(wrappedValue: diGenerator.appState)
     }
 
     var body: some Scene {

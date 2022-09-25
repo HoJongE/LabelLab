@@ -8,13 +8,17 @@
 extension DIContainer {
 
     struct Interactors {
+
         let oAuthInteractor: OAuthInteractor
         let uploadToGithubInteractor: UploadToGithubInteractor
+        let myTemplateListInteractor: MyTemplateListInteractor
 
         init(oAuthInteractor: OAuthInteractor,
-             uploadToGithubInteractor: UploadToGithubInteractor) {
+             uploadToGithubInteractor: UploadToGithubInteractor,
+             myTemplateListInteractor: MyTemplateListInteractor) {
             self.oAuthInteractor = oAuthInteractor
             self.uploadToGithubInteractor = uploadToGithubInteractor
+            self.myTemplateListInteractor = myTemplateListInteractor
         }
     }
 }
@@ -24,7 +28,8 @@ extension DIContainer {
 extension DIContainer.Interactors {
     static var preview: DIContainer.Interactors {
         .init(oAuthInteractor: RealOAuthInteractor(appState: AppState.preview),
-              uploadToGithubInteractor: RealUploadToGithubInteractor(appState: AppState.preview))
+              uploadToGithubInteractor: RealUploadToGithubInteractor(appState: AppState.preview),
+              myTemplateListInteractor: RealMyTemplateListInteractor(appState: AppState.preview))
     }
 }
 #endif
