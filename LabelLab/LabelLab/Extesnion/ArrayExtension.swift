@@ -6,7 +6,7 @@
 //
 
 extension Array where Element: Identifiable {
-    mutating func replace(_ element: Element) {
+    mutating func replace(to element: Element) {
         guard let index = self.firstIndex(where: { value in
             value.id == element.id
         }) else {

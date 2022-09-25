@@ -50,7 +50,7 @@ extension RealMyTemplateListInteractor: MyTemplateListInteractor {
                 isChanging.wrappedValue = .notRequested
                 return
             }
-            templates.replace(changedTemplate)
+            templates.replace(to: changedTemplate)
             appState.userData.myTemplateList = .loaded(templates)
             isChanging.wrappedValue = .loaded(())
         } catch {

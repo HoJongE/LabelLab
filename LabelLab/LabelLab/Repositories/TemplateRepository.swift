@@ -46,7 +46,7 @@ extension FirebaseTemplateRepository: TemplateRepository {
                 "isOpen": changeTo
             ])
 
-        return Template(id: template.id, name: template.name, templateDescription: template.templateDescription, makerId: template.makerId, copyCount: template.copyCount, tag: template.tag, isOpen: changeTo)
+        return template.changeVisibiltiy()
     }
 
     func deleteTemplate(_ template: Template) async throws {

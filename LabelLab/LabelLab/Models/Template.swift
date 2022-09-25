@@ -18,6 +18,12 @@ struct Template: Codable, Identifiable {
     let isOpen: Bool // 공개 여부
 }
 
+extension Template {
+    func changeVisibiltiy() -> Template {
+        Template(id: id, name: name, templateDescription: templateDescription, makerId: makerId, copyCount: copyCount, tag: tag, isOpen: !isOpen)
+    }
+}
+
 extension Template: Equatable {
     static func == (lhs: Template, rhs: Template) -> Bool {
         lhs.id == rhs.id
