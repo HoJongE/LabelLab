@@ -33,6 +33,8 @@
 		0037ADAA28AE579E000C36AC /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037ADA928AE579E000C36AC /* UserInfo.swift */; };
 		0037ADAC28AE57A4000C36AC /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0037ADAB28AE57A4000C36AC /* Label.swift */; };
 		0038C29F28B50976009C98E2 /* AuthorizePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0038C29E28B50976009C98E2 /* AuthorizePopup.swift */; };
+		003CEF2528DFEE8400F13F8A /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CEF2428DFEE8300F13F8A /* ArrayExtension.swift */; };
+		003CEF2A28DFEFB700F13F8A /* ArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CEF2928DFEFB700F13F8A /* ArrayExtensionTests.swift */; };
 		0044B17428BEE97600613190 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0044B17328BEE97600613190 /* .swiftlint.yml */; };
 		0044B17628BEF57100613190 /* KeychainConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044B17528BEF57100613190 /* KeychainConst.swift */; };
 		0045FF7E28CB088900F2B0D3 /* MockGithubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045FF7D28CB088900F2B0D3 /* MockGithubService.swift */; };
@@ -132,6 +134,8 @@
 		0037ADA928AE579E000C36AC /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		0037ADAB28AE57A4000C36AC /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		0038C29E28B50976009C98E2 /* AuthorizePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizePopup.swift; sourceTree = "<group>"; };
+		003CEF2428DFEE8300F13F8A /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		003CEF2928DFEFB700F13F8A /* ArrayExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionTests.swift; sourceTree = "<group>"; };
 		0044B17328BEE97600613190 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0044B17528BEF57100613190 /* KeychainConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConst.swift; sourceTree = "<group>"; };
 		0045FF7D28CB088900F2B0D3 /* MockGithubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGithubService.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 		002789962885986F00BDCDA4 /* LabelLabTests */ = {
 			isa = PBXGroup;
 			children = (
+				003CEF2628DFEF9C00F13F8A /* Extension */,
 				00D1D22828DF502200968EBF /* Repository */,
 				00E677BD28BCF84500918BF0 /* Interactors */,
 				00110E3B28BCEC8700BA327F /* Mock */,
@@ -422,6 +427,14 @@
 			path = Authorize;
 			sourceTree = "<group>";
 		};
+		003CEF2628DFEF9C00F13F8A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				003CEF2928DFEFB700F13F8A /* ArrayExtensionTests.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		0045FF7F28CB089300F2B0D3 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +458,7 @@
 			children = (
 				0085688C28D6D49C00A88CB8 /* ViewExtension.swift */,
 				00D1D22528DF4F2B00968EBF /* EncodableExtension.swift */,
+				003CEF2428DFEE8300F13F8A /* ArrayExtension.swift */,
 			);
 			path = Extesnion;
 			sourceTree = "<group>";
@@ -713,6 +727,7 @@
 				0085688328D6A7F000A88CB8 /* DefaultButton.swift in Sources */,
 				00E9334E28CD8229008ECC8B /* LogoutPopup.swift in Sources */,
 				00D1D22628DF4F2B00968EBF /* EncodableExtension.swift in Sources */,
+				003CEF2528DFEE8400F13F8A /* ArrayExtension.swift in Sources */,
 				0085688A28D6D02000A88CB8 /* CircleButton.swift in Sources */,
 				00DDBA9A28C37A1A00FB1240 /* GithubService.swift in Sources */,
 				A7AFD1D928BC3F44000D8167 /* DismissButton.swift in Sources */,
@@ -760,6 +775,7 @@
 				007151B528C9FC6D009438EE /* MockData.swift in Sources */,
 				00110E4028BCED9700BA327F /* MockURLData.swift in Sources */,
 				0045FF8328CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift in Sources */,
+				003CEF2A28DFEFB700F13F8A /* ArrayExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
