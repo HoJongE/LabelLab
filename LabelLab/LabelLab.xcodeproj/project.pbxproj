@@ -53,6 +53,7 @@
 		0085688A28D6D02000A88CB8 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0085688928D6D02000A88CB8 /* CircleButton.swift */; };
 		0085688D28D6D49C00A88CB8 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0085688C28D6D49C00A88CB8 /* ViewExtension.swift */; };
 		008B94F228DFF21000C211B3 /* MockTemplateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B94F128DFF21000C211B3 /* MockTemplateRepository.swift */; };
+		008B94F428DFFD7000C211B3 /* TemplateInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */; };
 		0095889028C9C341000FD6D5 /* KeyChainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 0095888F28C9C341000FD6D5 /* KeyChainWrapper */; };
 		0095889228C9C999000FD6D5 /* UploadPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095889128C9C999000FD6D5 /* UploadPopup.swift */; };
 		009C440728DC96C100867E2F /* MyTemplateListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C440628DC96C100867E2F /* MyTemplateListInteractor.swift */; };
@@ -154,6 +155,7 @@
 		0085688928D6D02000A88CB8 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		0085688C28D6D49C00A88CB8 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		008B94F128DFF21000C211B3 /* MockTemplateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTemplateRepository.swift; sourceTree = "<group>"; };
+		008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateInteractorTests.swift; sourceTree = "<group>"; };
 		0095889128C9C999000FD6D5 /* UploadPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPopup.swift; sourceTree = "<group>"; };
 		009C440628DC96C100867E2F /* MyTemplateListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTemplateListInteractor.swift; sourceTree = "<group>"; };
 		009C440828DD310C00867E2F /* TemplateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateRepository.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 			children = (
 				00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */,
 				0045FF8228CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift */,
+				008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -776,6 +779,7 @@
 				0045FF7E28CB088900F2B0D3 /* MockGithubService.swift in Sources */,
 				00617F5328BF4887008B5952 /* ConstantData.swift in Sources */,
 				008B94F228DFF21000C211B3 /* MockTemplateRepository.swift in Sources */,
+				008B94F428DFFD7000C211B3 /* TemplateInteractorTests.swift in Sources */,
 				007151B528C9FC6D009438EE /* MockData.swift in Sources */,
 				00110E4028BCED9700BA327F /* MockURLData.swift in Sources */,
 				0045FF8328CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift in Sources */,

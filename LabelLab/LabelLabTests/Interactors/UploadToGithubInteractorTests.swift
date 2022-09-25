@@ -31,7 +31,7 @@ final class UploadToGithubInteractorTests: XCTestCase {
     func testRequestRepositories() async {
         let repositories: BindingWrapper<AuthenticationRequiredLoadable<[GithubRepository]>> = .init(value: .notRequested)
         await interactor.requestRepositories(repositories: repositories.binding)
-        XCTAssertEqual(repositories.binding.wrappedValue, .loaded(GithubRepository.mockData))
+        XCTAssertEqual(repositories.value, .loaded(GithubRepository.mockData))
     }
 
     func testUploadLabels() async {
@@ -41,7 +41,7 @@ final class UploadToGithubInteractorTests: XCTestCase {
         let isUploading: BindingWrapper<Loadable<Void>> = .init(value: .notRequested)
         var result: Bool = false
         await interactor.uploadLabels(to: testRepository, labels: labels, isUploading: isUploading.binding)
-        if case .loaded = isUploading.binding.wrappedValue {
+        if case .loaded = isUploading.value {
             result = true
         }
 

@@ -9,9 +9,13 @@
 
 final class MockTemplateRepository: TemplateRepository {
     private var templates: [Template] = []
-    private let error: Error?
+    private var error: Error?
 
     init(_ error: Error? = nil) {
+        self.error = error
+    }
+
+    func injectError(_ error: Error) {
         self.error = error
     }
 

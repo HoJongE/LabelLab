@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct BindingWrapper<Value> {
-    var binding: Binding<Value>
+    private var _binding: Binding<Value>
+
+    var value: Value {
+        binding.wrappedValue
+    }
+
+    var binding: Binding<Value> {
+        _binding
+    }
 
     init(value: Value) {
         var value = value
-        self.binding = Binding(get: { value }, set: { value = $0 })
+        self._binding = Binding(get: { value }, set: { value = $0 })
     }
 
 }
