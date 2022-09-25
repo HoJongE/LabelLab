@@ -27,7 +27,7 @@ struct RealMyTemplateListInteractor {
 
 extension RealMyTemplateListInteractor: MyTemplateListInteractor {
 
-    func addTemplate(template: Template) async {
+    @MainActor func addTemplate(template: Template) async {
         do {
             guard case Loadable<UserInfo>.loaded = appState.userData.userInfo else {
                 appState.userData.myTemplateList = .needAuthentication
@@ -42,7 +42,7 @@ extension RealMyTemplateListInteractor: MyTemplateListInteractor {
         }
     }
 
-    func changeTemplateVisibility(of template: Template, isChanging: LoadableSubject<Void>) async {
+    @MainActor func changeTemplateVisibility(of template: Template, isChanging: LoadableSubject<Void>) async {
         do {
             isChanging.wrappedValue = .isLoading(last: nil)
             let changedTemplate = try await templateRepository.changeTemplateVisibility(of: template)
@@ -58,7 +58,7 @@ extension RealMyTemplateListInteractor: MyTemplateListInteractor {
         }
     }
 
-    func deleteTemplate(_ template: Template, _ isDeleting: LoadableSubject<Void>) async {
+    @MainActor func deleteTemplate(_ template: Template, _ isDeleting: LoadableSubject<Void>) async {
         do {
             isDeleting.wrappedValue = .isLoading(last: nil)
             try await templateRepository.deleteTemplate(template)
@@ -73,7 +73,7 @@ extension RealMyTemplateListInteractor: MyTemplateListInteractor {
         }
     }
 
-    func loadTemplates() async {
+    @MainActor func loadTemplates() async {
         do {
             appState.userData.myTemplateList = .isLoading(last: nil)
             // 유저 정보가 없다면, authentication 이 필요하다는 메시지를 띄움!

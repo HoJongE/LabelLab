@@ -12,6 +12,9 @@ struct MyTemplateList: View {
     @EnvironmentObject private var appState: AppState
     @Environment(\.injected) private var diContainer: DIContainer
 
+    @State private var isDeleting: Loadable<Void> = .notRequested
+    @State private var isChangingVisibility: Loadable<Void> = .notRequested
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             tabName()
@@ -113,7 +116,9 @@ private extension MyTemplateList {
 private extension MyTemplateList {
 
     func loadTemplates() {
-
+        Task(priority: .userInitiated) {
+              await diContainer.interactors.myTemplateListInteractor.loadTemplates()
+        }
     }
 
     func openAuthWindow() {
@@ -121,15 +126,50 @@ private extension MyTemplateList {
     }
 
     func addTemplate() {
+        guard let userInfo = appState.userData.userInfo.value else {
+            return
+        }
+        let template: Template = Template(id: UUID().uuidString, name: "My Template", templateDescription: "", makerId: String(userInfo.id), copyCount: 0, tag: [], isOpen: false)
+        Task(priority: .userInitiated) {
+            await diContainer.interactors
+                .myTemplateListInteractor
+                .addTemplate(template: template)
+        }
 
+        appState.routing.myTemplateListRouting.template = template
+    }
+
+    func changeVisibility(of template: Template) {
+        Task(priority: .userInitiated) {
+            await diContainer
+                .interactors
+                .myTemplateListInteractor
+                .changeTemplateVisibility(of: template, isChanging: $isChangingVisibility)
+        }
+    }
+
+    func deleteTemplate(_ template: Template) {
+        Task(priority: .userInitiated) {
+            await diContainer
+                .interactors
+                .myTemplateListInteractor
+                .deleteTemplate(template, $isDeleting)
+        }
     }
 }
 
 // MARK: - Not requested
 private extension MyTemplateList {
     func notRequested() -> some View {
-        EmptyView()
-            .onAppear(perform: loadTemplates)
+        Text("")
+            .onChange(of: appState.userData.userInfo) { newValue in
+                switch newValue {
+                case .notRequested, .isLoading:
+                    break
+                case .loaded, .failed:
+                    loadTemplates()
+                }
+            }
     }
 }
 
@@ -157,7 +197,7 @@ private extension MyTemplateList {
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 340))]) {
                         ForEach(templates) { template in
-                            TemplateCell(template: template, onClick: onCellClick(_:))
+                            cell(template)
                         }
                     }
                     .frame(minHeight: 0, maxHeight: .infinity, alignment: .top)
@@ -165,6 +205,17 @@ private extension MyTemplateList {
                 .frame(maxWidth: .infinity)
             }
         }
+    }
+
+    func cell(_ template: Template) -> some View {
+        TemplateCell(template: template) { template in
+            onCellClick(template)
+        } onChangeVisibility: { template in
+            changeVisibility(of: template)
+        } onDelete: { template in
+            deleteTemplate(template)
+        }
+
     }
 
     func onCellClick(_ template: Template) {

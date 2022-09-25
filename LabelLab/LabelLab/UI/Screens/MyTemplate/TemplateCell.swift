@@ -10,18 +10,18 @@ import SwiftUI
 struct TemplateCell: View {
     private let template: Template
     private let onClick: (Template) -> Void
-    private let onChangeOpen: (Bool) -> Void
+    private let onChangeVisibility: (Template) -> Void
     private let onDelete: (Template) -> Void
 
     @State private var isHover: Bool = false
 
     init(template: Template,
          onClick: @escaping (Template) -> Void = { _ in },
-         onChangeOpen: @escaping (Bool) -> Void = { _ in },
+         onChangeVisibility: @escaping (Template) -> Void = { _ in },
          onDelete: @escaping (Template) -> Void = { _ in }) {
         self.onClick = onClick
         self.template = template
-        self.onChangeOpen = onChangeOpen
+        self.onChangeVisibility = onChangeVisibility
         self.onDelete = onDelete
     }
 
@@ -89,7 +89,7 @@ private extension TemplateCell {
 
     func changeOpenButton() -> some View {
         CustomImageButton(imageName: template.isOpen ? "ic_unlock" : "ic_lock", width: 24, height: 24) {
-            onChangeOpen(!template.isOpen)
+            onChangeVisibility(template)
         }
     }
 
