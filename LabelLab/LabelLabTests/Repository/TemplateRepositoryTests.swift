@@ -48,9 +48,13 @@ final class TemplateRepositoryTests: XCTestCase {
 
     func testUpdateName() async {
         do {
+            let promise = expectation(description: #function)
             let updateName: String = "Test Name!"
             try await templateRepository.addTemplate(template: template)
-            try await templateRepository.updateTemplateName(of: template, to: updateName)
+            templateRepository.updateTemplateName(of: template, to: updateName) { _ in
+                promise.fulfill()
+            }
+            wait(for: [promise], timeout: 5)
             let templates: [Template] = try await templateRepository.requestTemplates(of: testUserId)
             XCTAssertEqual(templates.count, 1)
             XCTAssertEqual(templates.first!.name, updateName)
@@ -61,9 +65,13 @@ final class TemplateRepositoryTests: XCTestCase {
 
     func testUpdateDescription() async {
         do {
+            let promise = expectation(description: #function)
             let updateDescription: String = "Test Description!"
             try await templateRepository.addTemplate(template: template)
-            try await templateRepository.updateTemplateDescription(of: template, to: updateDescription)
+            templateRepository.updateTemplateDescription(of: template, to: updateDescription) { _ in
+                promise.fulfill()
+            }
+            wait(for: [promise], timeout: 5)
             let templates: [Template] = try await templateRepository.requestTemplates(of: testUserId)
             XCTAssertEqual(templates.count, 1)
             XCTAssertEqual(templates.first!.templateDescription, updateDescription)

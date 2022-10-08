@@ -50,7 +50,7 @@ private extension MyTemplateDetail {
     }
 
     func deleteLabel(label: Label) {
-        
+   
     }
 
     func modifyLabel(label: Label) {
@@ -58,26 +58,19 @@ private extension MyTemplateDetail {
     }
 
     func updateTemplateName(to name: String) {
-        let dispatchQueue = DispatchQueue(label: "Test Qeuue", qos: .userInteractive)
+        diContainer.interactors
+            .templateDetailInteractor
+            .updateTemplateName(of: template, to: name) { _ in
 
-        for i in 0...10 {
-            dispatchQueue.async {
-                print(i)
-                Task(priority: .userInitiated) {
-                    await diContainer.interactors
-                        .templateDetailInteractor
-                        .updateTemplateName(of: template, to: name + String(i))
-                }
             }
-        }
     }
 
     func updateTemplateDescription(to description: String) {
-        Task(priority: .userInitiated) {
-            await diContainer.interactors
-                .templateDetailInteractor
-                .updateTemplateDescription(of: template, to: description)
-        }
+        diContainer.interactors
+            .templateDetailInteractor
+            .updateTemplateDescription(of: template, to: description) { _ in
+
+            }
     }
 }
 

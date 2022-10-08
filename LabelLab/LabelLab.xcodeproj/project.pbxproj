@@ -61,8 +61,6 @@
 		009C440728DC96C100867E2F /* MyTemplateListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C440628DC96C100867E2F /* MyTemplateListInteractor.swift */; };
 		009C440928DD310C00867E2F /* TemplateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C440828DD310C00867E2F /* TemplateRepository.swift */; };
 		00A3C74728F11B470023BC4C /* TemplateDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A3C74628F11B470023BC4C /* TemplateDetailInteractor.swift */; };
-		00A3C74B28F11CDA0023BC4C /* SerialTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A3C74A28F11CDA0023BC4C /* SerialTask.swift */; };
-		00A3C74E28F121AB0023BC4C /* SerialTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A3C74D28F121AB0023BC4C /* SerialTaskTests.swift */; };
 		00A79A2F2886DC48006D5DCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */; };
 		00A79A322886DD6C006D5DCD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A312886DD6C006D5DCD /* FirebaseAuth */; };
 		00A79A342886DD6C006D5DCD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A332886DD6C006D5DCD /* FirebaseFirestore */; };
@@ -169,8 +167,6 @@
 		009C440628DC96C100867E2F /* MyTemplateListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTemplateListInteractor.swift; sourceTree = "<group>"; };
 		009C440828DD310C00867E2F /* TemplateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateRepository.swift; sourceTree = "<group>"; };
 		00A3C74628F11B470023BC4C /* TemplateDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateDetailInteractor.swift; sourceTree = "<group>"; };
-		00A3C74A28F11CDA0023BC4C /* SerialTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialTask.swift; sourceTree = "<group>"; };
-		00A3C74D28F121AB0023BC4C /* SerialTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialTaskTests.swift; sourceTree = "<group>"; };
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00B013F328C5826D001CE4A6 /* CircleWebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWebImage.swift; sourceTree = "<group>"; };
 		00C7760B28CF5FAE008D1686 /* MyTemplateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTemplateDetail.swift; sourceTree = "<group>"; };
@@ -350,7 +346,6 @@
 				0044B17528BEF57100613190 /* KeychainConst.swift */,
 				0050AADA28F14E88007588D0 /* SerialTasks+DispatchQueue.swift */,
 				0004A16A28CC7C6400D491C4 /* AccessTokenManager.swift */,
-				00A3C74A28F11CDA0023BC4C /* SerialTask.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -491,7 +486,6 @@
 		00A3C74C28F1219A0023BC4C /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				00A3C74D28F121AB0023BC4C /* SerialTaskTests.swift */,
 				0050AADE28F1506D007588D0 /* SerialDispatchQueueTests.swift */,
 			);
 			path = Utility;
@@ -773,7 +767,6 @@
 				0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */,
 				009C440928DD310C00867E2F /* TemplateRepository.swift in Sources */,
 				0085688128D69EDE00A88CB8 /* LabelCell.swift in Sources */,
-				00A3C74B28F11CDA0023BC4C /* SerialTask.swift in Sources */,
 				00B013F428C5826D001CE4A6 /* CircleWebImage.swift in Sources */,
 				00DDBA9828C3786900FB1240 /* GithubRepAPI.swift in Sources */,
 				00F8F10D28B47AC200D688AC /* OAuthService.swift in Sources */,
@@ -805,7 +798,6 @@
 				0036B29D28CB19BF00496966 /* Binding.swift in Sources */,
 				00CB3F0C28C047BD006B1536 /* MockOAuthInteractor.swift in Sources */,
 				00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */,
-				00A3C74E28F121AB0023BC4C /* SerialTaskTests.swift in Sources */,
 				00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */,
 				00D1D22C28DF504D00968EBF /* TemplateRepositoryTests.swift in Sources */,
 				0004A16D28CC7F9C00D491C4 /* MockAccessTokenManager.swift in Sources */,

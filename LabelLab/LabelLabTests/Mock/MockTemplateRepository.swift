@@ -8,6 +8,7 @@
 @testable import LabelLab
 
 final class MockTemplateRepository: TemplateRepository {
+
     private var templates: [Template] = []
     private var error: Error?
 
@@ -38,6 +39,22 @@ final class MockTemplateRepository: TemplateRepository {
         }
     }
 
+    func updateTemplateName(of template: LabelLab.Template, to name: String, completion: @escaping (Error?) -> Void) {
+
+    }
+
+    func updateTemplateDescription(of template: LabelLab.Template, to description: String, completion: @escaping (Error?) -> Void) {
+
+    }
+
+    func addTag(to template: LabelLab.Template, tag: String) async throws {
+
+    }
+
+    func deleteTag(of template: LabelLab.Template, tag: String) async throws {
+        
+    }
+
     func requestTemplates(of userId: String) async throws -> [LabelLab.Template] {
         try throwError()
         return templates
@@ -46,22 +63,6 @@ final class MockTemplateRepository: TemplateRepository {
     func deleteTemplates(of userId: String) async throws {
         try throwError()
         templates.removeAll()
-    }
-
-    func updateTemplateName(of template: LabelLab.Template, to name: String) async throws {
-        try throwError()
-    }
-
-    func updateTemplateDescription(of template: LabelLab.Template, to description: String) async throws {
-        try throwError()
-    }
-
-    func addTag(to template: LabelLab.Template, tag: String) async throws {
-        try throwError()
-    }
-
-    func deleteTag(of template: LabelLab.Template, tag: String) async throws {
-        try throwError()
     }
 
     private func throwError() throws {
