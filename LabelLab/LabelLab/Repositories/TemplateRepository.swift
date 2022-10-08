@@ -28,6 +28,7 @@ final class FirebaseTemplateRepository {
         ProcessInfo().isRunningTests ? "TestTemplates": "Templates"
     }
     private let serialTasks: SerialTasks<Void> = .init()
+    private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
 
     init(fireStore: Firestore = .firestore()) {
         self.fireStore = fireStore
@@ -86,6 +87,7 @@ extension FirebaseTemplateRepository: TemplateRepository {
     }
 
     func updateTemplateName(of template: Template, to name: String) async throws {
+        guard !name.isEmpty else { return }
         await serialTasks.add { [self] in
             try await fireStore.collection(collection)
                 .document(template.id)
@@ -96,6 +98,7 @@ extension FirebaseTemplateRepository: TemplateRepository {
     }
 
     func updateTemplateDescription(of template: Template, to description: String) async throws {
+        guard !description.isEmpty else { return }
         await serialTasks.add { [self] in
             try await fireStore.collection(collection)
                 .document(template.id)

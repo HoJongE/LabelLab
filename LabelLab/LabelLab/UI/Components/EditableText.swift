@@ -35,9 +35,9 @@ struct EditableText: View {
         .textFieldStyle(.plain)
         .font(font.weight(fontWeight))
         .onSubmit {
-            print(text)
             DispatchQueue.main.async {
                 NSApp.keyWindow?.makeFirstResponder(nil)
+                onFinish(text)
             }
         }
     }

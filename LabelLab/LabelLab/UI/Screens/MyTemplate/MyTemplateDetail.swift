@@ -10,6 +10,7 @@ import SwiftUI
 struct MyTemplateDetail: View {
 
     @EnvironmentObject private var appState: AppState
+    @Environment(\.injected) private var diContainer: DIContainer
     private let template: Template
     @State private var labels: Loadable<[Label]>
     @State private var name: String
@@ -55,6 +56,29 @@ private extension MyTemplateDetail {
     func modifyLabel(label: Label) {
 
     }
+
+    func updateTemplateName(to name: String) {
+        let dispatchQueue = DispatchQueue(label: "Test Qeuue", qos: .userInteractive)
+
+        for i in 0...10 {
+            dispatchQueue.async {
+                print(i)
+                Task(priority: .userInitiated) {
+                    await diContainer.interactors
+                        .templateDetailInteractor
+                        .updateTemplateName(of: template, to: name + String(i))
+                }
+            }
+        }
+    }
+
+    func updateTemplateDescription(to description: String) {
+        Task(priority: .userInitiated) {
+            await diContainer.interactors
+                .templateDetailInteractor
+                .updateTemplateDescription(of: template, to: description)
+        }
+    }
 }
 
 // MARK: - UI Components
@@ -72,11 +96,15 @@ private extension MyTemplateDetail {
     }
 
     func templateTitle(of template: Template) -> some View {
-        EditableText(text: $name, font: .largeTitle, fontWeight: .bold, hint: "Please enter your template name")
+        EditableText(text: $name, font: .largeTitle, fontWeight: .bold, hint: "Please enter your template name") {
+            updateTemplateName(to: $0)
+        }
     }
 
     func templateDescription(of template: Template) -> some View {
-        EditableText(text: $description, font: .title3, fontWeight: .regular, hint: "Please enter your template description")
+        EditableText(text: $description, font: .title3, fontWeight: .regular, hint: "Please enter your template description") {
+            updateTemplateDescription(to: $0)
+        }
         .foregroundColor(.white.opacity(0.7))
         .padding(.top, 7)
     }
