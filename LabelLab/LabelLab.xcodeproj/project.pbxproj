@@ -60,6 +60,7 @@
 		009C440928DD310C00867E2F /* TemplateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C440828DD310C00867E2F /* TemplateRepository.swift */; };
 		00A3C74728F11B470023BC4C /* TemplateDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A3C74628F11B470023BC4C /* TemplateDetailInteractor.swift */; };
 		00A3C74B28F11CDA0023BC4C /* SerialTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A3C74A28F11CDA0023BC4C /* SerialTask.swift */; };
+		00A3C74E28F121AB0023BC4C /* SerialTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A3C74D28F121AB0023BC4C /* SerialTaskTests.swift */; };
 		00A79A2F2886DC48006D5DCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */; };
 		00A79A322886DD6C006D5DCD /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A312886DD6C006D5DCD /* FirebaseAuth */; };
 		00A79A342886DD6C006D5DCD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 00A79A332886DD6C006D5DCD /* FirebaseFirestore */; };
@@ -165,6 +166,7 @@
 		009C440828DD310C00867E2F /* TemplateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateRepository.swift; sourceTree = "<group>"; };
 		00A3C74628F11B470023BC4C /* TemplateDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateDetailInteractor.swift; sourceTree = "<group>"; };
 		00A3C74A28F11CDA0023BC4C /* SerialTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialTask.swift; sourceTree = "<group>"; };
+		00A3C74D28F121AB0023BC4C /* SerialTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialTaskTests.swift; sourceTree = "<group>"; };
 		00A79A2E2886DC48006D5DCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00B013F328C5826D001CE4A6 /* CircleWebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWebImage.swift; sourceTree = "<group>"; };
 		00C7760B28CF5FAE008D1686 /* MyTemplateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTemplateDetail.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 		002789962885986F00BDCDA4 /* LabelLabTests */ = {
 			isa = PBXGroup;
 			children = (
+				00A3C74C28F1219A0023BC4C /* Utility */,
 				003CEF2628DFEF9C00F13F8A /* Extension */,
 				00D1D22828DF502200968EBF /* Repository */,
 				00E677BD28BCF84500918BF0 /* Interactors */,
@@ -478,6 +481,14 @@
 				003CEF2428DFEE8300F13F8A /* ArrayExtension.swift */,
 			);
 			path = Extesnion;
+			sourceTree = "<group>";
+		};
+		00A3C74C28F1219A0023BC4C /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				00A3C74D28F121AB0023BC4C /* SerialTaskTests.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		00C7760A28CF5F7E008D1686 /* MyTemplate */ = {
@@ -787,6 +798,7 @@
 				0036B29D28CB19BF00496966 /* Binding.swift in Sources */,
 				00CB3F0C28C047BD006B1536 /* MockOAuthInteractor.swift in Sources */,
 				00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */,
+				00A3C74E28F121AB0023BC4C /* SerialTaskTests.swift in Sources */,
 				00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */,
 				00D1D22C28DF504D00968EBF /* TemplateRepositoryTests.swift in Sources */,
 				0004A16D28CC7F9C00D491C4 /* MockAccessTokenManager.swift in Sources */,

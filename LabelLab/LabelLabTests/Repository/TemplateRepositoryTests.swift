@@ -46,4 +46,29 @@ final class TemplateRepositoryTests: XCTestCase {
         }
     }
 
+    func testUpdateName() async {
+        do {
+            let updateName: String = "Test Name!"
+            try await templateRepository.addTemplate(template: template)
+            try await templateRepository.updateTemplateName(of: template, to: updateName)
+            let templates: [Template] = try await templateRepository.requestTemplates(of: testUserId)
+            XCTAssertEqual(templates.count, 1)
+            XCTAssertEqual(templates.first!.name, updateName)
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    func testUpdateDescription() async {
+        do {
+            let updateDescription: String = "Test Description!"
+            try await templateRepository.addTemplate(template: template)
+            try await templateRepository.updateTemplateDescription(of: template, to: updateDescription)
+            let templates: [Template] = try await templateRepository.requestTemplates(of: testUserId)
+            XCTAssertEqual(templates.count, 1)
+            XCTAssertEqual(templates.first!.templateDescription, updateDescription)
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
 }

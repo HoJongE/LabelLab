@@ -48,6 +48,22 @@ final class MockTemplateRepository: TemplateRepository {
         templates.removeAll()
     }
 
+    func updateTemplateName(of template: LabelLab.Template, to name: String) async throws {
+        try throwError()
+    }
+
+    func updateTemplateDescription(of template: LabelLab.Template, to description: String) async throws {
+        try throwError()
+    }
+
+    func addTag(to template: LabelLab.Template, tag: String) async throws {
+        try throwError()
+    }
+
+    func deleteTag(of template: LabelLab.Template, tag: String) async throws {
+        try throwError()
+    }
+
     private func throwError() throws {
         if let error {
             throw error
