@@ -12,10 +12,16 @@ struct MyTemplateDetail: View {
     @EnvironmentObject private var appState: AppState
     private let template: Template
     @State private var labels: Loadable<[Label]>
+    @State private var name: String
+    @State private var description: String
+    @State private var tags: [String]
 
     init(labels: Loadable<[Label]> = .notRequested, template: Template) {
         self._labels = State(initialValue: labels)
         self.template = template
+        self._name = State(initialValue: template.name)
+        self._description = State(initialValue: template.templateDescription)
+        self._tags = State(initialValue: template.tag)
     }
 
     var body: some View {
@@ -30,6 +36,9 @@ struct MyTemplateDetail: View {
         .maxSize(.topLeading)
         .background(Color.detailBackground)
         .padding()
+        .onTapGesture {
+            NSApp.keyWindow?.makeFirstResponder(nil)
+        }
     }
 }
 
@@ -40,7 +49,7 @@ private extension MyTemplateDetail {
     }
 
     func deleteLabel(label: Label) {
-
+        
     }
 
     func modifyLabel(label: Label) {
@@ -63,16 +72,13 @@ private extension MyTemplateDetail {
     }
 
     func templateTitle(of template: Template) -> some View {
-        Text(template.name)
-            .font(.largeTitle)
-            .bold()
+        EditableText(text: $name, font: .largeTitle, fontWeight: .bold, hint: "Please enter your template name")
     }
 
     func templateDescription(of template: Template) -> some View {
-        Text(template.templateDescription)
-            .font(.body)
-            .foregroundColor(.white.opacity(0.7))
-            .padding(.top, 7)
+        EditableText(text: $description, font: .title3, fontWeight: .regular, hint: "Please enter your template description")
+        .foregroundColor(.white.opacity(0.7))
+        .padding(.top, 7)
     }
 
     func templateTags(of template: Template) -> some View {
@@ -126,15 +132,24 @@ private extension MyTemplateDetail {
 private extension MyTemplateDetail {
     func loaded(_ labels: [Label]) -> some View {
         ScrollView {
-            LazyVStack(alignment: .leading) {
-                ForEach(labels) { label in
-                    LabelCell(label: label, onModify: modifyLabel(label:), onDelete: deleteLabel(label:))
-                        .padding(.vertical, 2)
+            LazyVStack(alignment: .leading, pinnedViews: .sectionHeaders) {
+                Section {
+                    ForEach(labels) { label in
+                        LabelCell(label: label, onModify: modifyLabel(label:), onDelete: deleteLabel(label:))
+                            .padding(.vertical, 2)
+                    }
+                } header: {
+                    labelListTitle(labels.count)
                 }
             }
             .padding(.trailing)
         }
         .maxSize(.topLeading)
+    }
+
+    func labelListTitle(_ count: Int) -> some View {
+        Text("Label List (\(count))")
+            .font(.headline)
     }
 }
 

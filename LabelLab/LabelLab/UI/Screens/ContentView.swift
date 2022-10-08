@@ -42,6 +42,7 @@ private extension ContentView {
             LogoutPopup()
         })
         .frame(minWidth: 900, minHeight: 550)
+        .preferredColorScheme(.dark)
     }
 }
 

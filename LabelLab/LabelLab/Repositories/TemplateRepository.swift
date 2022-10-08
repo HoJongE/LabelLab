@@ -14,6 +14,10 @@ protocol TemplateRepository {
     func deleteTemplate(_ template: Template) async throws
     func requestTemplates(of userId: String) async throws -> [Template]
     func deleteTemplates(of userId: String) async throws
+    func updateTemplateName(of template: Template, to name: String) async throws
+    func updateTemplateDescription(of template: Template, to description: String) async throws
+    func addTag(to template: Template, tag: String) async throws
+    func deleteTag(of template: Template, tag: String) async throws
 }
 
 final class FirebaseTemplateRepository {
@@ -23,6 +27,7 @@ final class FirebaseTemplateRepository {
     private var collection: String {
         ProcessInfo().isRunningTests ? "TestTemplates": "Templates"
     }
+    private let serialTasks: SerialTasks<Void> = .init()
 
     init(fireStore: Firestore = .firestore()) {
         self.fireStore = fireStore
@@ -78,6 +83,39 @@ extension FirebaseTemplateRepository: TemplateRepository {
                 }
             }
         })
+    }
+
+    func updateTemplateName(of template: Template, to name: String) async throws {
+        await serialTasks.add { [self] in
+            try await fireStore.collection(collection)
+                .document(template.id)
+                .updateData([
+                    "name": name
+                ])
+        }
+    }
+
+    func updateTemplateDescription(of template: Template, to description: String) async throws {
+        await serialTasks.add { [self] in
+            try await fireStore.collection(collection)
+                .document(template.id)
+                .updateData([
+                    "templateDescription": description
+                ])
+        }
+    }
+
+    // TODO: 태그 추가 기능 구현해야함
+    func addTag(to template: Template, tag: String) async throws {
+        await serialTasks.add {
+        }
+    }
+
+    // TODO: 태그 삭제 기능 구현해야함
+    func deleteTag(of template: Template, tag: String) async throws {
+        await serialTasks.add {
+
+        }
     }
 
 }
