@@ -32,6 +32,7 @@ struct MyTemplateDetail: View {
             templateDescription(of: template)
             templateTags(of: template)
             divider()
+            EditLabel()
             content()
         }
         .maxSize(.topLeading)
@@ -89,13 +90,13 @@ private extension MyTemplateDetail {
     }
 
     func templateTitle(of template: Template) -> some View {
-        EditableText(text: $name, font: .largeTitle, fontWeight: .bold, hint: "Please enter your template name") {
+        EditableText(text: $name, font: .largeTitle, fontWeight: .bold, hint: "Please enter your template name", max: 30) {
             updateTemplateName(to: $0)
         }
     }
 
     func templateDescription(of template: Template) -> some View {
-        EditableText(text: $description, font: .title3, fontWeight: .regular, hint: "Please enter your template description") {
+        EditableText(text: $description, font: .title3, fontWeight: .regular, hint: "Please enter your template description", max: 100) {
             updateTemplateDescription(to: $0)
         }
         .foregroundColor(.white.opacity(0.7))

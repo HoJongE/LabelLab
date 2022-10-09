@@ -13,14 +13,17 @@ struct EditableText: View {
     private let fontWeight: Font.Weight
     private let onFinish: (String) -> Void
     private let hint: String
+    private let maxLength: Int
     @Binding private var text: String
-    @State private var isFocused: Bool = false
+    @FocusState private var isFocused: Bool
 
     init(text: Binding<String>,
          font: Font = .body,
          fontWeight: Font.Weight = .regular,
          hint: String = "",
+         max length: Int = 100,
          onFinish: @escaping (String) -> Void = { _ in }) {
+        self.maxLength = length
         self._text = text
         self.font = font
         self.onFinish = onFinish
@@ -32,11 +35,17 @@ struct EditableText: View {
         TextField(text: $text, prompt: prompt) {
 
         }
+        .maxLength(max: maxLength, text: $text)
+        .focused($isFocused)
         .textFieldStyle(.plain)
         .font(font.weight(fontWeight))
         .onSubmit {
             DispatchQueue.main.async {
                 NSApp.keyWindow?.makeFirstResponder(nil)
+            }
+        }
+        .onChange(of: isFocused) { focused in
+            if !focused {
                 onFinish(text)
             }
         }

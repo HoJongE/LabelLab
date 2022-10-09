@@ -41,7 +41,7 @@ private extension ContentView {
         .sheet(isPresented: $appState.routing.rootRouting.isShowingLogoutPopup, content: {
             LogoutPopup()
         })
-        .frame(minWidth: 900, minHeight: 550)
+        .frame(minWidth: 1100, minHeight: 700)
         .preferredColorScheme(.dark)
     }
 }

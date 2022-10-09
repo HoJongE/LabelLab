@@ -37,6 +37,8 @@
 		003CEF2A28DFEFB700F13F8A /* ArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CEF2928DFEFB700F13F8A /* ArrayExtensionTests.swift */; };
 		0044B17428BEE97600613190 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0044B17328BEE97600613190 /* .swiftlint.yml */; };
 		0044B17628BEF57100613190 /* KeychainConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044B17528BEF57100613190 /* KeychainConst.swift */; };
+		00455F9A28F2607E007F4C40 /* EditLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00455F9928F2607E007F4C40 /* EditLabel.swift */; };
+		00455F9C28F268B1007F4C40 /* ColorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00455F9B28F268B1007F4C40 /* ColorExtensionTests.swift */; };
 		0045FF7E28CB088900F2B0D3 /* MockGithubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045FF7D28CB088900F2B0D3 /* MockGithubService.swift */; };
 		0045FF8328CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045FF8228CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift */; };
 		0045FF8528CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045FF8428CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift */; };
@@ -145,6 +147,8 @@
 		003CEF2928DFEFB700F13F8A /* ArrayExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionTests.swift; sourceTree = "<group>"; };
 		0044B17328BEE97600613190 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0044B17528BEF57100613190 /* KeychainConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConst.swift; sourceTree = "<group>"; };
+		00455F9928F2607E007F4C40 /* EditLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLabel.swift; sourceTree = "<group>"; };
+		00455F9B28F268B1007F4C40 /* ColorExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensionTests.swift; sourceTree = "<group>"; };
 		0045FF7D28CB088900F2B0D3 /* MockGithubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGithubService.swift; sourceTree = "<group>"; };
 		0045FF8228CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadToGithubInteractorTests.swift; sourceTree = "<group>"; };
 		0045FF8428CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadToGithubInteractor.swift; sourceTree = "<group>"; };
@@ -451,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				003CEF2928DFEFB700F13F8A /* ArrayExtensionTests.swift */,
+				00455F9B28F268B1007F4C40 /* ColorExtensionTests.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				00C7760B28CF5FAE008D1686 /* MyTemplateDetail.swift */,
 				0085688528D6B09000A88CB8 /* MyTemplateList.swift */,
 				0085688728D6CE6700A88CB8 /* TemplateCell.swift */,
+				00455F9928F2607E007F4C40 /* EditLabel.swift */,
 			);
 			path = MyTemplate;
 			sourceTree = "<group>";
@@ -749,6 +755,7 @@
 				0037AD9C28AE3AE4000C36AC /* AppState.swift in Sources */,
 				0095889228C9C999000FD6D5 /* UploadPopup.swift in Sources */,
 				001A757528CF538F001CE274 /* Tab.swift in Sources */,
+				00455F9A28F2607E007F4C40 /* EditLabel.swift in Sources */,
 				0037ADA628AE47CB000C36AC /* AuthenticationRequiredLoadable.swift in Sources */,
 				00F8F11228B4A0A500D688AC /* GithubAuthAPI.swift in Sources */,
 				009C440728DC96C100867E2F /* MyTemplateListInteractor.swift in Sources */,
@@ -810,6 +817,7 @@
 				008B94F428DFFD7000C211B3 /* TemplateInteractorTests.swift in Sources */,
 				007151B528C9FC6D009438EE /* MockData.swift in Sources */,
 				00110E4028BCED9700BA327F /* MockURLData.swift in Sources */,
+				00455F9C28F268B1007F4C40 /* ColorExtensionTests.swift in Sources */,
 				0045FF8328CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift in Sources */,
 				003CEF2A28DFEFB700F13F8A /* ArrayExtensionTests.swift in Sources */,
 			);

@@ -96,7 +96,6 @@ extension FirebaseTemplateRepository: TemplateRepository {
     }
 
     func updateTemplateDescription(of template: Template, to description: String, completion: @escaping (Error?) -> Void) {
-        guard !description.isEmpty else { return }
         dispatchQueue.async { [self] in
             fireStore.collection(collection)
                 .document(template.id)
