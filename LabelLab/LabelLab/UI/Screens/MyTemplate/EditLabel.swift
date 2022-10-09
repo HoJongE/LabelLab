@@ -82,6 +82,7 @@ private extension EditLabel {
 
     func nameTextField() -> some View {
         TextField("Label Name", text: $labelName)
+            .maxLength(max: 100, text: $labelName)
             .textFieldStyle(.roundedBorder)
             .font(.headline.weight(.medium))
     }
@@ -136,5 +137,6 @@ struct EditLabel_Previews: PreviewProvider {
             EditLabel(edit: Label.mockedData.first!)
                 .previewDisplayName("Edit mode")
         }
+        .padding()
     }
 }

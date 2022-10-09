@@ -40,11 +40,11 @@ final class MockTemplateRepository: TemplateRepository {
     }
 
     func updateTemplateName(of template: LabelLab.Template, to name: String, completion: @escaping (Error?) -> Void) {
-
+        completion(error)
     }
 
     func updateTemplateDescription(of template: LabelLab.Template, to description: String, completion: @escaping (Error?) -> Void) {
-
+        completion(error)
     }
 
     func addTag(to template: LabelLab.Template, tag: String) async throws {
@@ -52,7 +52,7 @@ final class MockTemplateRepository: TemplateRepository {
     }
 
     func deleteTag(of template: LabelLab.Template, tag: String) async throws {
-        
+
     }
 
     func requestTemplates(of userId: String) async throws -> [LabelLab.Template] {

@@ -39,6 +39,7 @@
 		0044B17628BEF57100613190 /* KeychainConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044B17528BEF57100613190 /* KeychainConst.swift */; };
 		00455F9A28F2607E007F4C40 /* EditLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00455F9928F2607E007F4C40 /* EditLabel.swift */; };
 		00455F9C28F268B1007F4C40 /* ColorExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00455F9B28F268B1007F4C40 /* ColorExtensionTests.swift */; };
+		00455F9E28F2892E007F4C40 /* TemplateDetailInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00455F9D28F2892E007F4C40 /* TemplateDetailInteractorTests.swift */; };
 		0045FF7E28CB088900F2B0D3 /* MockGithubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045FF7D28CB088900F2B0D3 /* MockGithubService.swift */; };
 		0045FF8328CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045FF8228CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift */; };
 		0045FF8528CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0045FF8428CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift */; };
@@ -149,6 +150,7 @@
 		0044B17528BEF57100613190 /* KeychainConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConst.swift; sourceTree = "<group>"; };
 		00455F9928F2607E007F4C40 /* EditLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLabel.swift; sourceTree = "<group>"; };
 		00455F9B28F268B1007F4C40 /* ColorExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensionTests.swift; sourceTree = "<group>"; };
+		00455F9D28F2892E007F4C40 /* TemplateDetailInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateDetailInteractorTests.swift; sourceTree = "<group>"; };
 		0045FF7D28CB088900F2B0D3 /* MockGithubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGithubService.swift; sourceTree = "<group>"; };
 		0045FF8228CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadToGithubInteractorTests.swift; sourceTree = "<group>"; };
 		0045FF8428CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadToGithubInteractor.swift; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 				00E677BE28BCF86400918BF0 /* OAuthInteractorTests.swift */,
 				0045FF8228CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift */,
 				008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */,
+				00455F9D28F2892E007F4C40 /* TemplateDetailInteractorTests.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				00455F9C28F268B1007F4C40 /* ColorExtensionTests.swift in Sources */,
 				0045FF8328CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift in Sources */,
 				003CEF2A28DFEFB700F13F8A /* ArrayExtensionTests.swift in Sources */,
+				00455F9E28F2892E007F4C40 /* TemplateDetailInteractorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
