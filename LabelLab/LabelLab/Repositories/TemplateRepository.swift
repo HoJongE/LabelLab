@@ -37,16 +37,13 @@ final class FirebaseTemplateRepository {
 extension FirebaseTemplateRepository: TemplateRepository {
 
     func addTemplate(template: Template) async throws {
-        try await fireStore.collection(collection)
-            .document(template.id)
-            .setData(template.encode(), merge: true)
+        try await getTemplateReference(template).setData(template.encode(), merge: true)
     }
 
     func changeTemplateVisibility(of template: Template) async throws -> Template {
         let changeTo: Bool = !template.isOpen
 
-        try await fireStore.collection(collection)
-            .document(template.id)
+        try await getTemplateReference(template)
             .updateData([
                 "isOpen": changeTo
             ])
@@ -56,9 +53,7 @@ extension FirebaseTemplateRepository: TemplateRepository {
 
     func deleteTemplate(_ template: Template) async throws {
         try await labelRepository.deleteLabels(of: template)
-        try await fireStore.collection(collection)
-            .document(template.id)
-            .delete()
+        try await getTemplateReference(template).delete()
     }
 
     func requestTemplates(of userId: String) async throws -> [Template] {
@@ -90,17 +85,13 @@ extension FirebaseTemplateRepository: TemplateRepository {
     func updateTemplateName(of template: Template, to name: String, completion: @escaping (Error?) -> Void) {
         guard !name.isEmpty else { return }
         dispatchQueue.async { [self] in
-            fireStore.collection(collection)
-                .document(template.id)
-                .updateData(["name": name], completion: completion)
+            getTemplateReference(template).updateData(["name": name], completion: completion)
         }
     }
 
     func updateTemplateDescription(of template: Template, to description: String, completion: @escaping (Error?) -> Void) {
         dispatchQueue.async { [self] in
-            fireStore.collection(collection)
-                .document(template.id)
-                .updateData(["templateDescription": description], completion: completion)
+            getTemplateReference(template).updateData(["templateDescription": description], completion: completion)
         }
     }
 
@@ -112,5 +103,10 @@ extension FirebaseTemplateRepository: TemplateRepository {
     func deleteTag(of template: Template, tag: String) async throws {
 
     }
+}
 
+private extension FirebaseTemplateRepository {
+    func getTemplateReference(_ template: Template) -> DocumentReference {
+        fireStore.collection(collection).document(template.id)
+    }
 }
