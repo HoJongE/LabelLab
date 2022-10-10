@@ -23,16 +23,15 @@ protocol TemplateRepository {
 final class FirebaseTemplateRepository {
 
     static let shared: FirebaseTemplateRepository = .init()
-    private let fireStore: Firestore
+    private let fireStore: Firestore = .firestore()
     private var collection: String {
         ProcessInfo().isRunningTests ? "TestTemplates": "Templates"
     }
     private let serialTasks: SerialTasksDispatchQueue = .init(.userInteractive)
     private let dispatchQueue: DispatchQueue = DispatchQueue(label: "Serial Queue", qos: .userInteractive)
+    private let labelRepository: LabelRepository = FirebaseLabelRepository.shared
 
-    init(fireStore: Firestore = .firestore()) {
-        self.fireStore = fireStore
-    }
+    private init() { }
 }
 
 extension FirebaseTemplateRepository: TemplateRepository {
@@ -56,6 +55,7 @@ extension FirebaseTemplateRepository: TemplateRepository {
     }
 
     func deleteTemplate(_ template: Template) async throws {
+        try await labelRepository.deleteLabels(of: template)
         try await fireStore.collection(collection)
             .document(template.id)
             .delete()
@@ -79,8 +79,9 @@ extension FirebaseTemplateRepository: TemplateRepository {
 
         await withThrowingTaskGroup(of: Void.self, body: { group in
             for template in templates {
-                group.addTask(priority: .userInitiated) {
-                    try await self.deleteTemplate(template)
+                group.addTask(priority: .userInitiated) { [self] in
+                    try await labelRepository.deleteLabels(of: template)
+                    try await deleteTemplate(template)
                 }
             }
         })
