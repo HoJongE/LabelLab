@@ -30,4 +30,20 @@ final class ArrayExtensionTests: XCTestCase {
 
         XCTAssert(!templates.contains(newTemplate))
     }
+
+    func testDeleteElementSucceed() {
+        var templates: [Template] = Template.mockedData
+        let templateToDelete = templates.first!
+        templates.delete(templateToDelete)
+        XCTAssert(!templates.contains(templateToDelete))
+    }
+
+    func testDeleteElementFailed() {
+        let templates: [Template] = Template.mockedData
+        var secondTemplates: [Template] = Template.mockedData
+        let dummyTemplate: Template = .init(id: "없는아이디", name: "", templateDescription: "", makerId: "", copyCount: 0, tag: [], isOpen: false)
+        secondTemplates.delete(dummyTemplate)
+
+        XCTAssertEqual(templates, secondTemplates)
+    }
 }
