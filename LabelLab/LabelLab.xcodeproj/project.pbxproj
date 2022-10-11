@@ -60,6 +60,7 @@
 		0085688D28D6D49C00A88CB8 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0085688C28D6D49C00A88CB8 /* ViewExtension.swift */; };
 		008B94F228DFF21000C211B3 /* MockTemplateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B94F128DFF21000C211B3 /* MockTemplateRepository.swift */; };
 		008B94F428DFFD7000C211B3 /* TemplateInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */; };
+		0094C48828F4ECEC00162579 /* LabelListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094C48728F4ECEC00162579 /* LabelListInteractor.swift */; };
 		0095889028C9C341000FD6D5 /* KeyChainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 0095888F28C9C341000FD6D5 /* KeyChainWrapper */; };
 		0095889228C9C999000FD6D5 /* UploadPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095889128C9C999000FD6D5 /* UploadPopup.swift */; };
 		009C440728DC96C100867E2F /* MyTemplateListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C440628DC96C100867E2F /* MyTemplateListInteractor.swift */; };
@@ -172,6 +173,7 @@
 		0085688C28D6D49C00A88CB8 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		008B94F128DFF21000C211B3 /* MockTemplateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTemplateRepository.swift; sourceTree = "<group>"; };
 		008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateInteractorTests.swift; sourceTree = "<group>"; };
+		0094C48728F4ECEC00162579 /* LabelListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListInteractor.swift; sourceTree = "<group>"; };
 		0095889128C9C999000FD6D5 /* UploadPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPopup.swift; sourceTree = "<group>"; };
 		009C440628DC96C100867E2F /* MyTemplateListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTemplateListInteractor.swift; sourceTree = "<group>"; };
 		009C440828DD310C00867E2F /* TemplateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateRepository.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				0045FF8428CB0A7A00F2B0D3 /* UploadToGithubInteractor.swift */,
 				009C440628DC96C100867E2F /* MyTemplateListInteractor.swift */,
 				00A3C74628F11B470023BC4C /* TemplateDetailInteractor.swift */,
+				0094C48728F4ECEC00162579 /* LabelListInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				00DDBA9A28C37A1A00FB1240 /* GithubService.swift in Sources */,
 				A7AFD1D928BC3F44000D8167 /* DismissButton.swift in Sources */,
 				00F8F11228B4A0A500D688AC /* GithubAuthAPI.swift in Sources */,
+				0094C48828F4ECEC00162579 /* LabelListInteractor.swift in Sources */,
 				A762EF9C28D6F49B0042ADFC /* CustomImageButton.swift in Sources */,
 				002789882885986D00BDCDA4 /* ContentView.swift in Sources */,
 				0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */,

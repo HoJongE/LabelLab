@@ -14,4 +14,13 @@ extension Array where Element: Identifiable {
         }
         self[index] = element
     }
+
+    mutating func delete(_ element: Element) {
+        guard let index = self.firstIndex(where: { value in
+            value.id == element.id
+        }) else {
+            return
+        }
+        self.remove(at: index)
+    }
 }
