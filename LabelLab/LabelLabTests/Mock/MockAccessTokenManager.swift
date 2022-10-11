@@ -10,7 +10,7 @@
 struct MockAccessTokenManager: AccessTokenManager {
 
     func saveAccessToken(_ token: String) async throws {
-        try await Task.sleep(nanoseconds: 5_000_000_00)
+        try await Task.sleep(nanoseconds: 1_000_000_00)
     }
 
     func requestAccessToken() async throws -> String? {
@@ -18,6 +18,6 @@ struct MockAccessTokenManager: AccessTokenManager {
     }
 
     func removeAccessToken() async throws {
-        try await Task.sleep(nanoseconds: 5_000_000_00)
+        try await Task.sleep(nanoseconds: 1_000_000_00)
     }
 }

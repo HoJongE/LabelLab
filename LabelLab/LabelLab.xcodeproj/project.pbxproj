@@ -61,6 +61,8 @@
 		008B94F228DFF21000C211B3 /* MockTemplateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B94F128DFF21000C211B3 /* MockTemplateRepository.swift */; };
 		008B94F428DFFD7000C211B3 /* TemplateInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */; };
 		0094C48828F4ECEC00162579 /* LabelListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094C48728F4ECEC00162579 /* LabelListInteractor.swift */; };
+		0094C48E28F52FA700162579 /* LabelListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094C48D28F52FA700162579 /* LabelListInteractorTests.swift */; };
+		0094C49028F5309000162579 /* MockLabelRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094C48F28F5309000162579 /* MockLabelRepository.swift */; };
 		0095889028C9C341000FD6D5 /* KeyChainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 0095888F28C9C341000FD6D5 /* KeyChainWrapper */; };
 		0095889228C9C999000FD6D5 /* UploadPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0095889128C9C999000FD6D5 /* UploadPopup.swift */; };
 		009C440728DC96C100867E2F /* MyTemplateListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009C440628DC96C100867E2F /* MyTemplateListInteractor.swift */; };
@@ -174,6 +176,8 @@
 		008B94F128DFF21000C211B3 /* MockTemplateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTemplateRepository.swift; sourceTree = "<group>"; };
 		008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateInteractorTests.swift; sourceTree = "<group>"; };
 		0094C48728F4ECEC00162579 /* LabelListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListInteractor.swift; sourceTree = "<group>"; };
+		0094C48D28F52FA700162579 /* LabelListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListInteractorTests.swift; sourceTree = "<group>"; };
+		0094C48F28F5309000162579 /* MockLabelRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLabelRepository.swift; sourceTree = "<group>"; };
 		0095889128C9C999000FD6D5 /* UploadPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPopup.swift; sourceTree = "<group>"; };
 		009C440628DC96C100867E2F /* MyTemplateListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTemplateListInteractor.swift; sourceTree = "<group>"; };
 		009C440828DD310C00867E2F /* TemplateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateRepository.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 				00CB3F0B28C047BD006B1536 /* MockOAuthInteractor.swift */,
 				00CB3F0E28C04940006B1536 /* MockDIContainer.swift */,
 				007151B428C9FC6D009438EE /* MockData.swift */,
+				0094C48F28F5309000162579 /* MockLabelRepository.swift */,
 				0004A16C28CC7F9C00D491C4 /* MockAccessTokenManager.swift */,
 				008B94F128DFF21000C211B3 /* MockTemplateRepository.swift */,
 			);
@@ -541,6 +546,7 @@
 				0045FF8228CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift */,
 				008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */,
 				00455F9D28F2892E007F4C40 /* TemplateDetailInteractorTests.swift */,
+				0094C48D28F52FA700162579 /* LabelListInteractorTests.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -816,6 +822,7 @@
 				00110E3D28BCEC9100BA327F /* MockURLSession.swift in Sources */,
 				00DF161228B4F4AF008A8A30 /* DeepLinkHandlerTests.swift in Sources */,
 				00DDBA9C28C37B2300FB1240 /* GithubServiceTests.swift in Sources */,
+				0094C48E28F52FA700162579 /* LabelListInteractorTests.swift in Sources */,
 				0036B29D28CB19BF00496966 /* Binding.swift in Sources */,
 				00CB3F0C28C047BD006B1536 /* MockOAuthInteractor.swift in Sources */,
 				00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */,
@@ -830,6 +837,7 @@
 				008B94F228DFF21000C211B3 /* MockTemplateRepository.swift in Sources */,
 				008B94F428DFFD7000C211B3 /* TemplateInteractorTests.swift in Sources */,
 				007151B528C9FC6D009438EE /* MockData.swift in Sources */,
+				0094C49028F5309000162579 /* MockLabelRepository.swift in Sources */,
 				00110E4028BCED9700BA327F /* MockURLData.swift in Sources */,
 				00455F9C28F268B1007F4C40 /* ColorExtensionTests.swift in Sources */,
 				0045FF8328CB0A1900F2B0D3 /* UploadToGithubInteractorTests.swift in Sources */,
