@@ -8,7 +8,7 @@
 import Foundation
 
 /// Github 라벨을 나타냄
-struct Label: Codable, Identifiable {
+struct Label: Codable, Identifiable, Hashable {
     let id: String // Label 의 id
     let name: String // Label 이름
     let labelDescription: String // Label 설명

@@ -30,10 +30,12 @@ struct DIGenerator {
         let uploadToGithubInteractor: UploadToGithubInteractor = RealUploadToGithubInteractor(appState: appState)
         let myTemplateListInteractor: MyTemplateListInteractor = RealMyTemplateListInteractor(appState: appState)
         let templateDetailInteractor: TemplateDetailInteractor = RealTemplateDetailInteractor(appState: appState)
+        let labelListInteractor: LabelListInteractor = RealLabelListInteractor(appState: appState)
 
         return DIContainer.Interactors(oAuthInteractor: oAuthInteractor,
                                        uploadToGithubInteractor: uploadToGithubInteractor,
                                        myTemplateListInteractor: myTemplateListInteractor,
-                                       templateDetailInteractor: templateDetailInteractor)
+                                       templateDetailInteractor: templateDetailInteractor,
+                                       labelListInteractor: labelListInteractor)
     }
 }

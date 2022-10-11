@@ -30,7 +30,7 @@ struct RealLabelListInteractor {
 
 extension RealLabelListInteractor: LabelListInteractor {
 
-    func requestLabels(of template: Template, to subject: LoadableSubject<[Label]>) async {
+    @MainActor func requestLabels(of template: Template, to subject: LoadableSubject<[Label]>) async {
         do {
             subject.wrappedValue = .isLoading(last: nil)
             let labels: [Label] = try await labelRepository.requestLabels(of: template)
@@ -40,7 +40,7 @@ extension RealLabelListInteractor: LabelListInteractor {
         }
     }
 
-    func addLabel(to template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async {
+    @MainActor func addLabel(to template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async {
         do {
             try await labelRepository.addLabel(to: template, label: label)
             var appendedLabels: [Label]? = labels.wrappedValue.value
@@ -52,7 +52,7 @@ extension RealLabelListInteractor: LabelListInteractor {
         }
     }
 
-    func modifyLabel(of template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async {
+    @MainActor func modifyLabel(of template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async {
         do {
             try await labelRepository.modifyLabel(to: template, label: label)
             var modifiedLabels: [Label]? = labels.wrappedValue.value
@@ -64,7 +64,7 @@ extension RealLabelListInteractor: LabelListInteractor {
         }
     }
 
-    func deleteLabel(of template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async {
+    @MainActor func deleteLabel(of template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async {
         do {
             try await labelRepository.deleteLabel(of: template, label: label)
             var deletedLabels: [Label]? = labels.wrappedValue.value

@@ -23,7 +23,8 @@ struct DIContainer: EnvironmentKey {
             oAuthInteractor: RealOAuthInteractor(appState: appState),
             uploadToGithubInteractor: RealUploadToGithubInteractor(appState: appState),
             myTemplateListInteractor: RealMyTemplateListInteractor(appState: appState),
-            templateDetailInteractor: RealTemplateDetailInteractor(appState: appState)
+            templateDetailInteractor: RealTemplateDetailInteractor(appState: appState),
+            labelListInteractor: RealLabelListInteractor(appState: appState)
         ))
     }
 }

@@ -16,6 +16,7 @@ struct MyTemplateDetail: View {
     @State private var name: String
     @State private var description: String
     @State private var tags: [String]
+    @State private var editLabelState: EditLabelState = .none
 
     init(labels: Loadable<[Label]> = .notRequested, template: Template) {
         self._labels = State(initialValue: labels)
@@ -28,11 +29,18 @@ struct MyTemplateDetail: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             backButton()
-            templateTitle(of: template)
-            templateDescription(of: template)
+            HStack {
+                VStack {
+                    templateTitle(of: template)
+                    templateDescription(of: template)
+                }
+                Spacer()
+                addButton()
+                    .padding()
+            }
             templateTags(of: template)
             divider()
-            EditLabel()
+            editLabel()
             content()
         }
         .maxSize(.topLeading)
@@ -44,18 +52,53 @@ struct MyTemplateDetail: View {
     }
 }
 
+// MARK: - Tool bar content builder
+private extension MyTemplateDetail {
+    func addButton() -> some View {
+        DefaultButton(text: "Add Label", style: .primary) {
+            switchEditLabelState(.add)
+        }
+    }
+}
+
+private extension MyTemplateDetail {
+    enum EditLabelState {
+        case none
+        case add
+        case modify(Label)
+    }
+}
+
 // MARK: - Side Effect
 private extension MyTemplateDetail {
     func loadLabels() {
-
+        Task(priority: .userInitiated) {
+            await diContainer
+                .interactors
+                .labelListInteractor
+                .requestLabels(of: template, to: $labels)
+        }
     }
 
     func deleteLabel(label: Label) {
-   
+        Task(priority: .userInitiated) {
+            await diContainer
+                .interactors
+                .labelListInteractor
+                .deleteLabel(of: template, label, labels: $labels)
+        }
     }
 
-    func modifyLabel(label: Label) {
+    func switchEditLabelState(_ state: EditLabelState) {
+        withAnimation {
+            self.editLabelState = state
+        }
+    }
 
+    func closeEditLabel() {
+        withAnimation {
+            editLabelState = .none
+        }
     }
 
     func updateTemplateName(to name: String) {
@@ -73,10 +116,46 @@ private extension MyTemplateDetail {
 
             }
     }
+
+    func addLabel(_ label: Label) {
+        Task(priority: .userInitiated) {
+            await diContainer.interactors
+                .labelListInteractor
+                .addLabel(to: template, label, labels: $labels)
+        }
+    }
+
+    func modifyLabel(_ label: Label) {
+        Task(priority: .userInitiated) {
+            await diContainer.interactors
+                .labelListInteractor
+                .modifyLabel(of: template, label, labels: $labels)
+        }
+    }
+}
+
+extension AnyTransition {
+    static var moveFromTopWithOpacity: AnyTransition {
+        .asymmetric(insertion: .move(edge: .top).animation(.spring()).combined(with: .opacity.animation(.easeInOut.delay(0.1))), removal: .move(edge: .top).animation(.spring()).combined(with: .opacity))
+    }
 }
 
 // MARK: - UI Components
 private extension MyTemplateDetail {
+
+    @ViewBuilder
+    func editLabel() -> some View {
+        switch editLabelState {
+        case .none:
+            EmptyView()
+        case .add:
+            EditLabel(labels: $labels, onClose: closeEditLabel, onDone: addLabel(_:))
+                .transition(.moveFromTopWithOpacity)
+        case .modify(let label):
+            EditLabel(edit: label, labels: $labels, onClose: closeEditLabel, onDone: modifyLabel(_:))
+                .transition(.moveFromTopWithOpacity)
+        }
+    }
 
     func backButton() -> some View {
         Button {
@@ -153,11 +232,13 @@ private extension MyTemplateDetail {
 // MARK: - Loaded
 private extension MyTemplateDetail {
     func loaded(_ labels: [Label]) -> some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             LazyVStack(alignment: .leading, pinnedViews: .sectionHeaders) {
                 Section {
                     ForEach(labels) { label in
-                        LabelCell(label: label, onModify: modifyLabel(label:), onDelete: deleteLabel(label:))
+                        LabelCell(label: label, onModify: {
+                            switchEditLabelState(.modify($0))
+                        }, onDelete: deleteLabel(label:))
                             .padding(.vertical, 2)
                     }
                 } header: {
@@ -167,11 +248,14 @@ private extension MyTemplateDetail {
             .padding(.trailing)
         }
         .maxSize(.topLeading)
+        .padding(.top)
     }
 
     func labelListTitle(_ count: Int) -> some View {
         Text("Label List (\(count))")
             .font(.headline)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.detailBackground)
     }
 }
 
@@ -195,7 +279,7 @@ private extension MyTemplateDetail {
 // MARK: - Not requested
 private extension MyTemplateDetail {
     func notRequested() -> some View {
-        EmptyView()
+        Text("")
             .onAppear(perform: loadLabels)
     }
 }
@@ -205,10 +289,13 @@ private extension MyTemplateDetail {
 struct MyTemplateDetail_Previews: PreviewProvider {
 
     static func makePreview(_ labels: Loadable<[Label]>) -> some View {
-        MyTemplateDetail(labels: labels, template: Template.mockedData.first!)
-            .frame(minWidth: 600, minHeight: 500)
-            .previewDisplayName(labels.previewDisplayName)
-            .injectPreview()
+        NavigationView {
+            EmptyView()
+            MyTemplateDetail(labels: labels, template: Template.mockedData.first!)
+        }
+        .frame(minWidth: 600, minHeight: 500)
+        .previewDisplayName(labels.previewDisplayName)
+        .injectPreview()
     }
     static var previews: some View {
         Group {

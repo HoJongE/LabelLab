@@ -56,6 +56,8 @@ private extension LabelCell {
     func name(of label: Label) -> some View {
         Text(label.name)
             .bold()
+            .lineLimit(1)
+            .truncationMode(.tail)
             .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
             .background(RoundedRectangle(cornerRadius: 50).fill(Color(label.hex)))
     }
