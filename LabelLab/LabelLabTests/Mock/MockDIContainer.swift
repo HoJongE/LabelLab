@@ -13,11 +13,13 @@ enum MockDIContainerProvider {
         let uploadToGithubInteractor = RealUploadToGithubInteractor(appState: appState)
         let myTemplateListInteractor = RealMyTemplateListInteractor(appState: appState)
         let templateDetailInteractor = RealTemplateDetailInteractor(appState: appState)
+        let labelListInteractor = RealLabelListInteractor(appState: appState)
 
         let interactors = DIContainer.Interactors(oAuthInteractor: oAuthInteractor,
                                                   uploadToGithubInteractor: uploadToGithubInteractor,
                                                   myTemplateListInteractor: myTemplateListInteractor,
-                                                  templateDetailInteractor: templateDetailInteractor)
+                                                  templateDetailInteractor: templateDetailInteractor,
+                                                  labelListInteractor: labelListInteractor)
         return DIContainer(interactors: interactors)
     }
 }

@@ -9,6 +9,10 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
+enum LabelError: Error {
+    case nameIsEmpty
+}
+
 protocol LabelRepository {
     func requestLabels(of template: Template) async throws -> [Label]
     func addLabel(to template: Template, label: Label) async throws
@@ -42,10 +46,16 @@ extension FirebaseLabelRepository: LabelRepository {
     }
 
     func addLabel(to template: Template, label: Label) async throws {
+        guard !label.name.isEmpty else {
+            throw LabelError.nameIsEmpty
+        }
         try await getLabelRef(of: template, of: label).setData(label.encode())
     }
 
     func modifyLabel(to template: Template, label: Label) async throws {
+        guard !label.name.isEmpty else {
+            throw LabelError.nameIsEmpty
+        }
         try await getLabelRef(of: template, of: label).setData(label.encode())
     }
 

@@ -9,9 +9,9 @@ import Foundation
 
 protocol LabelListInteractor {
     func requestLabels(of template: Template, to labels: LoadableSubject<[Label]>) async
-    func addLabel(to template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async
-    func modifyLabel(of template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async
-    func deleteLabel(of template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async
+    func addLabel(to template: Template, _ label: Label, subject: LoadableSubject<[Label]>, event: EventSubject) async
+    func modifyLabel(of template: Template, _ label: Label, subject: LoadableSubject<[Label]>, event: EventSubject) async
+    func deleteLabel(of template: Template, _ label: Label, subject: LoadableSubject<[Label]>, event: EventSubject) async
 }
 
 struct RealLabelListInteractor {
@@ -40,39 +40,45 @@ extension RealLabelListInteractor: LabelListInteractor {
         }
     }
 
-    @MainActor func addLabel(to template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async {
+    @MainActor func addLabel(to template: Template, _ label: Label, subject: LoadableSubject<[Label]>, event: EventSubject) async {
         do {
+            event.wrappedValue = .notRequested
+            event.wrappedValue = .isLoading(last: nil)
             try await labelRepository.addLabel(to: template, label: label)
-            var appendedLabels: [Label]? = labels.wrappedValue.value
+            var appendedLabels: [Label]? = subject.wrappedValue.value
             appendedLabels?.append(label)
+            event.wrappedValue = .notRequested
             guard let appendedLabels else { return }
-            labels.wrappedValue = .loaded(appendedLabels)
+            subject.wrappedValue = .loaded(appendedLabels)
         } catch {
-            print(error.localizedDescription)
+            event.wrappedValue = .failed(error)
         }
     }
 
-    @MainActor func modifyLabel(of template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async {
+    @MainActor func modifyLabel(of template: Template, _ label: Label, subject: LoadableSubject<[Label]>, event: EventSubject) async {
         do {
+            event.wrappedValue = .isLoading(last: nil)
             try await labelRepository.modifyLabel(to: template, label: label)
-            var modifiedLabels: [Label]? = labels.wrappedValue.value
+            var modifiedLabels: [Label]? = subject.wrappedValue.value
             modifiedLabels?.replace(to: label)
+            event.wrappedValue = .notRequested
             guard let modifiedLabels else { return }
-            labels.wrappedValue = .loaded(modifiedLabels)
+            subject.wrappedValue = .loaded(modifiedLabels)
         } catch {
-            print(error.localizedDescription)
+            event.wrappedValue = .failed(error)
         }
     }
 
-    @MainActor func deleteLabel(of template: Template, _ label: Label, labels: LoadableSubject<[Label]>) async {
+    @MainActor func deleteLabel(of template: Template, _ label: Label, subject: LoadableSubject<[Label]>, event: EventSubject) async {
         do {
+            event.wrappedValue = .notRequested
             try await labelRepository.deleteLabel(of: template, label: label)
-            var deletedLabels: [Label]? = labels.wrappedValue.value
+            var deletedLabels: [Label]? = subject.wrappedValue.value
             deletedLabels?.delete(label)
             guard let deletedLabels else { return }
-            labels.wrappedValue = .loaded(deletedLabels)
+            subject.wrappedValue = .loaded(deletedLabels)
         } catch {
-            print(error.localizedDescription)
+            event.wrappedValue = .failed(error)
         }
     }
 }

@@ -17,6 +17,8 @@ struct MyTemplateDetail: View {
     @State private var description: String
     @State private var tags: [String]
     @State private var editLabelState: EditLabelState = .none
+    @State private var eventState: Event = .notRequested
+    @State private var error: Error?
 
     init(labels: Loadable<[Label]> = .notRequested, template: Template) {
         self._labels = State(initialValue: labels)
@@ -49,6 +51,10 @@ struct MyTemplateDetail: View {
         .onTapGesture {
             NSApp.keyWindow?.makeFirstResponder(nil)
         }
+        .onChange(of: eventState) { newValue in
+            error = newValue.error
+        }
+        .errorToast($error)
     }
 }
 
@@ -66,6 +72,18 @@ private extension MyTemplateDetail {
         case none
         case add
         case modify(Label)
+    }
+
+}
+
+extension MyTemplateDetail.EditLabelState: Equatable {
+    static func == (lhs: MyTemplateDetail.EditLabelState, rhs: MyTemplateDetail.EditLabelState) -> Bool {
+        switch (lhs, rhs) {
+        case (.none, .none): return true
+        case (.add, .add): return true
+        case let (.modify(first), .modify(second)): return first == second
+        default: return false
+        }
     }
 }
 
@@ -85,13 +103,22 @@ private extension MyTemplateDetail {
             await diContainer
                 .interactors
                 .labelListInteractor
-                .deleteLabel(of: template, label, labels: $labels)
+                .deleteLabel(of: template, label, subject: $labels, event: $eventState)
         }
     }
 
     func switchEditLabelState(_ state: EditLabelState) {
         withAnimation {
-            self.editLabelState = state
+            if case .modify = editLabelState {
+                self.editLabelState = .none
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    withAnimation {
+                        self.editLabelState = state
+                    }
+                }
+            } else {
+                self.editLabelState = state
+            }
         }
     }
 
@@ -121,7 +148,7 @@ private extension MyTemplateDetail {
         Task(priority: .userInitiated) {
             await diContainer.interactors
                 .labelListInteractor
-                .addLabel(to: template, label, labels: $labels)
+                .addLabel(to: template, label, subject: $labels, event: $eventState)
         }
     }
 
@@ -129,7 +156,7 @@ private extension MyTemplateDetail {
         Task(priority: .userInitiated) {
             await diContainer.interactors
                 .labelListInteractor
-                .modifyLabel(of: template, label, labels: $labels)
+                .modifyLabel(of: template, label, subject: $labels, event: $eventState)
         }
     }
 }
@@ -149,10 +176,10 @@ private extension MyTemplateDetail {
         case .none:
             EmptyView()
         case .add:
-            EditLabel(labels: $labels, onClose: closeEditLabel, onDone: addLabel(_:))
+            EditLabel(labels: $labels, event: eventState, onClose: closeEditLabel, onDone: addLabel(_:))
                 .transition(.moveFromTopWithOpacity)
         case .modify(let label):
-            EditLabel(edit: label, labels: $labels, onClose: closeEditLabel, onDone: modifyLabel(_:))
+            EditLabel(edit: label, labels: $labels, event: eventState, onClose: closeEditLabel, onDone: modifyLabel(_:))
                 .transition(.moveFromTopWithOpacity)
         }
     }
@@ -236,10 +263,7 @@ private extension MyTemplateDetail {
             LazyVStack(alignment: .leading, pinnedViews: .sectionHeaders) {
                 Section {
                     ForEach(labels) { label in
-                        LabelCell(label: label, onModify: {
-                            switchEditLabelState(.modify($0))
-                        }, onDelete: deleteLabel(label:))
-                            .padding(.vertical, 2)
+                        cell(label)
                     }
                 } header: {
                     labelListTitle(labels.count)
@@ -248,7 +272,38 @@ private extension MyTemplateDetail {
             .padding(.trailing)
         }
         .maxSize(.topLeading)
+        .toolbar {
+            ToolbarItemGroup(placement: .automatic) {
+                Spacer()
+                Button {
+                    appState.routing.myTemplateDetailRouting.isShowingRepositoryList = true
+                } label: {
+                    Text("\(Image(systemName: "square.and.arrow.up")) Upload to Github")
+                        .padding()
+                }
+            }
+        }
+        .sheet(isPresented: $appState.routing.myTemplateDetailRouting.isShowingRepositoryList) {
+            RepositoryList(labels: labels, templateName: template.name)
+        }
         .padding(.top)
+    }
+
+    func cell(_ label: Label) -> some View {
+        LabelCell(label: label,
+                  selected: isLabelSelected(label),
+                  onModify: {
+            switchEditLabelState(.modify($0))
+        },
+                  onDelete: deleteLabel(label:))
+            .padding(.vertical, 2)
+    }
+
+    func isLabelSelected(_ label: Label) -> Bool {
+        if case let .modify(selected) = editLabelState {
+            return selected == label
+        }
+        return false
     }
 
     func labelListTitle(_ count: Int) -> some View {
@@ -281,6 +336,13 @@ private extension MyTemplateDetail {
     func notRequested() -> some View {
         Text("")
             .onAppear(perform: loadLabels)
+    }
+}
+
+// MARK: - Routing
+extension MyTemplateDetail {
+    struct Routing: Equatable {
+        var isShowingRepositoryList: Bool = false
     }
 }
 

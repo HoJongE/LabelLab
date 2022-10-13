@@ -131,7 +131,8 @@ private extension UploadPopup {
     func errorIndicator(_ error: Error) -> some View {
         VStack(alignment: .leading) {
             Spacer()
-            Text("❌ Failed to upload labels")
+            Text("❌ Failed to upload labels\n\(error.localizedDescription)")
+                .multilineTextAlignment(.center)
                 .padding(.leading, 48)
             Spacer()
             HStack {

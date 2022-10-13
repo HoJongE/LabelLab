@@ -51,22 +51,24 @@ private extension RealUploadToGithubInteractor {
 
     func removeLabels(of repository: GithubRepository) async throws {
         let labels: [Label] = try await githubService.requestLabels(of: repository)
-        await withThrowingTaskGroup(of: Void.self) { group in
+        try await withThrowingTaskGroup(of: Void.self) { group in
             for label in labels {
                 group.addTask {
                     try await githubService.deleteLabel(of: repository, label: label)
                 }
             }
+            try await group.waitForAll()
         }
     }
 
     func createLabels(to repository: GithubRepository, labels: [Label]) async throws {
-        await withThrowingTaskGroup(of: Void.self) { group in
+        try await withThrowingTaskGroup(of: Void.self) { group in
             for label in labels {
                 group.addTask {
                     try await githubService.createLabel(to: repository, label: label)
                 }
             }
+            try await group.waitForAll()
         }
     }
 }

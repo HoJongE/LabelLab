@@ -46,7 +46,7 @@ final class LabelListInteractorTests: XCTestCase {
     func testAddLabelSuccess() async {
         let labelsBinding: BindingWrapper<Loadable<[Label]>> = .init(value: .loaded([]))
         let labelToAdd: Label = Label(id: "꺼져", name: "존재 자체가 부전승", labelDescription: "나한테 서바이벌", hex: "살아남기")
-        await interactor.addLabel(to: templateToTest, labelToAdd, labels: labelsBinding.binding)
+        await interactor.addLabel(to: templateToTest, labelToAdd, subject: labelsBinding.binding, event: .constant(.notRequested))
         switch labelsBinding.value {
         case .loaded(let value):
             XCTAssertEqual([labelToAdd], value)
@@ -59,7 +59,7 @@ final class LabelListInteractorTests: XCTestCase {
         let labelToModify: Label = Label(id: "꺼져", name: "존재 자체가 부전승", labelDescription: "나한테 서바이벌", hex: "살아남기")
         let labelsBinding: BindingWrapper<Loadable<[Label]>> = .init(value: .loaded([labelToModify]))
         let modifiedLabel: Label = Label(id: "꺼져", name: "후샛", labelDescription: "애니모", hex: "후후")
-        await interactor.modifyLabel(of: templateToTest, modifiedLabel, labels: labelsBinding.binding)
+        await interactor.modifyLabel(of: templateToTest, modifiedLabel, subject: labelsBinding.binding, event: .constant(.notRequested))
         switch labelsBinding.value {
         case .loaded(let label):
             XCTAssertEqual([modifiedLabel], label)
@@ -71,7 +71,7 @@ final class LabelListInteractorTests: XCTestCase {
     func testDeleteLabelSuccess() async {
         let labelToDelete: Label = Label.mockedData.first!
         let labelsBinding: BindingWrapper<Loadable<[Label]>> = .init(value: .loaded([labelToDelete]))
-        await interactor.deleteLabel(of: templateToTest, labelToDelete, labels: labelsBinding.binding)
+        await interactor.deleteLabel(of: templateToTest, labelToDelete, subject: labelsBinding.binding, event: .constant(.notRequested))
         switch labelsBinding.value {
         case .loaded(let value):
             XCTAssertEqual([], value)

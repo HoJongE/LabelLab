@@ -27,6 +27,9 @@ struct Sidebar: View {
                 .padding(.bottom, 24)
                 .padding(.leading, 16)
         }
+        .toolbar {
+            Text("")
+        }
         .frame(width: 200)
     }
 }

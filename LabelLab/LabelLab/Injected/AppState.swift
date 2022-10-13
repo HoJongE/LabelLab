@@ -11,10 +11,12 @@ final class AppState: ObservableObject {
     @Published var userData: UserData
     @Published var routing: ViewRouting
 
-    init(_ userData: UserData = UserData(), _ routing: ViewRouting = ViewRouting()) {
+    init(_ userData: UserData = UserData(),
+         _ routing: ViewRouting = ViewRouting()) {
         self.userData = userData
         self.routing = routing
     }
+
 }
 
 // MARK: - User data
@@ -31,7 +33,6 @@ extension AppState {
             self.myTemplateList = myTemplateList
         }
     }
-
 }
 
 // MARK: - Routing
@@ -42,6 +43,7 @@ extension AppState {
         var repositoryListRouting: RepositoryList.Routing = .init()
         var sidebarRouting: Sidebar.Routing = .init()
         var myTemplateListRouting: MyTemplateList.Routing = .init()
+        var myTemplateDetailRouting: MyTemplateDetail.Routing = .init()
     }
 
 }

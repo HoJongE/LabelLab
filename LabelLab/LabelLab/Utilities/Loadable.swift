@@ -8,7 +8,8 @@
 import SwiftUI
 
 typealias LoadableSubject<T> = Binding<Loadable<T>>
-
+typealias Event = Loadable<Bool>
+typealias EventSubject = Binding<Event>
 enum Loadable<T> {
     case notRequested
     case isLoading(last: T?)
@@ -29,6 +30,13 @@ enum Loadable<T> {
         default:  return nil
         }
     }
+
+    var isLoading: Bool {
+        switch self {
+        case .isLoading: return true
+        default: return false
+        }
+    }
 }
 
 extension Loadable: CustomStringConvertible where T: CustomStringConvertible {
@@ -47,6 +55,7 @@ extension Loadable: CustomStringConvertible where T: CustomStringConvertible {
 }
 
 extension Loadable: Equatable where T: Equatable {
+
     static func == (lhs: Loadable<T>, rhs: Loadable<T>) -> Bool {
         switch (lhs, rhs) {
         case (.notRequested, .notRequested): return true

@@ -21,7 +21,8 @@ protocol APICall {
 extension APICall {
 
     var url: URL? {
-        let urlComponents: URLComponents? = URLComponents(string: baseURL + path)
+        guard let encoded = (baseURL + path).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: encoded) else { return nil }
+        let urlComponents: URLComponents? = URLComponents(url: url, resolvingAgainstBaseURL: false)
         guard var urlComponents = urlComponents else { return nil }
         var queryItems: [URLQueryItem] = []
         for (key, value) in parameters {

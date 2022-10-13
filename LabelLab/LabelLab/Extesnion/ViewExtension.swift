@@ -11,6 +11,10 @@ extension View {
     func maxSize(_ alignment: Alignment = .center) -> some View {
         frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
     }
+
+    func errorToast(_ error: Binding<Error?>) -> some View {
+        modifier(ErrorToast(error))
+    }
 }
 
 extension TextField {
@@ -47,5 +51,41 @@ private struct MaxLengthModifier: ViewModifier {
                 text = String(changedText.dropLast())
             }
         }
+    }
+}
+
+struct ErrorToast: ViewModifier {
+    @Binding private var error: Error?
+
+    init(_ error: Binding<Error?>) {
+        self._error = error
+    }
+
+    func body(content: Content) -> some View {
+        ZStack(alignment: .bottom) {
+            content
+            if let error {
+                errorToast(error.localizedDescription)
+                    .transition(.opacity.animation(.easeInOut))
+                    .zIndex(3)
+                    .onAppear(perform: dismiss)
+            }
+        }
+    }
+
+    private func dismiss() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            error = nil
+        }
+    }
+
+    private func errorToast(_ errorMessage: String) -> some View {
+        Text("\(Image(systemName: "xmark.octagon.fill"))  \(errorMessage)")
+            .lineLimit(1)
+            .font(.title3)
+            .frame(minWidth: 120, alignment: .center)
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.red.opacity(0.8)))
+            .padding(.bottom, 48)
     }
 }

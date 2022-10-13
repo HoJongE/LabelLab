@@ -9,17 +9,18 @@ import SwiftUI
 
 struct LabelCell: View {
 
-    // TODO: 편집 모드 만들어야함...
     private let label: Label
+    private let selected: Bool
     private let onModifiy: ((Label) -> Void)?
     private let onDelete: ((Label) -> Void)?
-
     @State private var isHover: Bool = false
 
     init(label: Label,
+         selected: Bool = false,
          onModify: ((Label) -> Void)? = nil,
          onDelete: ((Label) -> Void)? = nil) {
         self.label = label
+        self.selected = selected
         self.onModifiy = onModify
         self.onDelete = onDelete
     }
@@ -49,8 +50,17 @@ struct LabelCell: View {
 // MARK: - UI Componenets
 private extension LabelCell {
 
+    @ViewBuilder
     func cellBackground() -> some View {
-        RoundedRectangle(cornerRadius: 10).fill(isHover ? Color.cellHoverBackground : Color.cellBackground)
+        if selected {
+            RoundedRectangle(cornerRadius: 10).fill(isHover ? Color.cellHoverBackground : Color.cellBackground)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 10)
+                        .strokeBorder(.blue, lineWidth: 2, antialiased: true)
+                }
+        } else {
+            RoundedRectangle(cornerRadius: 10).fill(isHover ? Color.cellHoverBackground : Color.cellBackground)
+        }
     }
 
     func name(of label: Label) -> some View {
@@ -82,7 +92,14 @@ private extension LabelCell {
 
 struct LabelCell_Previews: PreviewProvider {
     static var previews: some View {
-        LabelCell(label: Label.mockedData.first!, onModify: { _ in }, onDelete: { _ in })
-            .padding()
+
+        Group {
+            LabelCell(label: Label.mockedData.first!, onModify: { _ in }, onDelete: { _ in })
+                .padding()
+                .previewDisplayName("Non selected cell")
+            LabelCell(label: Label.mockedData.first!, selected: true)
+                .padding()
+                .previewDisplayName("Selected cell")
+        }
     }
 }

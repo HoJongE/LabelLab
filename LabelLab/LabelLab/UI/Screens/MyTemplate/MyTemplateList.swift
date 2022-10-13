@@ -27,7 +27,8 @@ struct MyTemplateList: View {
         .overlay {
             if let template = appState.routing.myTemplateListRouting.template {
                 MyTemplateDetail(template: template)
-                    .transition(.opacity.animation(.easeInOut(duration: 0.25)))
+                    .transition(.opacity)
+                    .zIndex(4)
             }
         }
     }
@@ -219,7 +220,9 @@ private extension MyTemplateList {
     }
 
     func onCellClick(_ template: Template) {
-        appState.routing.myTemplateListRouting.template = template
+        withAnimation(.easeInOut) {
+            appState.routing.myTemplateListRouting.template = template
+        }
     }
 }
 

@@ -8,21 +8,22 @@
 import SwiftUI
 
 struct EditLabel: View {
-    @State private var labelName: String
-    @State private var labelDescription: String
-    @State private var color: Color
+    @State private var labelName: String = ""
+    @State private var labelDescription: String = ""
+    @State private var color: Color = .blue
     @Binding private var labels: Loadable<[Label]>
     private let label: Label?
     private let isEditMode: Bool
     private let onClose: () -> Void
     private let onDone: (Label) -> Void
+    private let eventState: Event
 
     init(labels: LoadableSubject<[Label]>,
+         event: Event = .notRequested,
          onClose: @escaping () -> Void = { },
          onDone: @escaping (Label) -> Void = { _ in }) {
-        self._labelName = State(initialValue: "")
-        self._labelDescription = State(initialValue: "")
         self.isEditMode = false
+        self.eventState = event
         self._color = State(initialValue: Color.green)
         self._labels = labels
         self.onClose = onClose
@@ -32,12 +33,11 @@ struct EditLabel: View {
 
     init(edit label: Label,
          labels: LoadableSubject<[Label]>,
+         event: Event = .notRequested,
          onClose: @escaping () -> Void = { },
          onDone: @escaping (Label) -> Void = { _ in }) {
-        self._labelName = State(initialValue: label.name)
-        self._labelDescription = State(initialValue: label.labelDescription)
-        self._color = State(initialValue: Color(label.hex))
         self.isEditMode = true
+        self.eventState = event
         self._labels = labels
         self.onClose = onClose
         self.onDone = onDone
@@ -52,7 +52,22 @@ struct EditLabel: View {
                 closeButton()
             }
             content()
+                .overlay {
+                    if eventState.isLoading {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.black.opacity(0.5))
+                            ProgressView()
+                        }
+                    }
+                }
         }
+        .onAppear {
+            self.labelName = label?.name ?? ""
+            self.labelDescription = label?.labelDescription ?? ""
+            self.color = label?.color ?? .blue
+        }
+        .disabled(eventState.isLoading)
         .frame(maxWidth: .infinity, alignment: .topLeading)
     }
 }

@@ -35,8 +35,6 @@ struct LabelLabApp: App {
                 }
         }
         .disableNewWindow()
-        .windowStyle(.hiddenTitleBar)
-
     }
 }
 

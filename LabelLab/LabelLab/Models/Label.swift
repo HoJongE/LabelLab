@@ -24,7 +24,7 @@ struct Label: Codable, Identifiable, Hashable {
 
 extension Label: Equatable {
     static func == (lhs: Label, rhs: Label) -> Bool {
-        lhs.id == rhs.id && lhs.labelDescription == rhs.labelDescription && lhs.hex == rhs.hex && lhs.labelDescription == rhs.labelDescription
+        lhs.id == rhs.id && lhs.name == rhs.name && lhs.hex == rhs.hex && lhs.labelDescription == rhs.labelDescription
     }
 }
 
