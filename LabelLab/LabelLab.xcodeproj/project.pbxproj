@@ -35,6 +35,7 @@
 		0038C29F28B50976009C98E2 /* AuthorizePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0038C29E28B50976009C98E2 /* AuthorizePopup.swift */; };
 		003CEF2528DFEE8400F13F8A /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CEF2428DFEE8300F13F8A /* ArrayExtension.swift */; };
 		003CEF2A28DFEFB700F13F8A /* ArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CEF2928DFEFB700F13F8A /* ArrayExtensionTests.swift */; };
+		0040786028FA5E990029B638 /* TemplateIdCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040785F28FA5E990029B638 /* TemplateIdCacheManager.swift */; };
 		0044B17428BEE97600613190 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0044B17328BEE97600613190 /* .swiftlint.yml */; };
 		0044B17628BEF57100613190 /* KeychainConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044B17528BEF57100613190 /* KeychainConst.swift */; };
 		00455F9A28F2607E007F4C40 /* EditLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00455F9928F2607E007F4C40 /* EditLabel.swift */; };
@@ -151,6 +152,7 @@
 		0038C29E28B50976009C98E2 /* AuthorizePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizePopup.swift; sourceTree = "<group>"; };
 		003CEF2428DFEE8300F13F8A /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		003CEF2928DFEFB700F13F8A /* ArrayExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionTests.swift; sourceTree = "<group>"; };
+		0040785F28FA5E990029B638 /* TemplateIdCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateIdCacheManager.swift; sourceTree = "<group>"; };
 		0044B17328BEE97600613190 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0044B17528BEF57100613190 /* KeychainConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConst.swift; sourceTree = "<group>"; };
 		00455F9928F2607E007F4C40 /* EditLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLabel.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				0044B17528BEF57100613190 /* KeychainConst.swift */,
 				0050AADA28F14E88007588D0 /* SerialTasks+DispatchQueue.swift */,
 				0004A16A28CC7C6400D491C4 /* AccessTokenManager.swift */,
+				0040785F28FA5E990029B638 /* TemplateIdCacheManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				00E9334C28CD76DB008ECC8B /* Sidebar.swift in Sources */,
 				0037ADAA28AE579E000C36AC /* UserInfo.swift in Sources */,
 				00C7ECDC28E0368A004713B6 /* DIGenerator.swift in Sources */,
+				0040786028FA5E990029B638 /* TemplateIdCacheManager.swift in Sources */,
 				0085688828D6CE6700A88CB8 /* TemplateCell.swift in Sources */,
 				00110E3A28BCEB6300BA327F /* URLSessionProtocol.swift in Sources */,
 				00C7ECDE28E07E0C004713B6 /* EditableText.swift in Sources */,

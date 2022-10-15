@@ -37,6 +37,7 @@ final class FirebaseLabelRepository {
 
     static let shared: LabelRepository = FirebaseLabelRepository()
     private let db: Firestore = Firestore.firestore()
+    private let cache: TemplateIdCacheManager = .shared
     private var collection: String {
         ProcessInfo().isRunningTests ? "TestLabels": "Labels"
     }
@@ -50,11 +51,13 @@ final class FirebaseLabelRepository {
 extension FirebaseLabelRepository: LabelRepository {
 
     func requestLabels(of template: Template) async throws -> [Label] {
-        let snapshot = try await getLabelCollectionRef(of: template).getDocuments()
-
-        return try snapshot.documents.map { snapshot in
-            try snapshot.data(as: Label.self)
+        let isCacheEnable: Bool = await cache.checkIdExistence(template.id)
+        let snapshot = try await getLabelCollectionRef(of: template).getDocuments(source: isCacheEnable ? .cache: .server)
+        let labels: [Label] = try snapshot.documents.map { try $0.data(as: Label.self) }
+        if !isCacheEnable { 
+            await cache.insertId(template.id)
         }
+        return labels
     }
 
     func addLabel(to template: Template, label: Label) async throws {
