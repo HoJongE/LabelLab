@@ -30,7 +30,7 @@ struct MyTemplateList: View {
                     .transition(.opacity)
                     .zIndex(4)
             }
-        }
+        }        
     }
 }
 

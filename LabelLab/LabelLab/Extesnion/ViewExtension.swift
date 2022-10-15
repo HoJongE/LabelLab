@@ -15,6 +15,10 @@ extension View {
     func errorToast(_ error: Binding<Error?>) -> some View {
         modifier(ErrorToast(error))
     }
+
+    func deleteAlert(_ isShowing: Binding<Bool>, text: String, onDelete: @escaping () -> Void) -> some View {
+        modifier(DeleteAlert(isShowing: isShowing, text: text, onDelete: onDelete))
+    }
 }
 
 extension TextField {
@@ -87,5 +91,34 @@ struct ErrorToast: ViewModifier {
             .padding()
             .background(RoundedRectangle(cornerRadius: 8).fill(Color.red.opacity(0.8)))
             .padding(.bottom, 48)
+    }
+}
+
+struct DeleteAlert: ViewModifier {
+    @Binding private var isShowing: Bool
+    private let text: String
+    private let onDelete: () -> Void
+    init(isShowing: Binding<Bool>,
+         text: String,
+         onDelete: @escaping () -> Void) {
+        self._isShowing = isShowing
+        self.text = text
+        self.onDelete = onDelete
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .alert(text, isPresented: $isShowing) {
+                Button(role: .cancel) {
+                    isShowing = false
+                } label: {
+                    Text("No")
+                }
+                Button(role: .destructive) {
+                    onDelete()
+                } label: {
+                    Text("Delete")
+                }
+            }
     }
 }

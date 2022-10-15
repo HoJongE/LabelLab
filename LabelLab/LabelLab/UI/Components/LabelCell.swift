@@ -14,6 +14,7 @@ struct LabelCell: View {
     private let onModifiy: ((Label) -> Void)?
     private let onDelete: ((Label) -> Void)?
     @State private var isHover: Bool = false
+    @State private var isShowingDeletePopup: Bool = false
 
     init(label: Label,
          selected: Bool = false,
@@ -44,6 +45,9 @@ struct LabelCell: View {
         .padding(.horizontal, 16)
         .background(cellBackground())
         .onHover { isHover = $0 }
+        .deleteAlert($isShowingDeletePopup, text: "Do you want to delete \(label.name)") {
+            onDelete?(label)
+        }
     }
 }
 
@@ -85,7 +89,7 @@ private extension LabelCell {
 
     func deleteButton() -> some View {
         CircleButton(systemName: "trash") {
-            onDelete?(label)
+            isShowingDeletePopup = true
         }
     }
 }

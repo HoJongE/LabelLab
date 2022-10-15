@@ -14,6 +14,7 @@ struct TemplateCell: View {
     private let onDelete: (Template) -> Void
 
     @State private var isHover: Bool = false
+    @State private var isShowingDeletePopup: Bool = false
 
     init(template: Template,
          onClick: @escaping (Template) -> Void = { _ in },
@@ -40,6 +41,9 @@ struct TemplateCell: View {
             onClick(template)
         }
         .overlay(alignment: .topTrailing, content: buttonOverlay)
+        .deleteAlert($isShowingDeletePopup, text: "Do you want to delete\n\(template.name)", onDelete: {
+            onDelete(template)
+        })
     }
 
     @ViewBuilder
@@ -83,7 +87,7 @@ private extension TemplateCell {
 
     func deleteButton() -> some View {
         CustomImageButton(imageName: "ic_trashcan", width: 24, height: 24) {
-            onDelete(template)
+            isShowingDeletePopup = true
         }
     }
 

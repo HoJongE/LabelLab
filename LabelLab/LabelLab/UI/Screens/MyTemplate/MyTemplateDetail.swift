@@ -301,7 +301,7 @@ private extension MyTemplateDetail {
 
     func isLabelSelected(_ label: Label) -> Bool {
         if case let .modify(selected) = editLabelState {
-            return selected == label
+            return selected.id == label.id
         }
         return false
     }
