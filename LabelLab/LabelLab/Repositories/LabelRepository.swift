@@ -11,6 +11,18 @@ import Foundation
 
 enum LabelError: Error {
     case nameIsEmpty
+    case nameIsAlreadyExist
+}
+
+extension LabelError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .nameIsEmpty:
+            return "The name of the label should not be empty"
+        case .nameIsAlreadyExist:
+            return "Name is alreay exist"
+        }
+    }
 }
 
 protocol LabelRepository {
@@ -49,12 +61,19 @@ extension FirebaseLabelRepository: LabelRepository {
         guard !label.name.isEmpty else {
             throw LabelError.nameIsEmpty
         }
+
+        guard try await checkNameIsNotExist(of: template, label: label) else {
+            throw LabelError.nameIsAlreadyExist
+        }
         try await getLabelRef(of: template, of: label).setData(label.encode())
     }
 
     func modifyLabel(to template: Template, label: Label) async throws {
         guard !label.name.isEmpty else {
             throw LabelError.nameIsEmpty
+        }
+        guard try await checkNameIsNotExist(of: template, label: label) else {
+            throw LabelError.nameIsAlreadyExist
         }
         try await getLabelRef(of: template, of: label).setData(label.encode())
     }
@@ -87,5 +106,13 @@ private extension FirebaseLabelRepository {
             .document(template.id)
             .collection(collection)
             .document(label.id)
+    }
+
+    func checkNameIsNotExist(of template: Template, label: Label) async throws -> Bool {
+        let querySnapshot = try await getLabelCollectionRef(of: template)
+            .whereField("name", isEqualTo: label.name)
+            .getDocuments()
+
+        return querySnapshot.count == 0
     }
 }
