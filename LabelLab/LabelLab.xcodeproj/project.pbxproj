@@ -36,6 +36,7 @@
 		003CEF2528DFEE8400F13F8A /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CEF2428DFEE8300F13F8A /* ArrayExtension.swift */; };
 		003CEF2A28DFEFB700F13F8A /* ArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CEF2928DFEFB700F13F8A /* ArrayExtensionTests.swift */; };
 		0040786028FA5E990029B638 /* TemplateIdCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040785F28FA5E990029B638 /* TemplateIdCacheManager.swift */; };
+		0040786228FAB83D0029B638 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040786128FAB83D0029B638 /* SearchState.swift */; };
 		0044B17428BEE97600613190 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0044B17328BEE97600613190 /* .swiftlint.yml */; };
 		0044B17628BEF57100613190 /* KeychainConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0044B17528BEF57100613190 /* KeychainConst.swift */; };
 		00455F9A28F2607E007F4C40 /* EditLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00455F9928F2607E007F4C40 /* EditLabel.swift */; };
@@ -153,6 +154,7 @@
 		003CEF2428DFEE8300F13F8A /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		003CEF2928DFEFB700F13F8A /* ArrayExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionTests.swift; sourceTree = "<group>"; };
 		0040785F28FA5E990029B638 /* TemplateIdCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateIdCacheManager.swift; sourceTree = "<group>"; };
+		0040786128FAB83D0029B638 /* SearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchState.swift; sourceTree = "<group>"; };
 		0044B17328BEE97600613190 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		0044B17528BEF57100613190 /* KeychainConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainConst.swift; sourceTree = "<group>"; };
 		00455F9928F2607E007F4C40 /* EditLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLabel.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 			children = (
 				004D7ABC28C3875B007D17D5 /* RepositoryList.swift */,
 				0095889128C9C999000FD6D5 /* UploadPopup.swift */,
+				0040786128FAB83D0029B638 /* SearchState.swift */,
 			);
 			path = UploadToGithub;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				0085688A28D6D02000A88CB8 /* CircleButton.swift in Sources */,
 				00DDBA9A28C37A1A00FB1240 /* GithubService.swift in Sources */,
 				A7AFD1D928BC3F44000D8167 /* DismissButton.swift in Sources */,
+				0040786228FAB83D0029B638 /* SearchState.swift in Sources */,
 				00F8F11228B4A0A500D688AC /* GithubAuthAPI.swift in Sources */,
 				0094C48828F4ECEC00162579 /* LabelListInteractor.swift in Sources */,
 				A762EF9C28D6F49B0042ADFC /* CustomImageButton.swift in Sources */,

@@ -157,12 +157,20 @@ struct UploadPopup_Previews: PreviewProvider {
         Group {
             UploadPopup(to: .mockData.first!, labels: Label.mockedData)
                 .previewDisplayName("Not reuqested")
+                .injectPreview()
+
             UploadPopup(isUploading: .isLoading(last: nil), to: .mockData.first!, labels: Label.mockedData)
                 .previewDisplayName("is Loading")
+                .injectPreview()
+
             UploadPopup(isUploading: .failed(NSError()), to: .mockData.first!, labels: Label.mockedData)
                 .previewDisplayName("Error")
+                .injectPreview()
+
             UploadPopup(isUploading: .loaded(()), to: .mockData.first!, labels: Label.mockedData)
                 .previewDisplayName("Loaded")
+                .injectPreview()
+
         }
     }
 }

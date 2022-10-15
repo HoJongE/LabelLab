@@ -9,10 +9,12 @@ import SwiftUI
 
 struct RepositoryList: View {
     @State private var repositories: AuthenticationRequiredLoadable<[GithubRepository]>
+    @State private var filteredRepositories: [GithubRepository]?
     @EnvironmentObject private var appState: AppState
     @Environment(\.injected) private var diContainer: DIContainer
     @Environment(\.dismiss) private var dismiss
     @State private var selectedRepository: GithubRepository?
+    @StateObject private var searchState: SearchState = .init()
     private let labels: [Label]
     private let templateName: String
 
@@ -20,6 +22,7 @@ struct RepositoryList: View {
         self._repositories = State(initialValue: repositories)
         self.labels = labels
         self.templateName = templateName
+        self.filteredRepositories = nil
     }
 
     var body: some View {
@@ -48,6 +51,16 @@ private extension RepositoryList {
 
     func uploadLabels() {
         appState.routing.repositoryListRouting.isShowingUploadPopup = true
+    }
+
+    func searchRepository(_ query: String) {
+        guard !query.isEmpty else {
+            filteredRepositories = nil
+            return
+        }
+        filteredRepositories = repositories.value?.filter {
+            $0.fullName.uppercased().contains(query.uppercased())
+        }
     }
 }
 
@@ -123,6 +136,7 @@ private extension RepositoryList {
                 .bold()
                 .multilineTextAlignment(.center)
                 .padding(.top, 35)
+            searchBar()
             list(repositories)
             buttons()
         }
@@ -131,9 +145,17 @@ private extension RepositoryList {
 
     func list(_ repositories: [GithubRepository]) -> some View {
         ScrollView(.vertical, showsIndicators: true) {
-            ForEach(repositories) { repository in
-                Cell(repository: repository, isSelected: selectedRepository == repository) {
-                    selectedRepository = repository
+            if let filteredRepositories {
+                ForEach(filteredRepositories) { repository in
+                    Cell(repository: repository, isSelected: repository == selectedRepository) {
+                        selectedRepository = repository
+                    }
+                }
+            } else {
+                ForEach(repositories) { repository in
+                    Cell(repository: repository, isSelected: selectedRepository == repository) {
+                        selectedRepository = repository
+                    }
                 }
             }
         }
@@ -153,6 +175,29 @@ private extension RepositoryList {
             .disabled(selectedRepository == nil)
         }
         .padding(EdgeInsets(top: 0, leading: 30, bottom: 30, trailing: 30))
+    }
+
+    func searchBar() -> some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+            TextField("Type repository name to search", text: $searchState.searchQuery)
+                .textFieldStyle(.plain)
+            Button {
+                searchState.searchQuery = ""
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+            }
+            .opacity(searchState.searchQuery.isEmpty ? 0: 1)
+            .disabled(searchState.searchQuery.isEmpty)
+            .buttonStyle(.plain)
+        }
+        .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
+        .background(RoundedRectangle(cornerRadius: 6)
+            .fill(Color.cellBackground))
+        .padding(.horizontal)
+        .onReceive(searchState.$searchQuery.throttle(for: 0.7, scheduler: RunLoop.main, latest: true)) { query in
+            searchRepository(query)
+        }
     }
 
     struct Cell: View {
