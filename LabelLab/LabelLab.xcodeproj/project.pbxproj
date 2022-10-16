@@ -172,6 +172,7 @@
 		00674C9F28AF793C00E850B7 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		00674CA128AF7D4700E850B7 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		006EF60C28FB964800059B63 /* ForEachWithIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachWithIndex.swift; sourceTree = "<group>"; };
+		006EF60F28FBA6D200059B63 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		007151B428C9FC6D009438EE /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		0085688028D69EDE00A88CB8 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		0085688228D6A7F000A88CB8 /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
@@ -292,6 +293,7 @@
 				002789962885986F00BDCDA4 /* LabelLabTests */,
 				002789A02885986F00BDCDA4 /* LabelLabUITests */,
 				002789832885986D00BDCDA4 /* Products */,
+				006EF60E28FBA6D200059B63 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -500,6 +502,14 @@
 				0040786128FAB83D0029B638 /* SearchState.swift */,
 			);
 			path = UploadToGithub;
+			sourceTree = "<group>";
+		};
+		006EF60E28FBA6D200059B63 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				006EF60F28FBA6D200059B63 /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		0085688B28D6D48E00A88CB8 /* Extesnion */ = {

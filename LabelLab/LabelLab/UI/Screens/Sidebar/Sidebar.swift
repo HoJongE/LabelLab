@@ -55,6 +55,12 @@ private extension Sidebar {
         NSWorkspace.shared.open(url)
     }
 
+    func requestReview() {
+        guard let writeReviewURL = URL(string: "https://apps.apple.com/app/id6443861492?action=write-review")
+                else { return }
+        NSWorkspace.shared.open(writeReviewURL)
+    }
+
     func onTabClick(_ tab: Tab) {
         switch tab {
         case .myTemplate:
@@ -66,7 +72,7 @@ private extension Sidebar {
         case .feedback:
             mailto("pjh00098@gmail.com")
         case .review:
-            print("review click!")
+            requestReview()
         case .buyCoffee:
             appState.routing.sidebarRouting.currentTab = tab
         }
