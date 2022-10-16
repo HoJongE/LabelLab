@@ -46,9 +46,35 @@ private extension Sidebar {
 }
 // MARK: - UI Component
 private extension Sidebar {
+
+    func mailto(_ email: String) {
+        guard let mailto = "mailto:\(email)?subject=Feedback of LabelLab".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return
+        }
+        guard let url = URL(string: mailto) else { return }
+        NSWorkspace.shared.open(url)
+    }
+
+    func onTabClick(_ tab: Tab) {
+        switch tab {
+        case .myTemplate:
+            appState.routing.sidebarRouting.currentTab = tab
+        case .inspiration:
+            appState.routing.sidebarRouting.currentTab = tab
+        case .faq:
+            appState.routing.sidebarRouting.currentTab = tab
+        case .feedback:
+            mailto("pjh00098@gmail.com")
+        case .review:
+            print("review click!")
+        case .buyCoffee:
+            appState.routing.sidebarRouting.currentTab = tab
+        }
+    }
+
     func tabButton(of tab: Tab) -> some View {
         Button {
-            appState.routing.sidebarRouting.currentTab = tab
+            onTabClick(tab)
         } label: {
             Text(tab.rawValue)
                 .fontWeight(.regular)
