@@ -15,11 +15,11 @@ protocol LabelListInteractor {
 }
 
 struct RealLabelListInteractor {
-    private let templateRepository: TemplateRepository
+    private let templateRepository: MyTemplateRepository
     private let labelRepository: LabelRepository
     private let appState: AppState
 
-    init(templateRepository: TemplateRepository = FirebaseTemplateRepository.shared,
+    init(templateRepository: MyTemplateRepository = FirebaseTemplateRepository.shared,
          labelRepository: LabelRepository = FirebaseLabelRepository.shared,
          appState: AppState) {
         self.templateRepository = templateRepository

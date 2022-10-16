@@ -11,7 +11,7 @@ import XCTest
 final class LabelRepositoryTests: XCTestCase {
 
     private var labelRepository: LabelRepository!
-    private var templateRepository: TemplateRepository!
+    private var templateRepository: MyTemplateRepository!
     private let testTemplate: Template = Template.mockedData.first!
     private let testLabel: Label = Label.mockedData.first!
 

@@ -16,10 +16,10 @@ protocol MyTemplateListInteractor {
 
 struct RealMyTemplateListInteractor {
 
-    private let templateRepository: TemplateRepository
+    private let templateRepository: MyTemplateRepository
     private let appState: AppState
 
-    init(templateRepository: TemplateRepository = FirebaseTemplateRepository.shared,
+    init(templateRepository: MyTemplateRepository = FirebaseTemplateRepository.shared,
          appState: AppState) {
         self.templateRepository = templateRepository
         self.appState = appState

@@ -7,7 +7,7 @@
 
 @testable import LabelLab
 
-final class MockTemplateRepository: TemplateRepository {
+final class MockTemplateRepository: MyTemplateRepository {
 
     private var templates: [Template] = []
     private var error: Error?
