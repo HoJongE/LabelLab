@@ -18,7 +18,7 @@ final class LabelRepositoryTests: XCTestCase {
     override func setUp() async throws {
         try await super.setUp()
         labelRepository = FirebaseLabelRepository.shared
-        templateRepository = FirebaseTemplateRepository.shared
+        templateRepository = FirebaseMyTemplateRepository.shared
         try await templateRepository.addTemplate(template: testTemplate)
     }
 

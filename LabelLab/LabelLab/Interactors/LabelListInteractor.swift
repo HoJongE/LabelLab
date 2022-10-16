@@ -19,7 +19,7 @@ struct RealLabelListInteractor {
     private let labelRepository: LabelRepository
     private let appState: AppState
 
-    init(templateRepository: MyTemplateRepository = FirebaseTemplateRepository.shared,
+    init(templateRepository: MyTemplateRepository = FirebaseMyTemplateRepository.shared,
          labelRepository: LabelRepository = FirebaseLabelRepository.shared,
          appState: AppState) {
         self.templateRepository = templateRepository

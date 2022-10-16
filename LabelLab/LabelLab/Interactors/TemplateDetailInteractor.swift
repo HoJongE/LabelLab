@@ -19,7 +19,7 @@ struct RealTemplateDetailInteractor {
     private let templateRepository: MyTemplateRepository
     private let appState: AppState
 
-    init(templateRepository: MyTemplateRepository = FirebaseTemplateRepository.shared,
+    init(templateRepository: MyTemplateRepository = FirebaseMyTemplateRepository.shared,
          appState: AppState) {
         self.templateRepository = templateRepository
         self.appState = appState

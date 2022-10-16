@@ -20,9 +20,9 @@ protocol MyTemplateRepository {
     func deleteTag(of template: Template, tag: String) async throws
 }
 
-final class FirebaseTemplateRepository {
+final class FirebaseMyTemplateRepository {
 
-    static let shared: FirebaseTemplateRepository = .init()
+    static let shared: MyTemplateRepository = FirebaseMyTemplateRepository()
     private let fireStore: Firestore = .firestore()
     private var collection: String {
         ProcessInfo().isRunningTests ? "TestTemplates": "Templates"
@@ -34,7 +34,7 @@ final class FirebaseTemplateRepository {
     private init() { }
 }
 
-extension FirebaseTemplateRepository: MyTemplateRepository {
+extension FirebaseMyTemplateRepository: MyTemplateRepository {
 
     func addTemplate(template: Template) async throws {
         try await getTemplateReference(template).setData(template.encode(), merge: true)
@@ -105,7 +105,7 @@ extension FirebaseTemplateRepository: MyTemplateRepository {
     }
 }
 
-private extension FirebaseTemplateRepository {
+private extension FirebaseMyTemplateRepository {
     func getTemplateReference(_ template: Template) -> DocumentReference {
         fireStore.collection(collection).document(template.id)
     }

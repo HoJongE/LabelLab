@@ -10,7 +10,7 @@ import XCTest
 
 final class TemplateRepositoryTests: XCTestCase {
 
-    let templateRepository: MyTemplateRepository = FirebaseTemplateRepository.shared
+    let templateRepository: MyTemplateRepository = FirebaseMyTemplateRepository.shared
     let testUserId: String = "12345"
     lazy var template: Template = .init(id: "oboy", name: "", templateDescription: "", makerId: testUserId, copyCount: 0, tag: [], isOpen: false)
     override func setUp() async throws {
