@@ -19,6 +19,10 @@ extension View {
     func deleteAlert(_ isShowing: Binding<Bool>, text: String, onDelete: @escaping () -> Void) -> some View {
         modifier(DeleteAlert(isShowing: isShowing, text: text, onDelete: onDelete))
     }
+
+    func keyboardShortcut(_ keyEquivalent: KeyEquivalent, _ modifiers: EventModifiers = .command, onActivate: @escaping () -> Void) -> some View {
+        modifier(KeyboardShortcut(keyEquivalent: keyEquivalent, modifiers: modifiers, onActivate: onActivate))
+    }
 }
 
 extension TextField {
@@ -120,5 +124,33 @@ struct DeleteAlert: ViewModifier {
                     Text("Delete")
                 }
             }
+    }
+}
+
+struct KeyboardShortcut: ViewModifier {
+
+    private let keyEquivalent: KeyEquivalent
+    private let modifiers: EventModifiers
+    private let onActivate: () -> Void
+
+    init(keyEquivalent: KeyEquivalent,
+         modifiers: EventModifiers,
+         onActivate: @escaping () -> Void) {
+        self.keyEquivalent = keyEquivalent
+        self.modifiers = modifiers
+        self.onActivate = onActivate
+    }
+
+    func body(content: Content) -> some View {
+        ZStack {
+            Button(action: onActivate) {
+            }
+            .padding(0)
+            .opacity(0)
+            .frame(width: 0, height: 0)
+            .keyboardShortcut(keyEquivalent, modifiers: modifiers)
+
+            content
+        }
     }
 }

@@ -64,6 +64,9 @@ private extension MyTemplateDetail {
         DefaultButton(text: "Add Label", style: .primary) {
             switchEditLabelState(.add)
         }
+        .keyboardShortcut("a") {
+            switchEditLabelState(.add)
+        }
     }
 }
 
@@ -280,6 +283,9 @@ private extension MyTemplateDetail {
                 } label: {
                     Text("\(Image(systemName: "square.and.arrow.up")) Upload to Github")
                         .padding()
+                }
+                .keyboardShortcut("u") {
+                    appState.routing.myTemplateDetailRouting.isShowingRepositoryList = true
                 }
             }
         }

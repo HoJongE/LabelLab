@@ -27,7 +27,7 @@ enum BasicButtonType {
 struct BasicButton: View {
     private let text: String
     private let type: BasicButtonType
-    private let clicked: (() -> Void) /// use closure for callback
+    private let clicked: () -> Void /// use closure for callback
 
     init(text: String,
          type: BasicButtonType,

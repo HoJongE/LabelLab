@@ -5,7 +5,7 @@
 //  Created by JongHo Park on 2022/10/11.
 //
 
-import Foundation
+import SwiftUI
 
 protocol LabelListInteractor {
     func requestLabels(of template: Template, to labels: LoadableSubject<[Label]>) async
@@ -49,7 +49,9 @@ extension RealLabelListInteractor: LabelListInteractor {
             appendedLabels?.append(label)
             event.wrappedValue = .notRequested
             guard let appendedLabels else { return }
-            subject.wrappedValue = .loaded(appendedLabels)
+            withAnimation {
+                subject.wrappedValue = .loaded(appendedLabels)
+            }
         } catch {
             event.wrappedValue = .failed(error)
         }
@@ -76,7 +78,9 @@ extension RealLabelListInteractor: LabelListInteractor {
             var deletedLabels: [Label]? = subject.wrappedValue.value
             deletedLabels?.delete(label)
             guard let deletedLabels else { return }
-            subject.wrappedValue = .loaded(deletedLabels)
+            withAnimation {
+                subject.wrappedValue = .loaded(deletedLabels)
+            }
         } catch {
             event.wrappedValue = .failed(error)
         }

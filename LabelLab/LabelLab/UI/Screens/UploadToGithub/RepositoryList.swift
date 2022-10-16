@@ -14,6 +14,7 @@ struct RepositoryList: View {
     @Environment(\.injected) private var diContainer: DIContainer
     @Environment(\.dismiss) private var dismiss
     @State private var selectedRepository: GithubRepository?
+    @FocusState private var focusState: Bool
     @StateObject private var searchState: SearchState = .init()
     private let labels: [Label]
     private let templateName: String
@@ -30,7 +31,7 @@ struct RepositoryList: View {
             statusTitle
             content(repositories)
         }
-        .frame(width: 454, height: 580)
+        .frame(width: 454, height: 650)
         .background(Color.detailBackground)
         .sheet(isPresented: $appState.routing.repositoryListRouting.isShowingUploadPopup) {
             if let selectedRepository = selectedRepository {
@@ -54,6 +55,7 @@ private extension RepositoryList {
     }
 
     func searchRepository(_ query: String) {
+        selectedRepository = nil
         guard !query.isEmpty else {
             filteredRepositories = nil
             return
@@ -143,17 +145,18 @@ private extension RepositoryList {
         .maxSize(.center)
     }
 
+    @ViewBuilder
     func list(_ repositories: [GithubRepository]) -> some View {
         ScrollView(.vertical, showsIndicators: true) {
             if let filteredRepositories {
-                ForEach(filteredRepositories) { repository in
-                    Cell(repository: repository, isSelected: repository == selectedRepository) {
+                ForEachWithIndex(filteredRepositories) { index, repository in
+                    Cell(repository: repository, isSelected: repository == selectedRepository, index: index + 1) {
                         selectedRepository = repository
                     }
                 }
             } else {
-                ForEach(repositories) { repository in
-                    Cell(repository: repository, isSelected: selectedRepository == repository) {
+                ForEachWithIndex(repositories) { index, repository in
+                    Cell(repository: repository, isSelected: selectedRepository == repository, index: index + 1) {
                         selectedRepository = repository
                     }
                 }
@@ -182,6 +185,12 @@ private extension RepositoryList {
             Image(systemName: "magnifyingglass")
             TextField("Type repository name to search", text: $searchState.searchQuery)
                 .textFieldStyle(.plain)
+                .focused($focusState)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        focusState = true
+                    }
+                }
             Button {
                 searchState.searchQuery = ""
             } label: {
@@ -189,7 +198,7 @@ private extension RepositoryList {
             }
             .opacity(searchState.searchQuery.isEmpty ? 0: 1)
             .disabled(searchState.searchQuery.isEmpty)
-            .buttonStyle(.plain)
+            .buttonStyle(PlainButtonStyle())
         }
         .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
         .background(RoundedRectangle(cornerRadius: 6)
@@ -203,13 +212,15 @@ private extension RepositoryList {
     struct Cell: View {
         private let repository: GithubRepository
         private let isSelected: Bool
+        private let index: Int
         private let onClick: () -> Void
         @State private var isHover: Bool = false
 
-        init(repository: GithubRepository, isSelected: Bool = false, onClick: @escaping () -> Void = { }) {
+        init(repository: GithubRepository, isSelected: Bool = false, index: Int, onClick: @escaping () -> Void = { }) {
             self.repository = repository
             self.onClick = onClick
             self.isSelected = isSelected
+            self.index = index
         }
 
         var body: some View {
@@ -218,12 +229,27 @@ private extension RepositoryList {
                     .padding(EdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 8))
                 Text(repository.fullName)
                     .font(.callout)
+                Spacer()
+                if index < 10 && !isSelected {
+                    Text("⌘\(index)")
+                        .foregroundColor(.gray)
+                        .font(.callout)
+                        .bold()
+                        .padding(.trailing)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(RoundedRectangle(cornerRadius: 10).fill((isHover || isSelected) ? .blue: .cellBackground ))
             .onHover(perform: { isHover = $0 })
             .contentShape(Rectangle())
             .onTapGesture(perform: onClick)
+            .keyboardShortcut(.init("\(index)".first!), onActivate: onShortcut)
+        }
+
+        private func onShortcut() {
+            if index < 10 {
+                onClick()
+            }
         }
     }
 }

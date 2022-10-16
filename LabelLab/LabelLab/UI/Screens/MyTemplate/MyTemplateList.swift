@@ -65,6 +65,7 @@ private extension MyTemplateList {
     func addTemplateButton() -> some View {
         DefaultButton(text: "New Template", style: .primary, onClick: addTemplate)
             .disabled(appState.userData.myTemplateList.value == nil)
+            .keyboardShortcut("n", onActivate: addTemplate)
     }
 }
 

@@ -5,6 +5,8 @@
 //  Created by JongHo Park on 2022/09/22.
 //
 
+import SwiftUI
+
 protocol MyTemplateListInteractor {
     func addTemplate(template: Template) async
     func changeTemplateVisibility(of template: Template, isChanging: LoadableSubject<Void>) async
@@ -65,7 +67,9 @@ extension RealMyTemplateListInteractor: MyTemplateListInteractor {
             var value: [Template]? = appState.userData.myTemplateList.value
             value?.removeAll { $0.id == template.id }
             if let value = value {
-                appState.userData.myTemplateList = .loaded(value)
+                withAnimation {
+                    appState.userData.myTemplateList = .loaded(value)
+                }
             }
             isDeleting.wrappedValue = .loaded(())
         } catch {
