@@ -62,6 +62,7 @@
 		0085688A28D6D02000A88CB8 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0085688928D6D02000A88CB8 /* CircleButton.swift */; };
 		0085688D28D6D49C00A88CB8 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0085688C28D6D49C00A88CB8 /* ViewExtension.swift */; };
 		0089E69828FBC9D000120B4E /* TemplateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089E69728FBC9D000120B4E /* TemplateRepository.swift */; };
+		0089E69A28FBD65B00120B4E /* TemplateRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0089E69928FBD65B00120B4E /* TemplateRepositoryTests.swift */; };
 		008B94F228DFF21000C211B3 /* MockTemplateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B94F128DFF21000C211B3 /* MockTemplateRepository.swift */; };
 		008B94F428DFFD7000C211B3 /* TemplateInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */; };
 		0094C48828F4ECEC00162579 /* LabelListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094C48728F4ECEC00162579 /* LabelListInteractor.swift */; };
@@ -83,7 +84,7 @@
 		00CB3F0C28C047BD006B1536 /* MockOAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CB3F0B28C047BD006B1536 /* MockOAuthInteractor.swift */; };
 		00CB3F0F28C04940006B1536 /* MockDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CB3F0E28C04940006B1536 /* MockDIContainer.swift */; };
 		00D1D22628DF4F2B00968EBF /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1D22528DF4F2B00968EBF /* EncodableExtension.swift */; };
-		00D1D22C28DF504D00968EBF /* TemplateRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1D22B28DF504D00968EBF /* TemplateRepositoryTests.swift */; };
+		00D1D22C28DF504D00968EBF /* MyTemplateRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1D22B28DF504D00968EBF /* MyTemplateRepositoryTests.swift */; };
 		00DB638028F3DD6900EB009E /* LabelRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DB637F28F3DD6900EB009E /* LabelRepositoryTests.swift */; };
 		00DDBA9828C3786900FB1240 /* GithubRepAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDBA9728C3786900FB1240 /* GithubRepAPI.swift */; };
 		00DDBA9A28C37A1A00FB1240 /* GithubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DDBA9928C37A1A00FB1240 /* GithubService.swift */; };
@@ -182,6 +183,7 @@
 		0085688928D6D02000A88CB8 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		0085688C28D6D49C00A88CB8 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		0089E69728FBC9D000120B4E /* TemplateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateRepository.swift; sourceTree = "<group>"; };
+		0089E69928FBD65B00120B4E /* TemplateRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateRepositoryTests.swift; sourceTree = "<group>"; };
 		008B94F128DFF21000C211B3 /* MockTemplateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTemplateRepository.swift; sourceTree = "<group>"; };
 		008B94F328DFFD7000C211B3 /* TemplateInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateInteractorTests.swift; sourceTree = "<group>"; };
 		0094C48728F4ECEC00162579 /* LabelListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListInteractor.swift; sourceTree = "<group>"; };
@@ -199,7 +201,7 @@
 		00CB3F0B28C047BD006B1536 /* MockOAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOAuthInteractor.swift; sourceTree = "<group>"; };
 		00CB3F0E28C04940006B1536 /* MockDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDIContainer.swift; sourceTree = "<group>"; };
 		00D1D22528DF4F2B00968EBF /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtension.swift; sourceTree = "<group>"; };
-		00D1D22B28DF504D00968EBF /* TemplateRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateRepositoryTests.swift; sourceTree = "<group>"; };
+		00D1D22B28DF504D00968EBF /* MyTemplateRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTemplateRepositoryTests.swift; sourceTree = "<group>"; };
 		00DB637F28F3DD6900EB009E /* LabelRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelRepositoryTests.swift; sourceTree = "<group>"; };
 		00DDBA9728C3786900FB1240 /* GithubRepAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubRepAPI.swift; sourceTree = "<group>"; };
 		00DDBA9928C37A1A00FB1240 /* GithubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubService.swift; sourceTree = "<group>"; };
@@ -555,8 +557,9 @@
 		00D1D22828DF502200968EBF /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				00D1D22B28DF504D00968EBF /* TemplateRepositoryTests.swift */,
+				00D1D22B28DF504D00968EBF /* MyTemplateRepositoryTests.swift */,
 				00DB637F28F3DD6900EB009E /* LabelRepositoryTests.swift */,
+				0089E69928FBD65B00120B4E /* TemplateRepositoryTests.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -861,11 +864,12 @@
 				00CB3F0C28C047BD006B1536 /* MockOAuthInteractor.swift in Sources */,
 				00F8F10A28B4798D00D688AC /* OAuthAuthenticatorTest.swift in Sources */,
 				00E677BF28BCF86400918BF0 /* OAuthInteractorTests.swift in Sources */,
-				00D1D22C28DF504D00968EBF /* TemplateRepositoryTests.swift in Sources */,
+				00D1D22C28DF504D00968EBF /* MyTemplateRepositoryTests.swift in Sources */,
 				0004A16D28CC7F9C00D491C4 /* MockAccessTokenManager.swift in Sources */,
 				00CB3F0F28C04940006B1536 /* MockDIContainer.swift in Sources */,
 				00E677C128BD017700918BF0 /* MockOAuthService.swift in Sources */,
 				0045FF7E28CB088900F2B0D3 /* MockGithubService.swift in Sources */,
+				0089E69A28FBD65B00120B4E /* TemplateRepositoryTests.swift in Sources */,
 				00617F5328BF4887008B5952 /* ConstantData.swift in Sources */,
 				0050AADF28F1506D007588D0 /* SerialDispatchQueueTests.swift in Sources */,
 				008B94F228DFF21000C211B3 /* MockTemplateRepository.swift in Sources */,

@@ -10,6 +10,9 @@ import FirebaseFirestoreSwift
 
 protocol TemplateRepository {
     func requestTemplates(exclude userId: String?, query: TemplateQuery) async throws -> [Template]
+    #if DEBUG
+    func addTemplates(templates: [Template]) async throws
+    #endif
 }
 
 struct TemplateQuery: Equatable {
@@ -23,7 +26,7 @@ struct TemplateQuery: Equatable {
          tags: [String] = [],
          perPage: Int = 15) {
         self.descending = descending
-        self.nameQuery = nameQuery
+        self.nameQuery = nameQuery?.uppercased()
         self.tags = tags
         self.perPage = perPage
     }
@@ -63,7 +66,23 @@ extension FirebaseTemplateRepository: TemplateRepository {
         }
         return ret
     }
+
 }
+
+// MARK: - For Debug & Tests
+#if DEBUG
+extension FirebaseTemplateRepository {
+    func addTemplates(templates: [Template]) async throws {
+        let writeBatch: WriteBatch = db.batch()
+        for template in templates {
+            let ref = db.collection(collection).document(template.id)
+            writeBatch.setData(try template.encode(), forDocument: ref)
+        }
+        try await writeBatch.commit()
+    }
+}
+
+#endif
 
 private extension FirebaseTemplateRepository {
 
@@ -78,6 +97,7 @@ private extension FirebaseTemplateRepository {
         var query = db.collection(collection)
             .whereField("makerId", isNotEqualTo: userId ?? "")
             .whereField("isOpen", isEqualTo: true)
+            .order(by: "makerId", descending: true)
             .order(by: "copyCount", descending: templateQuery.descending)
 
         // 만약 검색 쿼리가 존재하면, name 검색 쿼리를 추가함

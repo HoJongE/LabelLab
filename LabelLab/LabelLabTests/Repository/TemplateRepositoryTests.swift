@@ -2,7 +2,7 @@
 //  TemplateRepositoryTests.swift
 //  LabelLabTests
 //
-//  Created by JongHo Park on 2022/09/24.
+//  Created by JongHo Park on 2022/10/16.
 //
 
 @testable import LabelLab
@@ -10,73 +10,76 @@ import XCTest
 
 final class TemplateRepositoryTests: XCTestCase {
 
-    let templateRepository: MyTemplateRepository = FirebaseMyTemplateRepository.shared
-    let testUserId: String = "12345"
-    lazy var template: Template = .init(id: "oboy", name: "", templateDescription: "", makerId: testUserId, copyCount: 0, tag: [], isOpen: false)
+    private var templateRepository: TemplateRepository!
+    private var myTemplateRepository: MyTemplateRepository!
+    private let testUserId: String = "testUserId"
+    private lazy var testTemplates: [Template] = {
+        var ret: [Template] = []
+
+        for i in 0..<5 {
+            ret.append(Template(id: UUID().uuidString, name: "Test Template", templateDescription: "Test Template", makerId: testUserId, copyCount: i, tag: [], isOpen: true))
+        }
+
+        for i in 0..<1 {
+            ret.append(Template(id: UUID().uuidString, name: "Test Template", templateDescription: "Test Template", makerId: testUserId, copyCount: i, tag: [], isOpen: false))
+        }
+        return ret
+    }()
+
     override func setUp() async throws {
         try await super.setUp()
+        templateRepository = FirebaseTemplateRepository.shared
+        myTemplateRepository = FirebaseMyTemplateRepository.shared
     }
 
     override func tearDown() async throws {
-        try await templateRepository.deleteTemplates(of: testUserId)
+        try await myTemplateRepository.deleteTemplates(of: testUserId)
+        myTemplateRepository = nil
+        templateRepository = nil
         try await super.tearDown()
     }
 
-    func testAddTemplateAndDeleteTemplate() async {
+    func testPaginationWithDescendingIsSuccess() async {
         do {
-            try await templateRepository.addTemplate(template: template)
-            let templates: [Template] = try await templateRepository.requestTemplates(of: testUserId)
-            XCTAssertEqual(templates.first?.id, template.id)
-            try await templateRepository.deleteTemplate(template)
-            let emptyTemplates: [Template] = try await templateRepository.requestTemplates(of: testUserId)
-            XCTAssert(emptyTemplates.isEmpty)
+            try await templateRepository.addTemplates(templates: testTemplates)
+            let query: TemplateQuery = .init(perPage: 2)
+
+            let result1: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            XCTAssertEqual(result1.count, 2)
+            XCTAssertEqual(result1.first!.copyCount, 4)
+            let result2: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            XCTAssertEqual(result2.count, 2)
+            XCTAssertEqual(result2.first!.copyCount, 2)
+            let result3: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            XCTAssertEqual(result3.count, 1)
+            XCTAssertEqual(result3.first!.copyCount, 0)
+
+            let result4: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            XCTAssert(result4.isEmpty)
         } catch {
-            XCTFail(error.localizedDescription)
+            XCTFail(#function + " \(error.localizedDescription)")
         }
     }
 
-    func testChangeVisibility() async {
+    func testPaginationWithAscendingIsSuccess() async {
         do {
-            try await templateRepository.addTemplate(template: template)
-            _ = try await templateRepository.changeTemplateVisibility(of: template)
-            let templates: [Template] = try await templateRepository.requestTemplates(of: testUserId)
-            XCTAssertEqual(template.isOpen, !templates.first!.isOpen)
-        } catch {
-            XCTFail(error.localizedDescription)
-        }
-    }
+            try await templateRepository.addTemplates(templates: testTemplates)
+            let query: TemplateQuery = .init(descending: false, perPage: 2)
 
-    func testUpdateName() async {
-        do {
-            let promise = expectation(description: #function)
-            let updateName: String = "Test Name!"
-            try await templateRepository.addTemplate(template: template)
-            templateRepository.updateTemplateName(of: template, to: updateName) { _ in
-                promise.fulfill()
-            }
-            wait(for: [promise], timeout: 5)
-            let templates: [Template] = try await templateRepository.requestTemplates(of: testUserId)
-            XCTAssertEqual(templates.count, 1)
-            XCTAssertEqual(templates.first!.name, updateName)
-        } catch {
-            XCTFail(error.localizedDescription)
-        }
-    }
+            let result1: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            XCTAssertEqual(result1.count, 2)
+            XCTAssertEqual(result1.first!.copyCount, 0)
+            let result2: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            XCTAssertEqual(result2.count, 2)
+            XCTAssertEqual(result2.first!.copyCount, 2)
+            let result3: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            XCTAssertEqual(result3.count, 1)
+            XCTAssertEqual(result3.first!.copyCount, 4)
 
-    func testUpdateDescription() async {
-        do {
-            let promise = expectation(description: #function)
-            let updateDescription: String = "Test Description!"
-            try await templateRepository.addTemplate(template: template)
-            templateRepository.updateTemplateDescription(of: template, to: updateDescription) { _ in
-                promise.fulfill()
-            }
-            wait(for: [promise], timeout: 5)
-            let templates: [Template] = try await templateRepository.requestTemplates(of: testUserId)
-            XCTAssertEqual(templates.count, 1)
-            XCTAssertEqual(templates.first!.templateDescription, updateDescription)
+            let result4: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            XCTAssert(result4.isEmpty)
         } catch {
-            XCTFail(error.localizedDescription)
+            XCTFail(#function + " \(error.localizedDescription)")
         }
     }
 }
