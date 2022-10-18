@@ -44,6 +44,7 @@ extension AppState {
         var sidebarRouting: Sidebar.Routing = .init()
         var myTemplateListRouting: MyTemplateList.Routing = .init()
         var myTemplateDetailRouting: MyTemplateDetail.Routing = .init()
+        var inspirationListRouting: InspirationList.Routing = .init()
     }
 
 }
