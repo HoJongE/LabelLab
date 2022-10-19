@@ -31,11 +31,13 @@ struct DIGenerator {
         let myTemplateListInteractor: MyTemplateListInteractor = RealMyTemplateListInteractor(appState: appState)
         let templateDetailInteractor: TemplateDetailInteractor = RealTemplateDetailInteractor(appState: appState)
         let labelListInteractor: LabelListInteractor = RealLabelListInteractor(appState: appState)
+        let inspirationInteractor: InspirationInteractor = RealInspirationInteractor(appState: appState)
 
         return DIContainer.Interactors(oAuthInteractor: oAuthInteractor,
                                        uploadToGithubInteractor: uploadToGithubInteractor,
                                        myTemplateListInteractor: myTemplateListInteractor,
                                        templateDetailInteractor: templateDetailInteractor,
-                                       labelListInteractor: labelListInteractor)
+                                       labelListInteractor: labelListInteractor,
+                                       inspirationInteractor: inspirationInteractor)
     }
 }

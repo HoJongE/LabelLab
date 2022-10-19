@@ -11,11 +11,7 @@ struct InspirationList: View {
 
     @EnvironmentObject private var appState: AppState
     @Environment(\.injected) private var diContainer: DIContainer
-    @State private var inspirations: Loadable<[Template]> = .notRequested
 
-    init(inspirations: Loadable<[Template]> = .notRequested) {
-        self._inspirations = State(initialValue: inspirations)
-    }
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             tabName()
@@ -38,6 +34,9 @@ struct InspirationList: View {
 // MARK: - Side Effects
 private extension InspirationList {
     func requestTemplates() {
+        diContainer.interactors
+            .inspirationInteractor
+            .requestNextTemplates(query: .init(perPage: 10))
     }
 }
 
@@ -45,42 +44,30 @@ private extension InspirationList {
 private extension InspirationList {
     @ViewBuilder
     func content() -> some View {
-        switch inspirations {
+        switch appState.userData.templateList {
         case .notRequested:
             Text("")
                 .onAppear(perform: requestTemplates)
-        case .isLoading(last: let last):
-            loading(last)
-        case .loaded(let templates):
-            loaded(templates)
+        case .isLoading, .loaded:
+            loaded(appState.userData.templateList)
         case .failed(let error):
-            EmptyView()
+            failed(error: error)
         }
     }
 }
 
-// MARK: - Loading
-private extension InspirationList {
-    @ViewBuilder
-    func loading(_ templates: [Template]?) -> some View {
-        VStack {
-            if let templates {
-                list(templates, isLoading: true)
-            } else {
-                ProgressView()
-            }
-        }
-        .maxSize(.center)
-    }
-}
 // MARK: - Loaded
 private extension InspirationList {
     @ViewBuilder
-    func loaded(_ templates: [Template]) -> some View {
-        if templates.isEmpty {
-            emptyView()
-        } else {
-
+    func loaded(_ templates: Loadable<[Template]>) -> some View {
+        VStack {
+            if let templates = templates.value {
+                list(templates)
+            }
+            if case .isLoading = templates {
+                ProgressView()
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
         }
     }
 }
@@ -89,7 +76,7 @@ private extension InspirationList {
 private extension InspirationList {
     func failed(error: Error) -> some View {
         VStack {
-            Text("An error occur when load templates!\(error.localizedDescription)")
+            Text("An error occur when load templates!\n\(error.localizedDescription)")
                 .bold()
             DefaultButton(text: "try again", style: .primary) {
                 requestTemplates()
@@ -160,6 +147,8 @@ private extension InspirationList {
                 ForEach(templates) { template in
                     cell(template)
                 }
+                Text("")
+                    .onAppear(perform: requestTemplates)
             }
             .frame(minHeight: 0, maxHeight: .infinity, alignment: .top)
             if isLoading {
@@ -196,13 +185,14 @@ extension InspirationList {
 struct InspirationList_Previews: PreviewProvider {
 
     static func makePreview(_ inspirations: Loadable<[Template]> = .notRequested) -> some View {
-
+        let userData: AppState.UserData = .init(templateList: inspirations)
+        let appState: AppState = AppState(userData)
         return NavigationView {
             Sidebar()
-            InspirationList(inspirations: inspirations)
+            InspirationList()
         }
         .previewDisplayName(inspirations.previewDisplayName)
-        .injectPreview()
+        .injectPreview(appState)
         .frame(width: 930, height: 500)
     }
 

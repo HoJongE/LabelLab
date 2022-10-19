@@ -43,7 +43,7 @@ extension Tab {
         case .myTemplate:
             MyTemplateList()
         case .inspiration:
-            InspirationList(inspirations: .isLoading(last: Template.mockedData))
+            InspirationList()
         case .faq:
             Text("FAQ")
         case .feedback:

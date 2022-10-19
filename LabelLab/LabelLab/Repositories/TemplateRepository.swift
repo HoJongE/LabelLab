@@ -9,7 +9,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 protocol TemplateRepository {
-    func requestTemplates(exclude userId: String?, query: TemplateQuery) async throws -> [Template]
+    func requestTemplates(exclude userId: String?, query templateQuery: TemplateQuery) async throws -> ([Template], Bool)
     #if DEBUG
     func addTemplates(templates: [Template]) async throws
     #endif
@@ -41,8 +41,9 @@ final class FirebaseTemplateRepository {
     static let shared: TemplateRepository = FirebaseTemplateRepository()
     private let db: Firestore = .firestore()
     private let labelRepository: LabelRepository = FirebaseLabelRepository.shared
-    private var lastQuery: TemplateQuery?
     private var lastSnapshot: DocumentSnapshot?
+    private var lastQuery: TemplateQuery?
+    private var canUpdateMore: Bool = true
 
     private var collection: String {
         ProcessInfo().isRunningTests ? "TestTemplates": "Templates"
@@ -52,21 +53,26 @@ final class FirebaseTemplateRepository {
 }
 
 extension FirebaseTemplateRepository: TemplateRepository {
-    func requestTemplates(exclude userId: String?, query: TemplateQuery) async throws -> [Template] {
-        let query: Query = makeQuery(query, exclude: userId)
-        let querySnapshot = try await query.getDocuments()
+    func requestTemplates(exclude userId: String?, query templateQuery: TemplateQuery) async throws -> ([Template], Bool) {
+        // 만약 이전 쿼리와 다르면, canUpdateMore 을 true로 옮긴다...
+        if !checkQueryIsSame(templateQuery) {
+            canUpdateMore = true
+        }
 
-        // 마지막 스냅샷을 지정해줌
-        lastSnapshot = querySnapshot.documents.last
+        guard canUpdateMore else { return ([], false) }
+        let query: Query = makeQuery(templateQuery, exclude: userId)
+        let querySnapshot = try await query.getDocuments()
 
         var ret: [Template] = []
         for document in querySnapshot.documents {
             let template: Template = try document.data(as: Template.self)
             ret.append(template)
         }
-        return ret
+        lastQuery = templateQuery
+        lastSnapshot = querySnapshot.documents.last
+        updateCanUpdateMore(query: templateQuery, count: querySnapshot.documents.count)
+        return (ret, canUpdateMore)
     }
-
 }
 
 // MARK: - For Debug & Tests
@@ -86,10 +92,15 @@ extension FirebaseTemplateRepository {
 
 private extension FirebaseTemplateRepository {
 
-    func checkQueryIsSame(query: TemplateQuery) -> Bool {
-        lastQuery == query
+    func checkQueryIsSame(_ templateQuery: TemplateQuery) -> Bool {
+        templateQuery == lastQuery
     }
 
+    func updateCanUpdateMore(query: TemplateQuery, count: Int) {
+        if count == 0 || count < query.perPage {
+            canUpdateMore = false
+        }
+    }
     // TemplateQuery 를 보고 적절한 쿼리문을 만드는 함수
     func makeQuery(_ templateQuery: TemplateQuery, exclude userId: String?) -> Query {
 
@@ -108,16 +119,10 @@ private extension FirebaseTemplateRepository {
 
         // 페이지네이션을 위한 쿼리 추가
         query = query.limit(to: templateQuery.perPage)
-
-        // 만약 이전 쿼리와 현재 쿼리가 똑같으면, 페이지네이션을 구현한다.
-        if checkQueryIsSame(query: templateQuery), let lastSnapshot {
+        // 만약 쿼리가 이전 쿼리와 같으면?
+        if checkQueryIsSame(templateQuery), let lastSnapshot {
             query = query.start(afterDocument: lastSnapshot)
-        } else {
-            lastSnapshot = nil
         }
-
-        // 마지막 쿼리를 현재 들어온 쿼리로 설정함
-        lastQuery = templateQuery
 
         return query
     }

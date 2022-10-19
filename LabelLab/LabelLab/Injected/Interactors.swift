@@ -14,17 +14,20 @@ extension DIContainer {
         let myTemplateListInteractor: MyTemplateListInteractor
         let templateDetailInteractor: TemplateDetailInteractor
         let labelListInteractor: LabelListInteractor
+        let inspirationInteractor: InspirationInteractor
 
         init(oAuthInteractor: OAuthInteractor,
              uploadToGithubInteractor: UploadToGithubInteractor,
              myTemplateListInteractor: MyTemplateListInteractor,
              templateDetailInteractor: TemplateDetailInteractor,
-             labelListInteractor: LabelListInteractor) {
+             labelListInteractor: LabelListInteractor,
+             inspirationInteractor: InspirationInteractor) {
             self.oAuthInteractor = oAuthInteractor
             self.uploadToGithubInteractor = uploadToGithubInteractor
             self.myTemplateListInteractor = myTemplateListInteractor
             self.templateDetailInteractor = templateDetailInteractor
             self.labelListInteractor = labelListInteractor
+            self.inspirationInteractor = inspirationInteractor
         }
     }
 }
@@ -37,7 +40,8 @@ extension DIContainer.Interactors {
               uploadToGithubInteractor: RealUploadToGithubInteractor(appState: AppState.preview),
               myTemplateListInteractor: RealMyTemplateListInteractor(appState: AppState.preview),
               templateDetailInteractor: RealTemplateDetailInteractor(appState: AppState.preview),
-              labelListInteractor: RealLabelListInteractor(appState: AppState.preview))
+              labelListInteractor: RealLabelListInteractor(appState: AppState.preview),
+              inspirationInteractor: RealInspirationInteractor(appState: AppState.preview))
     }
 }
 #endif

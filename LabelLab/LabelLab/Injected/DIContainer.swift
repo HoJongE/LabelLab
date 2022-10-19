@@ -24,7 +24,8 @@ struct DIContainer: EnvironmentKey {
             uploadToGithubInteractor: RealUploadToGithubInteractor(appState: appState),
             myTemplateListInteractor: RealMyTemplateListInteractor(appState: appState),
             templateDetailInteractor: RealTemplateDetailInteractor(appState: appState),
-            labelListInteractor: RealLabelListInteractor(appState: appState)
+            labelListInteractor: RealLabelListInteractor(appState: appState),
+            inspirationInteractor: RealInspirationInteractor(appState: appState)
         ))
     }
 }

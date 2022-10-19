@@ -27,7 +27,6 @@ final class FirebaseMyTemplateRepository {
     private var collection: String {
         ProcessInfo().isRunningTests ? "TestTemplates": "Templates"
     }
-    private let serialTasks: SerialTasksDispatchQueue = .init(.userInteractive)
     private let dispatchQueue: DispatchQueue = DispatchQueue(label: "Serial Queue", qos: .userInteractive)
     private let labelRepository: LabelRepository = FirebaseLabelRepository.shared
 

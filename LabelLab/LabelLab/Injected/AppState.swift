@@ -25,12 +25,15 @@ extension AppState {
     struct UserData {
         var userInfo: Loadable<UserInfo>
         var myTemplateList: AuthenticationRequiredLoadable<[Template]>
+        var templateList: Loadable<[Template]>
         // for Template List
 
         init(userInfo: Loadable<UserInfo> = .notRequested,
-             myTemplateList: AuthenticationRequiredLoadable<[Template]> = .notRequested) {
+             myTemplateList: AuthenticationRequiredLoadable<[Template]> = .notRequested,
+             templateList: Loadable<[Template]> = .notRequested) {
             self.userInfo = userInfo
             self.myTemplateList = myTemplateList
+            self.templateList = templateList
         }
     }
 }
