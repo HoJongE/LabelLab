@@ -28,6 +28,7 @@ extension LabelError: LocalizedError {
 protocol LabelRepository {
     func requestLabels(of template: Template) async throws -> [Label]
     func addLabel(to template: Template, label: Label) async throws
+    func addLabels(to template: Template, labels: [Label]) async throws
     func modifyLabel(to template: Template, label: Label) async throws
     func deleteLabel(of template: Template, label: Label) async throws
     func deleteLabels(of template: Template) async throws
@@ -69,6 +70,17 @@ extension FirebaseLabelRepository: LabelRepository {
             throw LabelError.nameIsAlreadyExist
         }
         try await getLabelRef(of: template, of: label).setData(label.encode())
+    }
+
+    func addLabels(to template: Template, labels: [Label]) async throws {
+        try await withThrowingTaskGroup(of: Void.self, body: { group in
+            for label in labels {
+                group.addTask(priority: .userInitiated) {
+                    try await self.getLabelRef(of: template, of: label).setData(label.encode())
+                }
+            }
+            try await group.waitForAll()
+        })
     }
 
     func modifyLabel(to template: Template, label: Label) async throws {

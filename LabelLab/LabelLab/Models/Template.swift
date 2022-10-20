@@ -30,6 +30,10 @@ extension Template {
     func changeDescription(to description: String) -> Template {
         Template(id: id, name: name, templateDescription: description, makerId: makerId, copyCount: copyCount, tag: tag, isOpen: isOpen)
     }
+
+    func copyTemplate(to userId: String) -> Template {
+        Template(id: UUID().uuidString, name: name, templateDescription: templateDescription, makerId: userId, copyCount: 0, tag: tag, isOpen: false)
+    }
 }
 
 extension Template: Equatable {

@@ -31,6 +31,11 @@ final class MockLabelRepository: LabelRepository {
         labels.append(label)
     }
 
+    func addLabels(to template: Template, labels: [Label]) async throws {
+        try throwError()
+        self.labels.append(contentsOf: labels)
+    }
+
     func modifyLabel(to template: LabelLab.Template, label: LabelLab.Label) async throws {
         try throwError()
         labels.replace(to: label)
