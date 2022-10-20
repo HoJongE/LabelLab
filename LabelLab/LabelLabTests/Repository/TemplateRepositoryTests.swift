@@ -44,17 +44,17 @@ final class TemplateRepositoryTests: XCTestCase {
             try await templateRepository.addTemplates(templates: testTemplates)
             let query: TemplateQuery = .init(perPage: 2)
 
-            let result1: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            let result1: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query).0
             XCTAssertEqual(result1.count, 2)
             XCTAssertEqual(result1.first!.copyCount, 4)
-            let result2: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            let result2: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query).0
             XCTAssertEqual(result2.count, 2)
             XCTAssertEqual(result2.first!.copyCount, 2)
-            let result3: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            let result3: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query).0
             XCTAssertEqual(result3.count, 1)
             XCTAssertEqual(result3.first!.copyCount, 0)
 
-            let result4: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            let result4: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query).0
             XCTAssert(result4.isEmpty)
         } catch {
             XCTFail(#function + " \(error.localizedDescription)")
@@ -66,17 +66,17 @@ final class TemplateRepositoryTests: XCTestCase {
             try await templateRepository.addTemplates(templates: testTemplates)
             let query: TemplateQuery = .init(descending: false, perPage: 2)
 
-            let result1: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            let result1: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query).0
             XCTAssertEqual(result1.count, 2)
             XCTAssertEqual(result1.first!.copyCount, 0)
-            let result2: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            let result2: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query).0
             XCTAssertEqual(result2.count, 2)
             XCTAssertEqual(result2.first!.copyCount, 2)
-            let result3: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            let result3: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query).0
             XCTAssertEqual(result3.count, 1)
             XCTAssertEqual(result3.first!.copyCount, 4)
 
-            let result4: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query)
+            let result4: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query).0
             XCTAssert(result4.isEmpty)
         } catch {
             XCTFail(#function + " \(error.localizedDescription)")

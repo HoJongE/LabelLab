@@ -61,17 +61,24 @@ extension FirebaseTemplateRepository: TemplateRepository {
 
         guard canUpdateMore else { return ([], false) }
         let query: Query = makeQuery(templateQuery, exclude: userId)
-        let querySnapshot = try await query.getDocuments()
 
-        var ret: [Template] = []
-        for document in querySnapshot.documents {
-            let template: Template = try document.data(as: Template.self)
-            ret.append(template)
+        do {
+            let querySnapshot = try await query.getDocuments()
+            var ret: [Template] = []
+            for document in querySnapshot.documents {
+                let template: Template = try document.data(as: Template.self)
+                ret.append(template)
+            }
+            lastQuery = templateQuery
+            lastSnapshot = querySnapshot.documents.last
+            updateCanUpdateMore(query: templateQuery, count: querySnapshot.documents.count)
+            return (ret, canUpdateMore)
+        } catch {
+            canUpdateMore = true
+            lastQuery = nil
+            lastSnapshot = nil
+            throw error
         }
-        lastQuery = templateQuery
-        lastSnapshot = querySnapshot.documents.last
-        updateCanUpdateMore(query: templateQuery, count: querySnapshot.documents.count)
-        return (ret, canUpdateMore)
     }
 }
 

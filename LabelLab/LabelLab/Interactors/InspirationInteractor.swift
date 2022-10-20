@@ -42,11 +42,10 @@ final class RealInspirationInteractor: InspirationInteractor {
             appState.userData.templateList = .isLoading(last: appState.userData.templateList.value)
             let exclude: Int? = appState.userData.userInfo.value?.id
             let result = try await templateRepository.requestTemplates(exclude: exclude != nil ? String(exclude!): "", query: query)
-            let templatesToAppend: [Template] = result.0
-
             defer {
                 canUpdateMore = result.1
             }
+            let templatesToAppend: [Template] = result.0
             // 만약 마지막 쿼리가 이전 쿼리와 같다면, append 해야함
             if query == lastQuery {
                 guard var templatesToReplace = appState.userData.templateList.value else {
@@ -63,6 +62,7 @@ final class RealInspirationInteractor: InspirationInteractor {
             lastQuery = query
         } catch {
             lastQuery = nil
+            canUpdateMore = true
             appState.userData.templateList = .failed(error)
         }
     }
