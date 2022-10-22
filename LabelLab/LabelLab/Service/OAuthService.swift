@@ -20,21 +20,21 @@ extension OAuthError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .dataNotExist:
-            return "에러가 발생했습니다."
+            return "Data does not exist!"
         case .tokenNotExist:
-            return "액세스 토큰을 발급받지 못했습니다."
+            return "Please login first"
         case .userInfoNotExist:
-            return "유저 정보가 없습니다."
+            return "Please logout and login again"
         }
     }
     var recoverySuggestion: String? {
         switch self {
         case .dataNotExist:
-            return "다시 요청해주세요."
+            return "Please retry"
         case .tokenNotExist:
-            return "다시 요청해주세요."
+            return "Please retry"
         case .userInfoNotExist:
-            return "다시 로그인을 시도해주세요."
+            return "Please logout and login again"
         }
     }
 }

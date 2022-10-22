@@ -172,6 +172,9 @@ private extension MyTemplateList {
                     loadTemplates()
                 }
             }
+            .onAppear {
+                loadTemplates()
+            }
     }
 }
 

@@ -103,6 +103,8 @@
 		00F8F11228B4A0A500D688AC /* GithubAuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F11128B4A0A500D688AC /* GithubAuthAPI.swift */; };
 		00F8F11428B4A1A200D688AC /* URLCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F11328B4A1A200D688AC /* URLCollection.swift */; };
 		00FDA628290377B900D5B832 /* InspirationTemplateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDA627290377B900D5B832 /* InspirationTemplateDetail.swift */; };
+		00FDA62B2903810000D5B832 /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDA62A2903810000D5B832 /* FAQ.swift */; };
+		00FDA62D290399F100D5B832 /* FAQItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDA62C290399F100D5B832 /* FAQItem.swift */; };
 		A762EF9C28D6F49B0042ADFC /* CustomImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762EF9B28D6F49B0042ADFC /* CustomImageButton.swift */; };
 		A7AFD1D328BBCCDC000D8167 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFD1D228BBCCDC000D8167 /* BasicButton.swift */; };
 		A7AFD1D928BC3F44000D8167 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFD1D828BC3F44000D8167 /* DismissButton.swift */; };
@@ -223,6 +225,8 @@
 		00F8F11128B4A0A500D688AC /* GithubAuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAuthAPI.swift; sourceTree = "<group>"; };
 		00F8F11328B4A1A200D688AC /* URLCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCollection.swift; sourceTree = "<group>"; };
 		00FDA627290377B900D5B832 /* InspirationTemplateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspirationTemplateDetail.swift; sourceTree = "<group>"; };
+		00FDA62A2903810000D5B832 /* FAQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
+		00FDA62C290399F100D5B832 /* FAQItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQItem.swift; sourceTree = "<group>"; };
 		A762EF9B28D6F49B0042ADFC /* CustomImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageButton.swift; sourceTree = "<group>"; };
 		A7AFD1D228BBCCDC000D8167 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		A7AFD1D828BC3F44000D8167 /* DismissButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
@@ -452,6 +456,7 @@
 		002789B8288598E800BDCDA4 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				00FDA629290380F400D5B832 /* FAQ */,
 				006EF61128FBC7EE00059B63 /* Inspiration */,
 				00C7760A28CF5F7E008D1686 /* MyTemplate */,
 				001A757328CF5386001CE274 /* Sidebar */,
@@ -617,6 +622,15 @@
 				00DDBA9728C3786900FB1240 /* GithubRepAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		00FDA629290380F400D5B832 /* FAQ */ = {
+			isa = PBXGroup;
+			children = (
+				00FDA62A2903810000D5B832 /* FAQ.swift */,
+				00FDA62C290399F100D5B832 /* FAQItem.swift */,
+			);
+			path = FAQ;
 			sourceTree = "<group>";
 		};
 		A7AFD1D128BBC6D9000D8167 /* Button */ = {
@@ -831,6 +845,7 @@
 				009CA66E28FE74B1001F66CB /* InspirationInteractor.swift in Sources */,
 				0094C48828F4ECEC00162579 /* LabelListInteractor.swift in Sources */,
 				A762EF9C28D6F49B0042ADFC /* CustomImageButton.swift in Sources */,
+				00FDA62D290399F100D5B832 /* FAQItem.swift in Sources */,
 				002789882885986D00BDCDA4 /* ContentView.swift in Sources */,
 				0037ADA028AE41EE000C36AC /* Helpers.swift in Sources */,
 				009C440928DD310C00867E2F /* MyTemplateRepository.swift in Sources */,
@@ -842,6 +857,7 @@
 				00DDEABE28FD6338004DDFA9 /* InspirationList.swift in Sources */,
 				0044B17628BEF57100613190 /* KeychainConst.swift in Sources */,
 				00E9334C28CD76DB008ECC8B /* Sidebar.swift in Sources */,
+				00FDA62B2903810000D5B832 /* FAQ.swift in Sources */,
 				0037ADAA28AE579E000C36AC /* UserInfo.swift in Sources */,
 				00C7ECDC28E0368A004713B6 /* DIGenerator.swift in Sources */,
 				0040786028FA5E990029B638 /* TemplateIdCacheManager.swift in Sources */,
@@ -1043,7 +1059,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20221022;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"LabelLab/Resources";
 				DEVELOPMENT_TEAM = 44RS35G3C5;
@@ -1058,7 +1074,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = team.leejongwoo.LabelLab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1077,7 +1093,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20221022;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"LabelLab/Resources";
 				ENABLE_PREVIEWS = YES;
@@ -1091,7 +1107,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = team.leejongwoo.LabelLab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

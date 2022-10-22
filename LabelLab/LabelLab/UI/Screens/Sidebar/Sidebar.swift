@@ -73,8 +73,8 @@ private extension Sidebar {
             mailto("pjh00098@gmail.com")
         case .review:
             requestReview()
-        case .buyCoffee:
-            appState.routing.sidebarRouting.currentTab = tab
+//        case .buyCoffee:
+//            appState.routing.sidebarRouting.currentTab = tab
         }
     }
 
@@ -102,7 +102,7 @@ private extension Sidebar {
         return Button(action: openAccountInfo) {
             HStack(spacing: 8) {
                 accountProfile(userInfo: userInfo)
-                Text(userInfo?.nickname ?? "로그인 해주세요")
+                Text(userInfo?.nickname ?? "Please login to github")
                     .font(.system(size: 14))
                     .bold()
             }

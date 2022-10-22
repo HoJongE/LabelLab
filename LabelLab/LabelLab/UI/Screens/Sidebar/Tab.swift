@@ -21,7 +21,7 @@ extension TabSection {
         case .community:
             return [.inspiration]
         case .support:
-            return [.faq, .feedback, .review, .buyCoffee]
+            return [.faq, .feedback, .review]
         }
     }
 }
@@ -32,7 +32,7 @@ enum Tab: String, Equatable {
     case faq = "❓ FAQ"
     case feedback = "📨 Feedback"
     case review = "⭐ Review"
-    case buyCoffee = "☕ Buy me a coffee"
+//    case buyCoffee = "☕ Buy me a coffee"
 }
 
 extension Tab {
@@ -45,13 +45,13 @@ extension Tab {
         case .inspiration:
             InspirationList()
         case .faq:
-            Text("FAQ")
+            FAQ()
         case .feedback:
             Text("Feedback")
         case .review:
             Text("Review")
-        case .buyCoffee:
-            Text("Buy me a coffee")
+//        case .buyCoffee:
+//            Text("Buy me a coffee")
         }
     }
 }
