@@ -32,7 +32,7 @@ extension Template {
     }
 
     func copyTemplate(to userId: String) -> Template {
-        Template(id: UUID().uuidString, name: name, templateDescription: templateDescription, makerId: userId, copyCount: 0, tag: tag, isOpen: false)
+        Template(id: UUID().uuidString, name: name + " copied", templateDescription: templateDescription, makerId: userId, copyCount: 0, tag: tag, isOpen: false)
     }
 }
 

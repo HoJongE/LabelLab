@@ -126,7 +126,7 @@ private extension Sidebar {
 // MARK: - Routing
 extension Sidebar {
     struct Routing: Equatable {
-        var currentTab: Tab = .myTemplate
+        var currentTab: Tab = .inspiration
     }
 }
 

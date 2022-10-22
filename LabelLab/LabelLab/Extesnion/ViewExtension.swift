@@ -16,6 +16,10 @@ extension View {
         modifier(ErrorToast(error))
     }
 
+    func toast(_ message: Binding<String?>) -> some View {
+        modifier(Toast(message: message))
+    }
+
     func deleteAlert(_ isShowing: Binding<Bool>, text: String, onDelete: @escaping () -> Void) -> some View {
         modifier(DeleteAlert(isShowing: isShowing, text: text, onDelete: onDelete))
     }
@@ -94,6 +98,42 @@ struct ErrorToast: ViewModifier {
             .frame(minWidth: 120, alignment: .center)
             .padding()
             .background(RoundedRectangle(cornerRadius: 8).fill(Color.red.opacity(0.8)))
+            .padding(.bottom, 48)
+    }
+}
+
+struct Toast: ViewModifier {
+    @Binding private var message: String?
+
+    init(message: Binding<String?>) {
+        self._message = message
+    }
+
+    func body(content: Content) -> some View {
+        ZStack(alignment: .bottom) {
+            content
+            if let message {
+                toast(message)
+                    .transition(.opacity.animation(.easeInOut))
+                    .zIndex(3)
+                    .onAppear(perform: dismiss)
+            }
+        }
+    }
+
+    private func dismiss() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            message = nil
+        }
+    }
+
+    private func toast(_ message: String) -> some View {
+        Text("\(Image(systemName: "info.circle")) \(message)")
+            .lineLimit(1)
+            .font(.title3)
+            .frame(minWidth: 120, alignment: .center)
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.gray))
             .padding(.bottom, 48)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MyTemplateDetail.swift
+//  InspirationTemplateDetail.swift
 //  LabelLab
 //
 //  Created by JongHo Park on 2022/09/12.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyTemplateDetail: View {
+struct InspirationTemplateDetail: View {
 
     @EnvironmentObject private var appState: AppState
     @Environment(\.injected) private var diContainer: DIContainer
@@ -16,9 +16,9 @@ struct MyTemplateDetail: View {
     @State private var name: String
     @State private var description: String
     @State private var tags: [String]
-    @State private var editLabelState: EditLabelState = .none
-    @State private var eventState: Event = .notRequested
     @State private var error: Error?
+    @State private var isCopying: Event = .notRequested
+    @State private var message: String?
 
     init(labels: Loadable<[Label]> = .notRequested, template: Template) {
         self._labels = State(initialValue: labels)
@@ -32,66 +32,57 @@ struct MyTemplateDetail: View {
         VStack(alignment: .leading, spacing: 0) {
             backButton()
             HStack {
-                VStack {
+                VStack(alignment: .leading) {
                     templateTitle(of: template)
                     templateDescription(of: template)
                 }
                 Spacer()
-                addButton()
-                    .padding()
+                copyButton()
             }
             templateTags(of: template)
             divider()
-            editLabel()
             content()
         }
         .maxSize(.topLeading)
         .background(Color.detailBackground)
         .padding()
-        .onTapGesture {
-            NSApp.keyWindow?.makeFirstResponder(nil)
+        .onChange(of: isCopying, perform: { newValue in
+            switch newValue {
+            case .failed(let error):
+                self.error = error
+                isCopying = .notRequested
+            case .loaded: message = "copy completed!"
+            default: break
+            }
+        })
+        .disabled(isCopying == .isLoading(last: nil))
+        .overlay {
+            if case .isLoading = isCopying {
+                ZStack {
+                    Color.black.opacity(0.7)
+                    ProgressView()
+                }
+            }
         }
-        .onChange(of: eventState) { newValue in
-            error = newValue.error
-        }
+        .toast($message)
         .errorToast($error)
     }
 }
 
 // MARK: - Tool bar content builder
-private extension MyTemplateDetail {
-    func addButton() -> some View {
-        DefaultButton(text: "Add Label", style: .primary) {
-            switchEditLabelState(.add)
+private extension InspirationTemplateDetail {
+    func copyButton() -> some View {
+        DefaultButton(text: "Copy Label", style: .primary) {
+            copyTemplate()
         }
-        .keyboardShortcut("a") {
-            switchEditLabelState(.add)
-        }
-    }
-}
-
-private extension MyTemplateDetail {
-    enum EditLabelState {
-        case none
-        case add
-        case modify(Label)
-    }
-
-}
-
-extension MyTemplateDetail.EditLabelState: Equatable {
-    static func == (lhs: MyTemplateDetail.EditLabelState, rhs: MyTemplateDetail.EditLabelState) -> Bool {
-        switch (lhs, rhs) {
-        case (.none, .none): return true
-        case (.add, .add): return true
-        case let (.modify(first), .modify(second)): return first == second
-        default: return false
+        .keyboardShortcut("c") {
+            copyTemplate()
         }
     }
 }
 
 // MARK: - Side Effect
-private extension MyTemplateDetail {
+private extension InspirationTemplateDetail {
     func loadLabels() {
         Task(priority: .userInitiated) {
             await diContainer
@@ -101,95 +92,26 @@ private extension MyTemplateDetail {
         }
     }
 
-    func deleteLabel(label: Label) {
+    func copyTemplate() {
+        guard let userInfo = appState.userData.userInfo.value else {
+            error = OAuthError.userInfoNotExist
+            return
+        }
         Task(priority: .userInitiated) {
             await diContainer
                 .interactors
-                .labelListInteractor
-                .deleteLabel(of: template, label, subject: $labels, event: $eventState)
+                .inspirationInteractor
+                .copyTemplate(template: template, to: String(userInfo.id), isCopying: $isCopying)
         }
-    }
-
-    func switchEditLabelState(_ state: EditLabelState) {
-        withAnimation {
-            if case .modify = editLabelState {
-                self.editLabelState = .none
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                    withAnimation {
-                        self.editLabelState = state
-                    }
-                }
-            } else {
-                self.editLabelState = state
-            }
-        }
-    }
-
-    func closeEditLabel() {
-        withAnimation {
-            editLabelState = .none
-        }
-    }
-
-    func updateTemplateName(to name: String) {
-        diContainer.interactors
-            .templateDetailInteractor
-            .updateTemplateName(of: template, to: name) { _ in
-
-            }
-    }
-
-    func updateTemplateDescription(to description: String) {
-        diContainer.interactors
-            .templateDetailInteractor
-            .updateTemplateDescription(of: template, to: description) { _ in
-
-            }
-    }
-
-    func addLabel(_ label: Label) {
-        Task(priority: .userInitiated) {
-            await diContainer.interactors
-                .labelListInteractor
-                .addLabel(to: template, label, subject: $labels, event: $eventState)
-        }
-    }
-
-    func modifyLabel(_ label: Label) {
-        Task(priority: .userInitiated) {
-            await diContainer.interactors
-                .labelListInteractor
-                .modifyLabel(of: template, label, subject: $labels, event: $eventState)
-        }
-    }
-}
-
-extension AnyTransition {
-    static var moveFromTopWithOpacity: AnyTransition {
-        .asymmetric(insertion: .move(edge: .top).animation(.spring()).combined(with: .opacity.animation(.easeInOut.delay(0.1))), removal: .move(edge: .top).animation(.spring()).combined(with: .opacity))
     }
 }
 
 // MARK: - UI Components
-private extension MyTemplateDetail {
-
-    @ViewBuilder
-    func editLabel() -> some View {
-        switch editLabelState {
-        case .none:
-            EmptyView()
-        case .add:
-            EditLabel(labels: $labels, event: eventState, onClose: closeEditLabel, onDone: addLabel(_:))
-                .transition(.moveFromTopWithOpacity)
-        case .modify(let label):
-            EditLabel(edit: label, labels: $labels, event: eventState, onClose: closeEditLabel, onDone: modifyLabel(_:))
-                .transition(.moveFromTopWithOpacity)
-        }
-    }
+private extension InspirationTemplateDetail {
 
     func backButton() -> some View {
         Button {
-            appState.routing.myTemplateListRouting.template = nil
+            appState.routing.inspirationListRouting.template = nil
         } label: {
             Image(systemName: "chevron.left")
                 .padding([.bottom, .trailing], 12)
@@ -199,17 +121,17 @@ private extension MyTemplateDetail {
     }
 
     func templateTitle(of template: Template) -> some View {
-        EditableText(text: $name, font: .largeTitle, fontWeight: .bold, hint: "Please enter your template name", max: 30) {
-            updateTemplateName(to: $0)
-        }
+        Text(name)
+            .font(.largeTitle)
+            .fontWeight(.bold)
     }
 
     func templateDescription(of template: Template) -> some View {
-        EditableText(text: $description, font: .title3, fontWeight: .regular, hint: "Please enter your template description", max: 100) {
-            updateTemplateDescription(to: $0)
-        }
-        .foregroundColor(.white.opacity(0.7))
-        .padding(.top, 7)
+        Text(description)
+            .font(.title3)
+            .fontWeight(.regular)
+            .foregroundColor(.white.opacity(0.7))
+            .padding(.top, 7)
     }
 
     func templateTags(of template: Template) -> some View {
@@ -231,7 +153,7 @@ private extension MyTemplateDetail {
     }
 }
 // MARK: - Content
-private extension MyTemplateDetail {
+private extension InspirationTemplateDetail {
 
     @ViewBuilder
     func content() -> some View {
@@ -248,7 +170,7 @@ private extension MyTemplateDetail {
     }
 }
 // MARK: - is Loading
-private extension MyTemplateDetail {
+private extension InspirationTemplateDetail {
     func isLoading() -> some View {
         VStack {
             Text("label is loading...")
@@ -260,7 +182,7 @@ private extension MyTemplateDetail {
 }
 
 // MARK: - Loaded
-private extension MyTemplateDetail {
+private extension InspirationTemplateDetail {
     func loaded(_ labels: [Label]) -> some View {
         ScrollView(showsIndicators: false) {
             LazyVStack(alignment: .leading, pinnedViews: .sectionHeaders) {
@@ -279,37 +201,28 @@ private extension MyTemplateDetail {
             ToolbarItemGroup(placement: .automatic) {
                 Spacer()
                 Button {
-                    appState.routing.myTemplateDetailRouting.isShowingRepositoryList = true
+                    appState.routing.inspirationTemplateDetailRouting.isShowingRepositoryList = true
                 } label: {
                     Text("\(Image(systemName: "square.and.arrow.up")) Upload to Github")
                         .padding()
                 }
                 .keyboardShortcut("u") {
-                    appState.routing.myTemplateDetailRouting.isShowingRepositoryList = true
+                    appState.routing.inspirationTemplateDetailRouting.isShowingRepositoryList = true
                 }
             }
         }
-        .sheet(isPresented: $appState.routing.myTemplateDetailRouting.isShowingRepositoryList) {
-            RepositoryList(labels: labels, templateName: name)
+        .sheet(isPresented: $appState.routing.inspirationTemplateDetailRouting.isShowingRepositoryList) {
+            RepositoryList(labels: labels, templateName: template.name)
         }
         .padding(.top)
     }
 
     func cell(_ label: Label) -> some View {
         LabelCell(label: label,
-                  selected: isLabelSelected(label),
-                  onModify: {
-            switchEditLabelState(.modify($0))
-        },
-                  onDelete: deleteLabel(label:))
+                  selected: false,
+                  onModify: nil,
+                  onDelete: nil)
             .padding(.vertical, 2)
-    }
-
-    func isLabelSelected(_ label: Label) -> Bool {
-        if case let .modify(selected) = editLabelState {
-            return selected.id == label.id
-        }
-        return false
     }
 
     func labelListTitle(_ count: Int) -> some View {
@@ -321,7 +234,7 @@ private extension MyTemplateDetail {
 }
 
 // MARK: - Error Indicator
-private extension MyTemplateDetail {
+private extension InspirationTemplateDetail {
     func errorIndicator(_ error: Error) -> some View {
         VStack {
             Text("Error occur when loading labels!")
@@ -338,7 +251,7 @@ private extension MyTemplateDetail {
 }
 
 // MARK: - Not requested
-private extension MyTemplateDetail {
+private extension InspirationTemplateDetail {
     func notRequested() -> some View {
         Text("")
             .onAppear(perform: loadLabels)
@@ -346,7 +259,7 @@ private extension MyTemplateDetail {
 }
 
 // MARK: - Routing
-extension MyTemplateDetail {
+extension InspirationTemplateDetail {
     struct Routing: Equatable {
         var isShowingRepositoryList: Bool = false
     }
@@ -354,12 +267,12 @@ extension MyTemplateDetail {
 
 #if DEBUG
 // MARK: - Preview
-struct MyTemplateDetail_Previews: PreviewProvider {
+struct InspirationTemplateDetail_Previews: PreviewProvider {
 
     static func makePreview(_ labels: Loadable<[Label]>) -> some View {
         NavigationView {
             EmptyView()
-            MyTemplateDetail(labels: labels, template: Template.mockedData.first!)
+            InspirationTemplateDetail(labels: labels, template: Template.mockedData.first!)
         }
         .frame(minWidth: 600, minHeight: 500)
         .previewDisplayName(labels.previewDisplayName)

@@ -8,11 +8,12 @@
 import Foundation
 
 protocol InspirationInteractor {
-    func requestNextTemplates(query: TemplateQuery)
-    func copyTemplate(template: Template, isCopying: EventSubject) async
+    func requestNextTemplates(query: TemplateQuery, force reloading: Bool)
+    func copyTemplate(template: Template, to userId: String, isCopying: EventSubject) async
 }
 
 final class RealInspirationInteractor: InspirationInteractor {
+
     private let appState: AppState
     private let templateRepository: TemplateRepository
     private var lastQuery: TemplateQuery?
@@ -25,21 +26,38 @@ final class RealInspirationInteractor: InspirationInteractor {
         self.templateRepository = templateRepository
     }
 
-    func requestNextTemplates(query: TemplateQuery) {
+    func requestNextTemplates(query: TemplateQuery, force reloading: Bool = false) {
         dispatchQueue.async {
             Task(priority: .userInitiated) { [weak self] in
-                await self?.requestNextTemplates(query: query)
+                await self?.requestNextTemplates(query: query, force: reloading)
             }
         }
     }
 
-    @MainActor func requestNextTemplates(query: TemplateQuery) async {
+    @MainActor func requestNextTemplates(query: TemplateQuery, force reloading: Bool = false) async {
         do {
+            var query: TemplateQuery = query
+            if reloading {
+                canUpdateMore = true
+                // 이전 쿼리의 요청 페이지 수가 10이면, 현재 쿼리 요청을 11로 변경함
+                if lastQuery?.perPage == 10 {
+                    query = TemplateQuery(descending: query.descending, nameQuery: query.nameQuery, tags: query.tags, perPage: 11)
+                }
+                // 이전 쿼리가 없거나 요청 페이지 수가 11이면, 현재 쿼리 요청을 10으로 변경함
+                else {
+                    query = TemplateQuery(descending: query.descending, nameQuery: query.nameQuery, tags: query.tags, perPage: 10)
+                }
+                lastQuery = nil
+            }
             if lastQuery != query {
                 canUpdateMore = true
             }
             guard canUpdateMore else { return }
-            appState.userData.templateList = .isLoading(last: appState.userData.templateList.value)
+            if reloading {
+                appState.userData.templateList = .isLoading(last: nil)
+            } else {
+                appState.userData.templateList = .isLoading(last: appState.userData.templateList.value)
+            }
             let exclude: Int? = appState.userData.userInfo.value?.id
             let result = try await templateRepository.requestTemplates(exclude: exclude != nil ? String(exclude!): "", query: query)
             defer {
@@ -67,13 +85,18 @@ final class RealInspirationInteractor: InspirationInteractor {
         }
     }
 
-    // TODO: Copy 기능 구현해야함
-    @MainActor func copyTemplate(template: Template, isCopying: EventSubject) async {
+    @MainActor func copyTemplate(template: Template, to userId: String, isCopying: EventSubject) async {
         do {
-
+            isCopying.wrappedValue = .isLoading(last: nil)
+            let copiedTemplate = try await templateRepository.copyTemplate(template, to: userId)
+            var myTemplates = appState.userData.myTemplateList.value
+            myTemplates?.append(copiedTemplate)
+            if let myTemplates {
+                appState.userData.myTemplateList = .loaded(myTemplates)
+            }
+            isCopying.wrappedValue = .loaded(true)
         } catch {
-
+            isCopying.wrappedValue = .failed(error)
         }
     }
 }
-

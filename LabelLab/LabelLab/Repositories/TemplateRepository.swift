@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 
 protocol TemplateRepository {
     func requestTemplates(exclude userId: String?, query templateQuery: TemplateQuery) async throws -> ([Template], Bool)
-    func copyTemplate(_ template: Template, to userId: String) async throws
+    func copyTemplate(_ template: Template, to userId: String) async throws -> Template
     #if DEBUG
     func addTemplates(templates: [Template]) async throws
     #endif
@@ -82,12 +82,17 @@ extension FirebaseTemplateRepository: TemplateRepository {
         }
     }
 
-    func copyTemplate(_ template: Template, to userId: String) async throws {
-        let templateToCopy: Template = template.copyTemplate(to: userId)
+    func copyTemplate(_ template: Template, to userId: String) async throws -> Template {
+        let copiedTemplate: Template = template.copyTemplate(to: userId)
         // 싱글톤 객체에 바로 접근하는게 별로 좋진 않지만, 애초에 Firebase 관련 Repository 라서 똑같은 구현타입이라고 생각함
-        try await FirebaseMyTemplateRepository.shared.addTemplate(template: templateToCopy)
+        try await db.collection(collection).document(template.id)
+            .updateData([
+                "copyCount": FieldValue.increment(Int64(1))
+            ])
+        try await FirebaseMyTemplateRepository.shared.addTemplate(template: copiedTemplate)
         let labels: [Label] = try await labelRepository.requestLabels(of: template)
-        try await labelRepository.addLabels(to: templateToCopy, labels: labels)
+        try await labelRepository.addLabels(to: copiedTemplate, labels: labels)
+        return copiedTemplate
     }
 }
 

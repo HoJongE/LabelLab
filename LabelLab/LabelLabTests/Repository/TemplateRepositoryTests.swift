@@ -12,6 +12,8 @@ final class TemplateRepositoryTests: XCTestCase {
 
     private var templateRepository: TemplateRepository!
     private var myTemplateRepository: MyTemplateRepository!
+    private var labelRepository: LabelRepository!
+    private lazy var testTemplate: Template = Template(id: UUID().uuidString, name: "Test template", templateDescription: "", makerId: testUserId, copyCount: 0, tag: [], isOpen: true)
     private let testUserId: String = "testUserId"
     private lazy var testTemplates: [Template] = {
         var ret: [Template] = []
@@ -30,10 +32,12 @@ final class TemplateRepositoryTests: XCTestCase {
         try await super.setUp()
         templateRepository = FirebaseTemplateRepository.shared
         myTemplateRepository = FirebaseMyTemplateRepository.shared
+        labelRepository = FirebaseLabelRepository.shared
     }
 
     override func tearDown() async throws {
         try await myTemplateRepository.deleteTemplates(of: testUserId)
+        try await myTemplateRepository.deleteTemplates(of: "copyUserId")
         myTemplateRepository = nil
         templateRepository = nil
         try await super.tearDown()
@@ -78,6 +82,33 @@ final class TemplateRepositoryTests: XCTestCase {
 
             let result4: [Template] = try await templateRepository.requestTemplates(exclude: "123", query: query).0
             XCTAssert(result4.isEmpty)
+        } catch {
+            XCTFail(#function + " \(error.localizedDescription)")
+        }
+    }
+
+    func testCopyTemplate() async {
+        do {
+            // given
+            let labelsToCopy: [Label] = Label.mockedData // 복사할 라벨
+            // when
+            try await myTemplateRepository.addTemplate(template: testTemplate)// 먼저 복사할 템플릿을 추가함
+            try await labelRepository.addLabels(to: testTemplate, labels: labelsToCopy) // 그 다음 템플릿에 라벨을 추가함
+
+            _ = try await templateRepository.copyTemplate(testTemplate, to: "copyUserId") // 그 다음 템플릿을 복사한다.
+
+            guard let copiedTemplate: Template = try? await myTemplateRepository.requestTemplates(of: "copyUserId").first else { XCTFail(#function + " there should be one template that copied")
+                return
+            }
+            let copiedLabels: [Label] = try await labelRepository.requestLabels(of: copiedTemplate)
+            // then
+            XCTAssertEqual(labelsToCopy.sorted(by: {
+                $0.name > $1.name
+            }), copiedLabels.sorted(by: {
+                $0.name > $1.name
+            }))
+            XCTAssertNotEqual(testTemplate.id, copiedTemplate.id)
+            XCTAssertNotEqual(testTemplate.makerId, copiedTemplate.makerId)
         } catch {
             XCTFail(#function + " \(error.localizedDescription)")
         }

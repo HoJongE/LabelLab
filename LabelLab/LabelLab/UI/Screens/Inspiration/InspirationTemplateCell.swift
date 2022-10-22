@@ -65,6 +65,10 @@ struct InspirationTemplateCell: View {
                 Text("#\(tag)")
                     .font(.footnote).bold()
             }
+            Spacer()
+            Text("copy count: \(template.copyCount)")
+                .foregroundColor(.gray)
+                .font(.caption)
         }
         .padding(.top, 20)
     }

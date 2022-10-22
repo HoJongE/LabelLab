@@ -102,6 +102,7 @@
 		00F8F10F28B49E6300D688AC /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F10E28B49E6300D688AC /* APICall.swift */; };
 		00F8F11228B4A0A500D688AC /* GithubAuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F11128B4A0A500D688AC /* GithubAuthAPI.swift */; };
 		00F8F11428B4A1A200D688AC /* URLCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8F11328B4A1A200D688AC /* URLCollection.swift */; };
+		00FDA628290377B900D5B832 /* InspirationTemplateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDA627290377B900D5B832 /* InspirationTemplateDetail.swift */; };
 		A762EF9C28D6F49B0042ADFC /* CustomImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A762EF9B28D6F49B0042ADFC /* CustomImageButton.swift */; };
 		A7AFD1D328BBCCDC000D8167 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFD1D228BBCCDC000D8167 /* BasicButton.swift */; };
 		A7AFD1D928BC3F44000D8167 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFD1D828BC3F44000D8167 /* DismissButton.swift */; };
@@ -221,6 +222,7 @@
 		00F8F10E28B49E6300D688AC /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
 		00F8F11128B4A0A500D688AC /* GithubAuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAuthAPI.swift; sourceTree = "<group>"; };
 		00F8F11328B4A1A200D688AC /* URLCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCollection.swift; sourceTree = "<group>"; };
+		00FDA627290377B900D5B832 /* InspirationTemplateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspirationTemplateDetail.swift; sourceTree = "<group>"; };
 		A762EF9B28D6F49B0042ADFC /* CustomImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageButton.swift; sourceTree = "<group>"; };
 		A7AFD1D228BBCCDC000D8167 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		A7AFD1D828BC3F44000D8167 /* DismissButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 			children = (
 				00DDEABB28FD6138004DDFA9 /* InspirationTemplateCell.swift */,
 				00DDEABD28FD6338004DDFA9 /* InspirationList.swift */,
+				00FDA627290377B900D5B832 /* InspirationTemplateDetail.swift */,
 			);
 			path = Inspiration;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				0085688D28D6D49C00A88CB8 /* ViewExtension.swift in Sources */,
 				0085688328D6A7F000A88CB8 /* DefaultButton.swift in Sources */,
 				00E9334E28CD8229008ECC8B /* LogoutPopup.swift in Sources */,
+				00FDA628290377B900D5B832 /* InspirationTemplateDetail.swift in Sources */,
 				00D1D22628DF4F2B00968EBF /* EncodableExtension.swift in Sources */,
 				003CEF2528DFEE8400F13F8A /* ArrayExtension.swift in Sources */,
 				00A3C74728F11B470023BC4C /* TemplateDetailInteractor.swift in Sources */,

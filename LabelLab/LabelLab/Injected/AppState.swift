@@ -48,6 +48,7 @@ extension AppState {
         var myTemplateListRouting: MyTemplateList.Routing = .init()
         var myTemplateDetailRouting: MyTemplateDetail.Routing = .init()
         var inspirationListRouting: InspirationList.Routing = .init()
+        var inspirationTemplateDetailRouting: InspirationTemplateDetail.Routing = .init()
     }
 
 }

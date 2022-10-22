@@ -54,6 +54,7 @@ extension RealOAuthInteractor: OAuthInteractor {
     @MainActor func logout() async {
         do {
             try await oAuthService.logout()
+            appState.userData.myTemplateList = .notRequested
             appState.userData.userInfo = .notRequested
         } catch {
             appState.userData.userInfo = .failed(error)

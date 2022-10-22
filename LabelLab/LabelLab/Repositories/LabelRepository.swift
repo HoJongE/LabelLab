@@ -55,7 +55,7 @@ extension FirebaseLabelRepository: LabelRepository {
         let isCacheEnable: Bool = await cache.checkIdExistence(template.id)
         let snapshot = try await getLabelCollectionRef(of: template).getDocuments(source: isCacheEnable ? .cache: .server)
         let labels: [Label] = try snapshot.documents.map { try $0.data(as: Label.self) }
-        if !isCacheEnable { 
+        if !isCacheEnable {
             await cache.insertId(template.id)
         }
         return labels

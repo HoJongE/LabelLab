@@ -11,6 +11,9 @@ struct InspirationList: View {
 
     @EnvironmentObject private var appState: AppState
     @Environment(\.injected) private var diContainer: DIContainer
+    @State private var isCopying: Event = .notRequested
+    @State private var copyError: Error?
+    @State private var message: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -19,24 +22,55 @@ struct InspirationList: View {
             divider()
             content()
         }
+        .disabled(isCopying == .isLoading(last: nil))
         .padding()
         .maxSize(.topLeading)
+        .onChange(of: isCopying, perform: {
+            if let error = $0.error {
+                copyError = error
+            }
+            switch isCopying {
+            case .failed: isCopying = .notRequested
+            case .loaded: message = "copy completed!"
+            default: break
+            }
+        })
+        .overlay(content: {
+            if case .isLoading = isCopying {
+                ZStack {
+                    Color.black.opacity(0.7)
+                    ProgressView()
+                }
+            }
+        })
         .overlay {
             if let template = appState.routing.inspirationListRouting.template {
-                MyTemplateDetail(template: template)
-                    .transition(.opacity)
-                    .zIndex(4)
+                InspirationTemplateDetail(template: template)
             }
         }
+        .toast($message)
+        .errorToast($copyError)
     }
 }
 
 // MARK: - Side Effects
 private extension InspirationList {
-    func requestTemplates() {
+    func requestTemplates(force reloading: Bool = false) {
         diContainer.interactors
             .inspirationInteractor
-            .requestNextTemplates(query: .init(perPage: 10))
+            .requestNextTemplates(query: .init(perPage: 10), force: reloading)
+    }
+
+    func copyTemplate(_ template: Template) {
+        guard let user = appState.userData.userInfo.value else {
+            isCopying = .failed(OAuthError.userInfoNotExist)
+            return
+        }
+        Task(priority: .userInitiated) {
+            await diContainer.interactors
+                .inspirationInteractor
+                .copyTemplate(template: template, to: String(user.id), isCopying: $isCopying)
+        }
     }
 }
 
@@ -47,7 +81,9 @@ private extension InspirationList {
         switch appState.userData.templateList {
         case .notRequested:
             Text("")
-                .onAppear(perform: requestTemplates)
+                .onAppear {
+                    requestTemplates()
+                }
         case .isLoading, .loaded:
             loaded(appState.userData.templateList)
         case .failed(let error):
@@ -117,12 +153,21 @@ private extension InspirationList {
 // MARK: - UI Components
 private extension InspirationList {
 
+    func reloadButton() -> some View {
+        DefaultButton(text: "reload", style: .primary) {
+            requestTemplates(force: true)
+        }
+    }
     func tabName() -> some View {
-        Text("Inspirations")
-            .bold()
-            .font(.title3)
-            .foregroundColor(.white.opacity(0.8))
-            .padding(.bottom, 16)
+        HStack {
+            Text("Inspirations")
+                .bold()
+                .font(.title3)
+                .foregroundColor(.white.opacity(0.8))
+                .padding(.bottom, 16)
+            Spacer()
+            reloadButton().padding(.trailing)
+        }
     }
     func title() -> some View {
         HStack(alignment: .firstTextBaseline) {
@@ -148,7 +193,9 @@ private extension InspirationList {
                     cell(template)
                 }
                 Text("")
-                    .onAppear(perform: requestTemplates)
+                    .onAppear {
+                        requestTemplates()
+                    }
             }
             .frame(minHeight: 0, maxHeight: .infinity, alignment: .top)
             if isLoading {
@@ -164,7 +211,7 @@ private extension InspirationList {
 
     func cell(_ template: Template) -> some View {
         InspirationTemplateCell(template: template, onClick: onCellClick(_:)) { _ in
-            // on Copy
+            copyTemplate(template)
         }
     }
 
