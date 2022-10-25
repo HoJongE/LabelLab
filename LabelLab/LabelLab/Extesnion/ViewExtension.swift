@@ -76,7 +76,7 @@ struct ErrorToast: ViewModifier {
     func body(content: Content) -> some View {
         ZStack(alignment: .bottom) {
             content
-            if let error {
+            if let error = error {
                 errorToast(error.localizedDescription)
                     .transition(.opacity.animation(.easeInOut))
                     .zIndex(3)
@@ -112,7 +112,7 @@ struct Toast: ViewModifier {
     func body(content: Content) -> some View {
         ZStack(alignment: .bottom) {
             content
-            if let message {
+            if let message = message {
                 toast(message)
                     .transition(.opacity.animation(.easeInOut))
                     .zIndex(3)

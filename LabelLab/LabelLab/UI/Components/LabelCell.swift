@@ -93,7 +93,7 @@ private extension LabelCell {
         }
     }
 }
-
+#if DEBUG
 struct LabelCell_Previews: PreviewProvider {
     static var previews: some View {
 
@@ -107,3 +107,4 @@ struct LabelCell_Previews: PreviewProvider {
         }
     }
 }
+#endif

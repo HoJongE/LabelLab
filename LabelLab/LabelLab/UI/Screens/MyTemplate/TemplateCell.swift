@@ -111,10 +111,11 @@ private extension TemplateCell {
         .padding()
     }
 }
-
+#if DEBUG
 struct TemplateCell_Previews: PreviewProvider {
     static var previews: some View {
         TemplateCell(template: Template.mockedData.first!)
             .padding()
     }
 }
+#endif

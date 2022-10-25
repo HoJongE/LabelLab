@@ -56,7 +56,7 @@ struct EditableText: View {
             .font(font.weight(fontWeight))
     }
 }
-
+#if DEBUG
 struct EditableText_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -67,3 +67,4 @@ struct EditableText_Previews: PreviewProvider {
         }
     }
 }
+#endif

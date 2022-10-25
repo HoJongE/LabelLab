@@ -102,7 +102,7 @@ private extension EditLabel {
 
     func createButton() -> some View {
         DefaultButton(text: isEditMode ? "Edit": "Create", style: .primary) {
-            if let label, let hex = color.hex {
+            if let label = label, let hex = color.hex {
                 let modifiedLabel: Label = Label(id: label.id, name: labelName, labelDescription: labelDescription, hex: hex)
                 onDone(modifiedLabel)
             } else if let hex = color.hex {
@@ -172,7 +172,7 @@ private extension EditLabel {
         .background(roundedBackground())
     }
 }
-
+#if DEBUG
 struct EditLabel_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -184,3 +184,4 @@ struct EditLabel_Previews: PreviewProvider {
         .padding()
     }
 }
+#endif

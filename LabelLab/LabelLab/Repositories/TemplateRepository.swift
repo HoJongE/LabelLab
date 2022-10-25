@@ -141,7 +141,7 @@ private extension FirebaseTemplateRepository {
         // 페이지네이션을 위한 쿼리 추가
         query = query.limit(to: templateQuery.perPage)
         // 만약 쿼리가 이전 쿼리와 같으면?
-        if checkQueryIsSame(templateQuery), let lastSnapshot {
+        if checkQueryIsSame(templateQuery), let lastSnapshot = lastSnapshot {
             query = query.start(afterDocument: lastSnapshot)
         }
 

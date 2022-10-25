@@ -77,7 +77,7 @@ private extension FAQItem {
                 .fill(Color.cellBackground.opacity(0.7)))
     }
 }
-
+#if DEBUG
 struct FAQItem_Previews: PreviewProvider {
     static var previews: some View {
         FAQItem(icon: Image(systemName: "xmark"), itemName: "톡킹온더쓋") {
@@ -85,3 +85,4 @@ struct FAQItem_Previews: PreviewProvider {
         }
     }
 }
+#endif

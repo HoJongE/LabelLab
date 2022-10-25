@@ -151,7 +151,7 @@ private extension UploadPopup {
         }
     }
 }
-
+#if DEBUG
 struct UploadPopup_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -174,3 +174,4 @@ struct UploadPopup_Previews: PreviewProvider {
         }
     }
 }
+#endif

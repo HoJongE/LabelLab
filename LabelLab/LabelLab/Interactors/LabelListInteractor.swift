@@ -48,7 +48,7 @@ extension RealLabelListInteractor: LabelListInteractor {
             var appendedLabels: [Label]? = subject.wrappedValue.value
             appendedLabels?.append(label)
             event.wrappedValue = .notRequested
-            guard let appendedLabels else { return }
+            guard let appendedLabels = appendedLabels else { return }
             withAnimation {
                 subject.wrappedValue = .loaded(appendedLabels)
             }
@@ -64,7 +64,7 @@ extension RealLabelListInteractor: LabelListInteractor {
             var modifiedLabels: [Label]? = subject.wrappedValue.value
             modifiedLabels?.replace(to: label)
             event.wrappedValue = .notRequested
-            guard let modifiedLabels else { return }
+            guard let modifiedLabels = modifiedLabels else { return }
             subject.wrappedValue = .loaded(modifiedLabels)
         } catch {
             event.wrappedValue = .failed(error)
@@ -77,7 +77,7 @@ extension RealLabelListInteractor: LabelListInteractor {
             try await labelRepository.deleteLabel(of: template, label: label)
             var deletedLabels: [Label]? = subject.wrappedValue.value
             deletedLabels?.delete(label)
-            guard let deletedLabels else { return }
+            guard let deletedLabels = deletedLabels else { return }
             withAnimation {
                 subject.wrappedValue = .loaded(deletedLabels)
             }

@@ -91,7 +91,7 @@ final class RealInspirationInteractor: InspirationInteractor {
             let copiedTemplate = try await templateRepository.copyTemplate(template, to: userId)
             var myTemplates = appState.userData.myTemplateList.value
             myTemplates?.append(copiedTemplate)
-            if let myTemplates {
+            if let myTemplates = myTemplates {
                 appState.userData.myTemplateList = .loaded(myTemplates)
             }
             isCopying.wrappedValue = .loaded(true)

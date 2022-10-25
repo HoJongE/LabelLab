@@ -148,7 +148,7 @@ private extension RepositoryList {
     @ViewBuilder
     func list(_ repositories: [GithubRepository]) -> some View {
         ScrollView(.vertical, showsIndicators: true) {
-            if let filteredRepositories {
+            if let filteredRepositories = filteredRepositories {
                 ForEachWithIndex(filteredRepositories) { index, repository in
                     Cell(repository: repository, isSelected: repository == selectedRepository, index: index + 1) {
                         selectedRepository = repository
@@ -272,7 +272,7 @@ private extension RepositoryList {
         .maxSize(.center)
     }
 }
-
+#if DEBUG
 struct RepositoryList_Previews: PreviewProvider {
     static func makePreview(_ repositories: AuthenticationRequiredLoadable<[GithubRepository]> = .notRequested) -> some View {
         RepositoryList(repositories: repositories, labels: Label.mockedData, templateName: "WWDC study")
@@ -288,3 +288,4 @@ struct RepositoryList_Previews: PreviewProvider {
         .injectPreview()
     }
 }
+#endif

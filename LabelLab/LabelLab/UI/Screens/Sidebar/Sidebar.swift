@@ -112,14 +112,7 @@ private extension Sidebar {
     }
 
     func accountProfile(userInfo: UserInfo?) -> some View {
-        CircleWebImage(urlString: userInfo?.profileImage, width: 30) {
-            Circle()
-                .fill(Color.gray)
-                .overlay {
-                    Image(systemName: "person.fill")
-                        .imageScale(.large)
-                }
-        }
+        CircleWebImage(urlString: userInfo?.profileImage, width: 30)
     }
 }
 

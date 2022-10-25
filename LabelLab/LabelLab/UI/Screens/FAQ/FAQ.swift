@@ -91,7 +91,7 @@ private extension FAQ {
         .frame(maxWidth: .infinity, alignment: .topLeading)
     }
 }
-
+#if DEBUG
 struct FAQ_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
@@ -101,3 +101,4 @@ struct FAQ_Previews: PreviewProvider {
         .injectPreview()
     }
 }
+#endif

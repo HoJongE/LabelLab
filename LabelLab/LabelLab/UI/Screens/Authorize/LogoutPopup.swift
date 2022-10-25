@@ -43,10 +43,11 @@ private extension LogoutPopup {
         }
     }
 }
-
+#if DEBUG
 struct LogoutPopup_Previews: PreviewProvider {
     static var previews: some View {
         LogoutPopup()
             .injectPreview()
     }
 }
+#endif

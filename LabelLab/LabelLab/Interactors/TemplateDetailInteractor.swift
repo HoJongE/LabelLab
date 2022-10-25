@@ -33,7 +33,7 @@ extension RealTemplateDetailInteractor: TemplateDetailInteractor {
             if error == nil {
                 var value: [Template]? = appState.userData.myTemplateList.value
                 value?.replace(to: template.changeName(to: name))
-                guard let value else { return }
+                guard let value = value else { return }
                 appState.userData.myTemplateList = .loaded(value)
             }
             completion(error)
@@ -45,7 +45,7 @@ extension RealTemplateDetailInteractor: TemplateDetailInteractor {
             if error == nil {
                 var value: [Template]? = appState.userData.myTemplateList.value
                 value?.replace(to: template.changeDescription(to: description))
-                guard let value else { return }
+                guard let value = value else { return }
                 appState.userData.myTemplateList = .loaded(value)
             }
             completion(error)

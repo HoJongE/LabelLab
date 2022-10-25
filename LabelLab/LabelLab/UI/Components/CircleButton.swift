@@ -32,7 +32,7 @@ struct CircleButton: View {
         .onHover { isHover = $0 }
     }
 }
-
+#if DEBUG
 struct CircleButton_Previews: PreviewProvider {
     static var previews: some View {
         CircleButton(systemName: "pencil") {
@@ -40,3 +40,4 @@ struct CircleButton_Previews: PreviewProvider {
         }
     }
 }
+#endif

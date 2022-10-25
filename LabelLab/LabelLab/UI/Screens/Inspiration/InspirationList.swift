@@ -229,6 +229,7 @@ extension InspirationList {
     }
 }
 // MARK: - Preview
+#if DEBUG
 struct InspirationList_Previews: PreviewProvider {
 
     static func makePreview(_ inspirations: Loadable<[Template]> = .notRequested) -> some View {
@@ -253,3 +254,4 @@ struct InspirationList_Previews: PreviewProvider {
         }
     }
 }
+#endif

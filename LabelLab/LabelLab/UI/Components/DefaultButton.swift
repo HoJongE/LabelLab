@@ -61,7 +61,7 @@ struct DefaultButton: View {
         LinearGradient(colors: [Color("4B91F7"), Color("367AF6")], startPoint: .top, endPoint: .bottom)
     }
 }
-
+#if DEBUG
 struct DefaultButton_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -73,3 +73,4 @@ struct DefaultButton_Previews: PreviewProvider {
         .padding()
     }
 }
+#endif
